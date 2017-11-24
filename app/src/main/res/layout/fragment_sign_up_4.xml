@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="@dimen/dimens_linearlayout_width_SignUpactivity"
+            android:layout_height="@dimen/dimens_linearlayout_height_SignUpactivity"
+            android:orientation="vertical"
+            android:background="@drawable/custom_linearlayout_signupactivity"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_signup_SignupActivity"
+                    android:textColor="@color/color_login_loginactivity"
+                    android:textStyle="bold"
+                    android:textSize="34sp"
+                    android:layout_marginLeft="@dimen/dimens_marginright_left_loginactivity"
+                    android:layout_marginRight="@dimen/dimens_marginright_left_loginactivity"
+                    android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_4_SignupActivity"
+                    android:gravity="right"
+                    android:layout_marginRight="@dimen/dimens_marginright_left_loginactivity"
+                    />
+            </LinearLayout>
+            <CheckBox
+                android:layout_marginTop="@dimen/dimens_margintop_loginactivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="131dp"
+                />
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_PA_SignupActivity"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginTop="6dp"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_button_login_height_loginactivity"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/custom_button_signupactivity_cancel"
+                    android:text="@string/txt_cancel_SignupActivity"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_text_button_login_loginactivity"
+                    android:textSize="12sp" />
+                <Button
+                    android:id="@+id/btn_continue_SignUpActivity"
+                    android:layout_weight="1"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/custom_button_sigunactivity_continue"
+                    android:layout_gravity="center"
+                    android:textAllCaps="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimens_button_login_height_loginactivity"
+                    android:text="@string/txt_signup_SignupActivity"
+                    android:textColor="@color/color_text_button_login_loginactivity"
+                    android:textSize="12sp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_login_loginactivity">#000000</color>
+    <color name="color_text_button_login_loginactivity">#fff</color>
+    <color name="color_text_textview_email_SignUpactivity">#000</color>
+    <color name="color_button_3_SignUpactivity">#95989A</color>
+    <color name="color_background_tablayoutactivity">#FDFEFF</color>
+    <color name="color_text_tablayoutactivity">#000000</color>
+    <color name="color_statusbar_tablayotactivity">#34495E</color>
+    <color name="color_text_find_xuhuong_tablayoutactivity">#0288D1</color>
+    <color name="color_button_find_tablayoutactivity">#34495E</color>
+    <color name="color_button_text_find_tablayoutactivity">#FFFFFF</color>
+    <color name="color_textview_background_text_find_tablayoutactivity">#0288D1</color>
+    <color name="color_textview_text_find_tablayoutactivity">#FFFFFF</color>
+    <color name="color_textview_hangbanchay_find_tablayoutactivity">#95989A</color>
+    <color name="color_textview_text_thamquan_tablayoutactivity">#0288D1</color>
+    <color name="color_textview_text_thamquan_hangbanchay_tablayoutactivity">#34495E</color>
+
+</resources>

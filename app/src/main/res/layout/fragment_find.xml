@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_marginTop="@dimen/dimens_textview_margintop_find_tablayoutactivity"
+            android:textColor="@color/color_text_tablayoutactivity"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_find_tablayoutactivity"
+            android:layout_marginLeft="@dimen/dimens_marginleft_find_tablayoutactivity"
+            android:textSize="34sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dimens_edittext_textview_find_margintop_tablayoutactivity"
+            android:layout_marginLeft="@dimen/dimens_marginleft_find_tablayoutactivity"
+            android:layout_marginRight="@dimen/dimens_marginleft_find_tablayoutactivity"
+            android:weightSum="5">
+            <EditText
+                android:id="@+id/ext_find_tablayoutactivity"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimens_edittext_height_loginactivity"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_custom_loginactivity"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="13dp"
+                android:hint="@string/btn_bancantimgi_tablayoutactivity"
+                android:paddingLeft="5dp"
+                android:textAllCaps="false"
+                android:textSize="9sp" />
+
+            <Button
+                android:id="@+id/btn_cancel_tablayoutactivity"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="1dp"
+                android:layout_weight="4"
+                android:background="@drawable/button_custom_loginactivity"
+                android:text="@string/btn_cancel_tablayoutactivity"
+                android:textAllCaps="false"
+                android:textColor="@color/color_button_text_find_tablayoutactivity"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <TextView
+            android:textColor="@color/color_text_tablayoutactivity"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:layout_marginTop="@dimen/dimens_edittext_textview_find_margintop_tablayoutactivity"
+            android:layout_marginLeft="@dimen/dimens_marginleft_find_tablayoutactivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_xuhuong_tablayoutactivity"
+            />
+        <ListView
+            android:id="@+id/lst_xuhuong_tablayotactivity"
+            android:layout_marginTop="@dimen/dimens_listview_find_margintop_tablayoutactivity"
+            android:layout_marginLeft="@dimen/dimens_marginleft_find_tablayoutactivity"
+            android:layout_width="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:layout_height="wrap_content">
+        </ListView>
+    </LinearLayout>
+</FrameLayout>

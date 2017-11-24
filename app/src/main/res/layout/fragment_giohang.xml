@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relative_layout_giohang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            tools:context="com.sample.foo.usingcoordinatorlayout.FabAndSnackbarActivity">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#fff"
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleGravity="center_horizontal"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:title="@string/txt_giohang_tablayoutactivity">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp"
+                        android:background="#fff"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:orientation="horizontal"
+                        android:weightSum="7">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dimens_marginleft_find_tablayoutactivity"
+                            android:layout_weight="7"
+                            android:gravity="left"
+                            android:text="@string/txt_giohang_tablayoutactivity"
+                            android:textColor="@color/color_text_tablayoutactivity"
+                            android:textSize="34sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="@dimen/dimens_marginleft_find_tablayoutactivity"
+                            android:layout_weight="1"
+                            android:src="@drawable/account_2" />
+                    </LinearLayout>
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
+
+                    <TextView
+                        android:id="@+id/txt_dathang_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/robotobold"
+                        android:text="Có 3 sảm phẩm | Tạm tính 1.080.000 VND"
+                        android:textSize="14sp" />
+
+                    <GridView
+                        android:id="@+id/gridview_dathang_giohang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:stretchMode="columnWidth"
+                        android:verticalSpacing="20dp"
+                        android:layout_below="@+id/txt_dathang_giohang"
+                        android:numColumns="1"></GridView>
+
+                    <TextView
+                        android:id="@+id/txt_demuasau_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/gridview_dathang_giohang"
+                        android:fontFamily="@font/robotobold"
+                        android:text="ĐỂ DÀNH MUA SAU"
+                        android:textSize="14sp" />
+
+                    <GridView
+                        android:stretchMode="columnWidth"
+                        android:verticalSpacing="15dp"
+                        android:horizontalSpacing="15dp"
+                        android:id="@+id/gridview_demuasau_giohang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/txt_demuasau_giohang"
+                        android:numColumns="1"></GridView>
+                </RelativeLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <Button
+                android:background="@drawable/button_dathang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Đặt hàng"
+                android:textSize="21sp"
+                android:textColor="#fff"
+                android:textAllCaps="false"
+                android:fontFamily="@font/robotobold"
+                android:layout_gravity="bottom" />
+        </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:src="@drawable/anh_beyeu"
+        android:id="@+id/avatar_anh_beyeu"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/avatar_anh_beyeu"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/txt_custom1_danhsachcuahang_tablayoutactivity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/txt_beyeu_tablayoutactivity"
+            android:textSize="10sp"
+            android:textColor="@color/color_textview_text_thamquan_hangbanchay_tablayoutactivity"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/txt_custom2_danhsachcuahang_tablayoutactivity"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/txt_mevabe_tablayoutactivity"
+            android:layout_marginBottom="10dp"
+            android:textSize="10sp"
+            android:textColor="@color/color_textview_text_thamquan_hangbanchay_tablayoutactivity"
+            />
+        <Button
+            android:id="@+id/btn_custom3_danhsachcuahang_tablayoutactivity"
+            android:textColor="@color/color_textview_text_thamquan_tablayoutactivity"
+            android:layout_width="55dp"
+            android:layout_height="7dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/custom_button_vao_visit_tablayoutactivity"
+            android:text="@string/btn_vao_tablayoutactivity"
+            android:textSize="13sp"
+            />
+    </LinearLayout>
+</RelativeLayout>

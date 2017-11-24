@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar_visit_hangmoi_kieudanhsach"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/custom_toobar_visit_danhsachcuahang_tablayoutactivity"
+    android:layout_height="34dp"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:layout_collapseMode="pin"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/btn_visit_hangmoi_kieudanhsach_tablayoutactivity"
+            android:layout_width="19dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/left_arrow"
+            />
+        <TextView
+            android:textColor="@color/color_textview_text_thamquan_tablayoutactivity"
+            android:layout_toRightOf="@+id/btn_visit_hangmoi_kieudanhsach_tablayoutactivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/txt_visit_tablayoutactivity"
+            android:textSize="11sp"
+            />
+        <TextView
+            android:textColor="@color/color_text_tablayoutactivity"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/txt_hangmoi_tablayoutactivity"
+            />
+        <ImageView
+            android:id="@+id/img_kieudanhsachlietke_visit_hangmoi_kieudanhsach_tablayoutactivity"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/listing_option"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.Toolbar>

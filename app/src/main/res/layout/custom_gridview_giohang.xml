@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@drawable/border_item_giohang">
+
+    <ImageView
+        android:id="@+id/image_sanpham_giohang"
+        android:layout_width="89dp"
+        android:layout_height="89dp"
+        android:background="@drawable/border_item_giohang"
+        android:padding="1dp"
+        android:src="@drawable/giay" />
+
+    <TextView
+        android:id="@+id/txt_sanpham_giohang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="7dp"
+        android:layout_toRightOf="@id/image_sanpham_giohang"
+        android:fontFamily="@font/robotoregular"
+        android:includeFontPadding="false"
+        android:text="Vintas Lowtop - Corsari"
+        android:textColor="#000"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/txt_giasanpham_giohang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_sanpham_giohang"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="3dp"
+        android:layout_toRightOf="@id/image_sanpham_giohang"
+        android:fontFamily="@font/robotoregular"
+        android:includeFontPadding="false"
+        android:text="360.000 VND"
+        android:textColor="#000"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/txt_size_sanpham_giohang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_giasanpham_giohang"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/image_sanpham_giohang"
+        android:fontFamily="@font/robotoregular"
+        android:text="size | 42"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/txt_soluong_sanpham_giohang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_giasanpham_giohang"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@id/txt_size_sanpham_giohang"
+        android:fontFamily="@font/robotoregular"
+        android:text="số lượng | ×1"
+        android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/btn_muasau_giohang"
+        android:layout_width="60dp"
+        android:layout_height="21dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="3dp"
+        android:layout_toLeftOf="@id/btn_xoasanpham_giohang"
+        android:background="@drawable/border_button"
+        android:fontFamily="@font/robotoregular"
+        android:text="Mua sau"
+        android:textAllCaps="false"
+        android:textColor="#737373"
+        android:textSize="12dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/logo_1"
+        android:padding="1dp" />
+
+    <ImageButton
+        android:id="@+id/btn_xoasanpham_giohang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/icon"
+        android:padding="1dp" />
+</RelativeLayout>
