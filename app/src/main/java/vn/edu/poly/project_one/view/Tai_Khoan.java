@@ -14,7 +14,10 @@ import android.widget.RelativeLayout;
 
 import vn.edu.poly.project_one.LoginActivity;
 import vn.edu.poly.project_one.R;
+import vn.edu.poly.project_one.view.View_taikhoan.DanhSachMongMuon_TaiKhoan;
+import vn.edu.poly.project_one.view.View_taikhoan.DanhSachYeuThich_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.DonHangcuaToi_TaiKhoan;
+import vn.edu.poly.project_one.view.View_taikhoan.HoSoCuaToi_TaiKhoan;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
 /**
@@ -23,7 +26,7 @@ import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
 public class Tai_Khoan extends Fragment {
     View view_taikhoan;
-    RelativeLayout relativeLayout;
+    RelativeLayout rtl_donhangcuatoi,rtl_danhsachyeuthich,rtl_danhsachmongmuon,rtl_hosocuatoi;
     Button btn_login,btn_signup;
     int i = 0;
     @Override
@@ -38,7 +41,10 @@ public class Tai_Khoan extends Fragment {
     }
 
     private void initControl() {
-        relativeLayout = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_donhangcuatoi_taikhoan);
+        rtl_donhangcuatoi = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_donhangcuatoi_taikhoan);
+        rtl_hosocuatoi = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_hosocuatoi_taikhoan);
+        rtl_danhsachyeuthich = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_danhsachyeuthich_taikhoan);
+        rtl_danhsachmongmuon = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_danhsachmongmuon_taikhoan);
         btn_login = (Button) view_taikhoan.findViewById(R.id.btn_login_taikhoan_tablayoutactivity);
         btn_signup= (Button) view_taikhoan.findViewById(R.id.btn_signup_taikhoan_tablayoutactivity);
     }
@@ -53,12 +59,45 @@ public class Tai_Khoan extends Fragment {
     }
 
     private void initOnClick() {
-        relativeLayout.setOnClickListener(new View.OnClickListener() {
+        rtl_donhangcuatoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DonHangcuaToi_TaiKhoan DonHangcuaToi_TaiKhoan=new DonHangcuaToi_TaiKhoan();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_taikhoan, DonHangcuaToi_TaiKhoan);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+        rtl_danhsachyeuthich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DanhSachYeuThich_TaiKhoan DanhSachYeuThich_TaiKhoan=new DanhSachYeuThich_TaiKhoan();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_taikhoan, DanhSachYeuThich_TaiKhoan);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+        rtl_danhsachmongmuon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DanhSachMongMuon_TaiKhoan DanhSachMongMuon_TaiKhoan=new DanhSachMongMuon_TaiKhoan();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_taikhoan, DanhSachMongMuon_TaiKhoan);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+        rtl_hosocuatoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HoSoCuaToi_TaiKhoan HoSoCuaToi_TaiKhoan=new HoSoCuaToi_TaiKhoan();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_taikhoan, HoSoCuaToi_TaiKhoan);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
                 ft.commit();

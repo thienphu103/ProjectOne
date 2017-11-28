@@ -87,4 +87,19 @@
     <string name="txt_giupdo_taikhoan">Giúp đỡ</string>
     <string name="txt_dangxuat_taikhoan">Đăng xuất</string>
     <string name="txt_giaohang_donhangcuatoi_taikhoan">Giao hàng</string>
+    <string name="txt_hoten_hosocuatoi_taikhoan">Họ tên</string>
+    <string name="txt_email_hosocuatoi_taikhoan">Email</string>
+    <string name="txt_gioitinh_hosocuatoi_taikhoan">Giới tính</string>
+    <string name="txt_ngaysinh_hosocuatoi_taikhoan">Ngày sinh</string>
+    <string name="txt_matkhau_hosocuatoi_taikhoan">Mật khẩu</string>
+    <string name="txt_doimatkhau_hosocuatoi_taikhoan">Đổi mật khẩu</string>
+    <string name="txt_matkhaucu_hosocuatoi_taikhoan">Mật khẩu cũ</string>
+    <string name="txt_matkhaumoi_hosocuatoi_taikhoan">Mật khẩu mới</string>
+    <string name="txt_nhaplai_hosocuatoi_taikhoan">Nhập lại</string>
+    <string name="txt_capnhat_hosocuatoi_taikhoan">Cập nhật</string>
+    <string name="txt_nam_hosocuatoi_taikhoan">Nam</string>
+    <string name="txt_nu_hosocuatoi_taikhoan">Nữ</string>
+    <string name="txt_nhapmakhaucu_hosocuatoi_taikhoan">Nhập mật khẩu cũ</string>
+    <string name="txt_tu6den32kytu_hosocuatoi_taikhoan">Từ 6 đến 32 ký tự</string>
+    <string name="txt_nhaplaimatkhaumoi_hosocuatoi_taikhoan">Nhập lại mật khẩu mới</string>
 </resources>
