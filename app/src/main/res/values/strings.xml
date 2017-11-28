@@ -1,4 +1,5 @@
 <resources>
+    <string name="facebook_app_id">256254391542777</string>
     <string name="app_name">Project_One</string>
     <string name="txt_login_LoginActivity">Đăng nhập</string>
     <string name="ext_users_LoginActivity">Tên đăng nhập hoặc số điện thoại</string>

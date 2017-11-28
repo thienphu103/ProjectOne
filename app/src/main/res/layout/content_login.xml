@@ -79,15 +79,19 @@
             android:textColor="@color/color_text_button_login_loginactivity"
             android:textSize="12sp"
             />
-        <TextView
+        <RelativeLayout
             android:id="@+id/txt_signup_loginactivity"
-            android:textSize="8sp"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dimens_edittext_password_margintop_loginactivity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_signup_LoginActivity"
-            />
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="8sp"
+                android:layout_marginTop="@dimen/dimens_edittext_password_margintop_loginactivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_signup_LoginActivity"
+                />
+        </RelativeLayout>
         <ImageView
             android:layout_marginTop="@dimen/dimens_img_margintop_loginactivity"
             android:layout_width="match_parent"
@@ -101,20 +105,41 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-            <ImageView
-                android:paddingLeft="@dimen/dimens_fb_paddingleft_loginactivity"
-                android:layout_weight="1"
+
+            <FrameLayout
+                android:id="@+id/FrameLayout1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/facebook"
-                />
-            <ImageView
-                android:paddingRight="@dimen/dimens_gg_paddingright_loginactivity"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/google_plus"
-                />
+                android:layout_height="wrap_content" >
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button_fb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/sign_in_button_fb"
+                    android:paddingRight="32dp"
+                    android:layout_marginLeft="95dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/facebook"
+                    />
+
+                <ImageButton
+                    android:background="@android:color/transparent"
+                    android:id="@+id/sign_in_button_gg"
+                    android:layout_marginLeft="170dp"
+                    android:paddingRight="@dimen/dimens_gg_paddingright_loginactivity"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/google_plus"
+                    />
+            </FrameLayout>
+
+
+
 
         </LinearLayout>
     </LinearLayout>
