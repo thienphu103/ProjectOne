@@ -105,20 +105,37 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
-            <ImageView
-                android:paddingLeft="@dimen/dimens_fb_paddingleft_loginactivity"
-                android:layout_weight="1"
+            <FrameLayout
+                android:id="@+id/FrameLayout1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/facebook"
-                />
-            <ImageView
-                android:paddingRight="@dimen/dimens_gg_paddingright_loginactivity"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/google_plus"
-                />
+                android:layout_height="wrap_content" >
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/login_button_fb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/sign_in_button_fb"
+                    android:paddingRight="32dp"
+                    android:layout_marginLeft="95dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/facebook"
+                    />
+
+                <ImageView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/sign_in_button_gg"
+                    android:layout_marginLeft="170dp"
+                    android:paddingRight="@dimen/dimens_gg_paddingright_loginactivity"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/google_plus"
+                    />
+            </FrameLayout>
 
         </LinearLayout>
     </LinearLayout>
