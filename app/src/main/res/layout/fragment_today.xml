@@ -3,78 +3,371 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_today_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fff">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="THỨ BA, 14 THÁNG 11"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="left"
+                        android:text="@string/txt_today_tablayoutactivity"
+                        android:textColor="@color/color_text_tablayoutactivity"
+                        android:textSize="34sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="THỨ BA, 14 THÁNG 11"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="left"
-                    android:text="@string/txt_today_tablayoutactivity"
-                    android:textColor="@color/color_text_tablayoutactivity"
-                    android:textSize="34sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/account_2" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="20dp"
-                android:src="@drawable/account_2" />
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <fragment
-                android:id="@+id/fragment_today_1"
-                android:name="vn.edu.poly.project_one.view.view_today.today_start"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <fragment
-                android:id="@+id/fragment_today_2"
-                android:name="vn.edu.poly.project_one.view.view_today.today_khaitruong"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/pingu_img_1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/store_1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/txt_cuahangdatkhach_today"
+                        android:textColor="#fff"
+                        android:textSize="34dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="75dp"
+                        android:text="@string/txt_angianhmua_today"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:paddingTop="5dp"
+                            android:text="@string/txt_dacsankhap3mien_today"
+                            android:textColor="#fff" />
+
+                        <Button
+                            android:id="@+id/btn_today_start_vao"
+                            android:layout_width="55dp"
+                            android:layout_height="21dp"
+                            android:layout_marginLeft="35dp"
+                            android:layout_marginTop="-4dp"
+                            android:background="@drawable/custom_button_vao_today_tablayoutactivity"
+                            android:text="@string/btn_vao_tablayoutactivity"
+                            android:textColor="@color/color_textview_text_thamquan_tablayoutactivity"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/main_content_today1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="22dp"
-                android:layout_marginRight="22dp"
-                android:layout_marginTop="20dp"
-                />
-            <fragment
-                android:id="@+id/fragment_today_3"
-                android:name="vn.edu.poly.project_one.view.view_today.today_custom3"
+                android:fitsSystemWindows="false"
+                tools:context="vn.edu.poly.project_one.TabLayOutActivity">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.design.widget.AppBarLayout
+                        android:id="@+id/appbar_today1"
+                        android:layout_width="match_parent"
+                        android:layout_height="315dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/color_background_tablayoutactivity"
+                        android:theme="@style/AppTheme.AppBarOverlay">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="20dp"
+                                android:text="@string/txt_moikhaitruong_today"
+                                android:textSize="13sp"
+                                android:textStyle="bold"
+                                android:textColor="#34495E"
+                                android:alpha="0.34"
+                                />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="@string/txt_chacchancokhuyenmai_today"
+                                android:textColor="#34495E"
+                                android:textSize="21sp"
+                                android:textStyle="bold" />
+
+                            <ListView
+                                android:id="@+id/lst_today_khaitruong"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="15dp"
+                                android:divider="@null"
+                                android:dividerHeight="0dp"></ListView>
+
+                        </LinearLayout>
+                    </android.support.design.widget.AppBarLayout>
+                </RelativeLayout>
+            </android.support.design.widget.CoordinatorLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
 
-        </RelativeLayout>
-    </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/tet2" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:alpha="0.34"
+                        android:src="@drawable/store_1"
+                        android:text="@string/txt_chucmungnammoi_today"
+                        android:textColor="#fff"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="@string/txtphienchodaumua"
+                        android:textColor="#fff"
+                        android:textSize="55dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/main_content_today"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:fitsSystemWindows="false"
+                tools:context="vn.edu.poly.project_one.TabLayOutActivity">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.design.widget.AppBarLayout
+                        android:id="@+id/appbar_today"
+                        android:layout_width="match_parent"
+                        android:layout_height="122dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/color_background_tablayoutactivity"
+                        android:theme="@style/AppTheme.AppBarOverlay">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="15dp"
+                                android:alpha="0.34"
+                                android:text="@string/txt_chaohang_today"
+                                android:textColor="@color/color_textview_text_thamquan_hangbanchay_tablayoutactivity"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:text="@string/txt_danhriengchoban_today"
+                                android:textColor="@color/color_textview_text_thamquan_hangbanchay_tablayoutactivity"
+                                android:textSize="21sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.1dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="20dp"
+                                android:alpha="0.21"
+                                android:background="#95989A"></View>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginTop="10dp"
+                                >
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    android:layout_marginRight="10dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    android:layout_marginRight="10dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    android:layout_marginRight="10dp"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/shop_logo_annanas"
+                                    />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <!--<android.support.design.widget.TabLayout-->
+                        <!--android:id="@+id/tabs_today"-->
+                        <!--app:tabIndicatorColor="@color/color_background_tablayoutactivity"-->
+                        <!--app:tabSelectedTextColor="@color/color_background_tablayoutactivity"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content">-->
+                        <!--</android.support.design.widget.TabLayout>-->
+                    </android.support.design.widget.AppBarLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/my_recycler_view_today"
+                        android:layout_width="match_parent"
+                        android:layout_height="222dp"
+                        android:layout_below="@+id/appbar_today"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        android:scrollbars="vertical" />
+
+                </RelativeLayout>
+            </android.support.design.widget.CoordinatorLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

@@ -72,4 +72,18 @@
     <string name="txt_cuahangbabay_today">Cửa hàng baby</string>
     <string name="txt_chucmungnammoi_today">CHÚC MỪNG NĂM MỚI</string>
     <string name="txtphienchodaumua">Phiên\nChợ\nĐầu Xuân</string>
+    <string name="txt_giaynam">Giày nam\nBasas Hightop\n- Red Dahlia</string>
+    <string name="txt_chaohang_today">CHÀO HÀNG</string>
+    <string name="txt_danhriengchoban_today">Dành Riêng Cho Bạn</string>
+    <string name="txt_xinchaotruongnhatnam_taikhoan">Xin chào,<b> Trương Nhật Nam !</b></string>
+    <string name="txt_donhangcuatoi_taikhoan">Đơn hàng của tôi</string>
+    <string name="txt_danhsachyeuthich_taikhoan">Danh sách yêu thích</string>
+    <string name="txt_danhsachmongmuon_taikhoan">Danh sách mong muốn</string>
+    <string name="txt_sodiachi_taikhoan">Số địa chỉ</string>
+    <string name="txt_thongbao_taikhoan">Thông báo</string>
+    <string name="txt_hosocuatoi_taikhoan">Hồ sơ của tôi</string>
+    <string name="txt_caidat_taikhoan">Cài đặt</string>
+    <string name="txt_giupdo_taikhoan">Giúp đỡ</string>
+    <string name="txt_dangxuat_taikhoan">Đăng xuất</string>
+    <string name="txt_giaohang_donhangcuatoi_taikhoan">Giao hàng</string>
 </resources>

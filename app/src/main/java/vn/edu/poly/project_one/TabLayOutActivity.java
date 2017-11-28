@@ -40,7 +40,6 @@ public class TabLayOutActivity extends AppCompatActivity {
     ArrayList listFragment;
     ArrayList<String> listTitle;
     AdapterTabLayoutFrangment adapterTabLayoutFrangment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,21 +89,31 @@ public class TabLayOutActivity extends AppCompatActivity {
         tabOne.setText(getResources().getString(R.string.txt_today_tablayoutactivity));
         tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.today, 0, 0);
         tab_layout.getTabAt(0).setCustomView(tabOne);
+        // icon Hôm nay
+
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabTwo.setText(getResources().getString(R.string.txt_visit_tablayoutactivity));
         tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.today, 0, 0);
         tab_layout.getTabAt(1).setCustomView(tabTwo);
+        // icon Tham quan
+
         TextView tabThree = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabThree.setText(getResources().getString(R.string.txt_find_tablayoutactivity));
         tabThree.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.today, 0, 0);
         tab_layout.getTabAt(2).setCustomView(tabThree);
+        // icon Tìm kiếm
+
         TextView tabFour = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabFour.setText(getResources().getString(R.string.txt_giohang_tablayoutactivity));
         tabFour.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.today, 0, 0);
         tab_layout.getTabAt(3).setCustomView(tabFour);
+        // icon giỏ hàng
+
         TextView tabFive = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabFive.setText(getResources().getString(R.string.txt_taikhoan_tablayoutactivity));
         tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.today, 0, 0);
         tab_layout.getTabAt(4).setCustomView(tabFive);
+        // icon Tài khoản
+
     }
 }
