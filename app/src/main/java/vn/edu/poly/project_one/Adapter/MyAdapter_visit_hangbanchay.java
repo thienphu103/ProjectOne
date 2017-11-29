@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
@@ -50,8 +52,8 @@ public class MyAdapter_visit_hangbanchay extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = null;
-        if(convertView == null){
-            convertView = inflater.inflate(R.layout.custom_gridview_visit_hangbanchay_tablayoutactivity,null);
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.custom_gridview_visit_hangbanchay_tablayoutactivity, null);
             viewHolder = new ViewHolder();
             viewHolder.txt_title = (TextView) convertView.findViewById(R.id.txt_title_gridview_visit_hangbanchay_tablayoutactivity);
             viewHolder.txt_price = (TextView) convertView.findViewById(R.id.txt_price_gridview_visit_hangbanchay_tablayoutactivity);
@@ -59,19 +61,31 @@ public class MyAdapter_visit_hangbanchay extends BaseAdapter {
             convertView.setTag(viewHolder);
 
 
-        }else {
+        } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-            viewHolder.txt_title.setText(arrayList.get(position).getTitle());
-            viewHolder.txt_price.setText(arrayList.get(position).getPrice());
-            viewHolder.img.setImageResource(arrayList.get(position).getImg());
+        viewHolder.txt_title.setText(arrayList.get(position).getTitle());
+        viewHolder.txt_price.setText(arrayList.get(position).getPrice());
+        if(!(arrayList.get(position).getImg().isEmpty())){
+            Picasso.with(context)
+                    .load(arrayList.get(position).getImg())
+                    .resize(76, 76)
+                    .into(viewHolder.img);
+        }else{
+            Picasso.with(context)
+                    .load(R.drawable.ic_highlight_off_black_24dp)
+                    .resize(76, 76)
+                    .into(viewHolder.img);
+        }
+
         return convertView;
     }
 
-    private class ViewHolder{
-        TextView txt_title,txt_price;
+    private class ViewHolder {
+        TextView txt_title, txt_price;
         ImageView img;
     }
+
     @Nullable
     @Override
     public CharSequence[] getAutofillOptions() {

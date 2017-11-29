@@ -3,7 +3,6 @@ package vn.edu.poly.project_one.view;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,7 +19,6 @@ import vn.edu.poly.project_one.Adapter.ImageAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit_2;
 import vn.edu.poly.project_one.R;
-import vn.edu.poly.project_one.fragment_sign_up.fragment_sign_up_3;
 import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;

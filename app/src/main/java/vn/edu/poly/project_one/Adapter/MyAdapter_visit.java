@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,10 +41,14 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
+        public TextView textView,price;
+        public ImageView img_title, img_logo;
         public ViewHolder(View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.title_textview);
+            price = (TextView) itemView.findViewById(R.id.txt_price_hangbanchay_thamquan);
+            img_logo = (ImageView) itemView.findViewById(R.id.img_logo_hangbanchay_thamquan);
+            img_title = (ImageView) itemView.findViewById(R.id.img_cardview_hangbanchay_thamquan);
         }
     }
 }

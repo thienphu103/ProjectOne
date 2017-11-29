@@ -7,24 +7,24 @@ import java.io.Serializable;
  */
 
 public class visit_hangbanchay_getter_setter implements Serializable {
-    public int img;
+    public String img;
     public String title;
     public String price;
 
-    public visit_hangbanchay_getter_setter() {
-    }
-
-    public visit_hangbanchay_getter_setter(int img, String title, String price) {
+    public visit_hangbanchay_getter_setter(String img, String title, String price) {
         this.img = img;
         this.title = title;
         this.price = price;
     }
 
-    public int getImg() {
+    public visit_hangbanchay_getter_setter() {
+    }
+
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
