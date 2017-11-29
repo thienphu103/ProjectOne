@@ -9,8 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter_kieulietke;
@@ -66,9 +67,19 @@ public class Adapter_visit_hangbanchay_kieulietke extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.getTxt_custom1.setText(arrayList.get(position).getTxt_custom1());
-        viewHolder.getTxt_custom2.setText(arrayList.get(position).getTxt_custom2());
-        viewHolder.getTxt_custom3.setText(arrayList.get(position).getTxt_custom3());
-        viewHolder.img_kieulietke.setImageResource(arrayList.get(position).getImg_kieulietke());
+        viewHolder.getTxt_custom2.setText(arrayList.get(position).getTxt_custom2()+" VND");
+        viewHolder.getTxt_custom3.setText(arrayList.get(position).getTxt_custom3()+" VND");
+        String url="";
+        if(!(arrayList.get(position).getImg_kieulietke().isEmpty())) {//null
+            url=arrayList.get(position).getImg_kieulietke();
+        }else{
+            url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+        }
+        Picasso.with(context)
+                .load(url)
+                .error(R.drawable.ic_priority_high_black_24dp)//load url error
+                .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                .into(viewHolder.img_kieulietke);
         return convertView;
     }
 

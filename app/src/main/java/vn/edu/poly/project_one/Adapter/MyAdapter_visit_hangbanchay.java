@@ -65,19 +65,19 @@ public class MyAdapter_visit_hangbanchay extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.txt_title.setText(arrayList.get(position).getTitle());
-        viewHolder.txt_price.setText(arrayList.get(position).getPrice());
-        if(!(arrayList.get(position).getImg().isEmpty())){
-            Picasso.with(context)
-                    .load(arrayList.get(position).getImg())
-                    .resize(76, 76)
-                    .into(viewHolder.img);
+        viewHolder.txt_price.setText(arrayList.get(position).getPrice()+" VND");
+        String url="";
+        if(!(arrayList.get(position).getImg().isEmpty())) {//null
+            url=arrayList.get(position).getImg();
         }else{
-            Picasso.with(context)
-                    .load(R.drawable.ic_highlight_off_black_24dp)
-                    .resize(76, 76)
-                    .into(viewHolder.img);
+            url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }
-
+        Picasso.with(context)
+                .load(url)
+                .error(R.drawable.ic_priority_high_black_24dp)//load url error
+                .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                .resize(76, 76)
+                .into(viewHolder.img);
         return convertView;
     }
 

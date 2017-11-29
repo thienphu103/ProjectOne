@@ -5,6 +5,7 @@
     android:layout_height="89dp"
     >
     <ImageView
+        android:background="@drawable/custom_list_view_kieulietke_tablayoutactivity"
         android:id="@+id/img_gridview_visit_kieulietke_hangbanchay_tablayoutactivity"
         android:layout_gravity="center"
         android:src="@drawable/giay_bike"

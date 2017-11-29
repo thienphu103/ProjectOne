@@ -43,7 +43,7 @@ public class visit_hangbanchay extends Fragment {
     ArrayList<visit_hangbanchay_getter_setter> arrayList;
     ImageView img_kieudanhsach;
     ImageView img_gridview_visit_hangbanchay_tablayoutactivity;
-    public static final String URL_CALL_API_GET_DATA = "http://192.168.1.103//serverlocal/get_data_sanpham.php";
+    public static final String URL_CALL_API_GET_DATA = "http://192.168.8.117//serverlocal/get_data_sanpham.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -146,17 +146,17 @@ public class visit_hangbanchay extends Fragment {
             public void onResponse(JSONArray response) {
                 String name = "";
                 String image;
+                String price;
                 arrayList = new ArrayList<>();
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
                         name = object.getString("ten_sp");
                         image = object.getString("hinhanh_sp");
+                        price =object.getString("gia_sp");
                         Log.d("URl_IMAGE", image);
-
                         arrayList.add(new visit_hangbanchay_getter_setter(
-                           image,name,getResources().getString(R.string.txt_gia_tablayoutactivity)));
-
+                           image,name,price));
                         adapter = new MyAdapter_visit_hangbanchay(getContext(),arrayList);
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
