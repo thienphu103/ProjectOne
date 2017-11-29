@@ -7,24 +7,21 @@ import java.io.Serializable;
  */
 
 public class visit_hangmoi_getter_setter_kieudanhsach implements Serializable {
-    public int img;
+    public String img;
     public String title;
     public String price;
 
-    public visit_hangmoi_getter_setter_kieudanhsach(int img, String title, String price) {
+    public visit_hangmoi_getter_setter_kieudanhsach(String img, String title, String price) {
         this.img = img;
         this.title = title;
         this.price = price;
     }
 
-    public visit_hangmoi_getter_setter_kieudanhsach() {
-    }
-
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

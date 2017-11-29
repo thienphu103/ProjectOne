@@ -1,20 +1,34 @@
 package vn.edu.poly.project_one.view.view_visit;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-import vn.edu.poly.project_one.Adapter.Adapter_visit_hangbanchay_kieulietke;
 import vn.edu.poly.project_one.Adapter.Adapter_visit_hangmoi_kieulietke;
 import vn.edu.poly.project_one.R;
-import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter_kieulietke;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangmoi_getter_setter_kieulietke;
 
 /**
@@ -27,6 +41,7 @@ public class visit_hangmoi_kieulietke extends Fragment {
     GridView gridView;
     ArrayList<visit_hangmoi_getter_setter_kieulietke> arrayList;
     Adapter_visit_hangmoi_kieulietke adapter;
+    public static final String URL_CALL_API_GET_DATA = "http://192.168.8.117//serverlocal/get_data_sp_moi_nhat.php";
 
 
     @Override
@@ -41,70 +56,70 @@ public class visit_hangmoi_kieulietke extends Fragment {
     }
 
     private void initEvent() {
-        arrayList = new ArrayList<>();
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
-                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity),
-                getResources().getString(R.string.txt_gia_tablayoutactivity)
-        ));
-        adapter = new Adapter_visit_hangmoi_kieulietke(getActivity(),arrayList);
-        gridView.setAdapter(adapter);
-
+        getData();
+//        arrayList = new ArrayList<>();
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(R.drawable.giay_bike,
+//                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity),
+//                getResources().getString(R.string.txt_gia_tablayoutactivity)
+//        ));
+//        adapter = new Adapter_visit_hangmoi_kieulietke(getActivity(),arrayList);
+//        gridView.setAdapter(adapter);
 
 
     }
@@ -114,11 +129,12 @@ public class visit_hangmoi_kieulietke extends Fragment {
         img_kieulietke = (ImageView) view_visit_hangmoi_kieulietke.findViewById(R.id.img_kieudanhsachlietke_visit_hangmoi_tablayoutactivity);
         gridView = (GridView) view_visit_hangmoi_kieulietke.findViewById(R.id.gridview_visit__hangmoi_kieulietke_tablayoutactivity);
     }
+
     private void initOnClick() {
         img_kieulietke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                visit_hangmoi_kieudanhsach visit_view=new visit_hangmoi_kieudanhsach();
+                visit_hangmoi_kieudanhsach visit_view = new visit_hangmoi_kieudanhsach();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_hangmoi_kieulietke, visit_view);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -129,4 +145,48 @@ public class visit_hangmoi_kieulietke extends Fragment {
 
     }
 
+    private void getData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, URL_CALL_API_GET_DATA, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                String name = "";
+                String image;
+                String price;
+                arrayList = new ArrayList<>();
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject object = response.getJSONObject(i);
+                        name = object.getString("ten_sp");
+                        image = object.getString("hinhanh_sp");
+                        price = object.getString("gia_sp");
+                        Log.d("URl_IMAGE", image);
+                        arrayList.add(new visit_hangmoi_getter_setter_kieulietke(image, name, price, price
+                        ));
+                        adapter = new Adapter_visit_hangmoi_kieulietke(getActivity(), arrayList);
+                        adapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    gridView.setAdapter(adapter);
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        requestQueue.add(arrayRequest);
+    }
+
+    public String decodeImage(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+        byte[] byteImage = outputStream.toByteArray();
+        String encodeImage = Base64.encodeToString(byteImage, Base64.DEFAULT);
+        return encodeImage;
+    }
 }

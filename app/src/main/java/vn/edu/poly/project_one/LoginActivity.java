@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity implements
     private TextView mStatusIdTextView;
     private ImageView imageViewAvatar;
     private ProgressDialog mProgressDialog;
-    private String url = "http://10.200.203.56//serverlocal/post_data_sign_up.php";
+    private String url = "http://192.168.8.117//serverlocal/post_data_sign_up.php";
     private String IdUser = "";
     private String UrlImageIdUser = "";
     String s = "";
@@ -226,7 +226,8 @@ public class LoginActivity extends AppCompatActivity implements
 //            updateUI(true);
             Log.d("Image", acct.getPhotoUrl() + "");
             upData();
-
+            Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
+            startActivity(intent);
         } else {
             // Signed out, show unauthenticated UI.
 //            updateUI(false);

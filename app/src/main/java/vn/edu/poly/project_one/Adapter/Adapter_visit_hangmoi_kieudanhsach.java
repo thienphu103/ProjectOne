@@ -9,10 +9,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
-import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangmoi_getter_setter_kieudanhsach;
 
 /**
@@ -62,8 +63,19 @@ public class Adapter_visit_hangmoi_kieudanhsach extends BaseAdapter{
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             viewHolder.txt_title.setText(arrayList.get(position).getTitle());
-            viewHolder.txt_price.setText(arrayList.get(position).getPrice());
-            viewHolder.img.setImageResource(arrayList.get(position).getImg());
+            viewHolder.txt_price.setText(arrayList.get(position).getPrice()+" VND");
+            String url;
+            if(!(arrayList.get(position).getImg().isEmpty())) {//null
+                url=arrayList.get(position).getImg();
+            }else{
+                url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+            }
+            Picasso.with(context)
+                    .load(url)
+                    .error(R.drawable.ic_priority_high_black_24dp)//load url error
+                    .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                    .resize(76, 76)
+                    .into(viewHolder.img);
             return convertView;
         }
 

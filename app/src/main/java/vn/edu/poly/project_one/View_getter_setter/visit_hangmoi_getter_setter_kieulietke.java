@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 public class visit_hangmoi_getter_setter_kieulietke implements Serializable {
 
-    public int img_kieulietke;
+    public String img_kieulietke;
     public String txt_custom1;
     public  String txt_custom2;
     public String txt_custom3;
 
-    public visit_hangmoi_getter_setter_kieulietke(int img_kieulietke, String txt_custom1, String txt_custom2, String txt_custom3) {
+    public visit_hangmoi_getter_setter_kieulietke(String img_kieulietke, String txt_custom1, String txt_custom2, String txt_custom3) {
         this.img_kieulietke = img_kieulietke;
         this.txt_custom1 = txt_custom1;
         this.txt_custom2 = txt_custom2;
@@ -23,12 +23,11 @@ public class visit_hangmoi_getter_setter_kieulietke implements Serializable {
     public visit_hangmoi_getter_setter_kieulietke() {
     }
 
-
-    public int getImg_kieulietke() {
+    public String getImg_kieulietke() {
         return img_kieulietke;
     }
 
-    public void setImg_kieulietke(int img_kieulietke) {
+    public void setImg_kieulietke(String img_kieulietke) {
         this.img_kieulietke = img_kieulietke;
     }
 
