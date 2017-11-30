@@ -36,6 +36,7 @@ import vn.edu.poly.project_one.Adapter.MyAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit_2;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
+import vn.edu.poly.project_one.View_getter_setter.visit_2_getter_setter;
 import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
@@ -54,10 +55,11 @@ public class ViSit extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager_visit;
     private ArrayList<visit_1_getter_setter> strings;
     MyAdapter_visit adapter;
+    private ArrayList<visit_2_getter_setter> strings2;
+    MyAdapter_visit_2 adapter2;
     private RecyclerView mRecyclerView_visit_2;
     private RecyclerView.Adapter mAdapter_visit_2;
     private RecyclerView.LayoutManager mLayoutManager_visit_2;
-    private ArrayList<String> strings_2;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96/serverlocal/get_data_sp_banchay.php";
     @Override
@@ -66,7 +68,7 @@ public class ViSit extends Fragment {
 
         view_visit = inflater.inflate(R.layout.fragment_thamquan, container, false);
         initControl();
-        strings = new ArrayList<>();
+
         initEvent();
         initOnClick();
         return view_visit;
@@ -121,6 +123,8 @@ public class ViSit extends Fragment {
                 (TextView) view_visit.findViewById(R.id.txt_viewall_hangmoi_tablayoutactivity);
     }
     private void initEvent() {
+        strings = new ArrayList<>();
+        strings2 = new ArrayList<>();
         getData();
 //        strings = new ArrayList<>();
 //        for(int i = 0 ; i < 10 ;i++){
@@ -128,19 +132,19 @@ public class ViSit extends Fragment {
 //            ,getResources().getString(R.string.txt_gia_tablayoutactivity))
 //            );
 //        }
-        strings_2 = new ArrayList<>();
-        for(int i = 0 ; i < 10 ;i++){
-            strings_2.add(getResources().getString(R.string.txt_tenhang_tablayoutactivity));
-        }
+//        strings_2 = new ArrayList<>();
+//        for(int i = 0 ; i < 10 ;i++){
+//            strings_2.add(getResources().getString(R.string.txt_tenhang_tablayoutactivity));
+//        }
         mRecyclerView_visit.setHasFixedSize(true);
         mLayoutManager_visit = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView_visit.setLayoutManager(mLayoutManager_visit);
-        mAdapter_visit = new MyAdapter_visit(getContext(),strings);
+//        mAdapter_visit = new MyAdapter_visit(getContext(),strings);
         mRecyclerView_visit.setAdapter(mAdapter_visit);
         mRecyclerView_visit_2.setHasFixedSize(true);
         mLayoutManager_visit_2 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView_visit_2.setLayoutManager(mLayoutManager_visit_2);
-        mAdapter_visit_2 = new MyAdapter_visit_2(strings_2);
+//        mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
         mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
         gridview_visit.setAdapter(new ImageAdapter_visit(getActivity()));
         setGridViewHeightBasedOnChildren(gridview_visit,3);
@@ -170,10 +174,16 @@ public class ViSit extends Fragment {
                         Log.d("URl_IMAGE", image);
                         strings.add(new visit_1_getter_setter(name,price,image));
                         adapter =new MyAdapter_visit(getContext(),strings);
+                        adapter.notifyDataSetChanged();
+                        strings2.add(new visit_2_getter_setter(name,price,image));
+                        adapter2 =new MyAdapter_visit_2(getContext(),strings2);
+                        adapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    mAdapter_visit = new MyAdapter_visit(getContext(),strings);
+                    mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
 
 
                 }
