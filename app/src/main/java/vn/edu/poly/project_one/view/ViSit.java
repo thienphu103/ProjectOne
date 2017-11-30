@@ -192,7 +192,7 @@ public class ViSit extends Fragment {
                     mAdapter_visit_2.notifyDataSetChanged();
                     mRecyclerView_visit.setAdapter(mAdapter_visit);
                     mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
-
+Log.d("a","aa");
                 }
             }
         }, new Response.ErrorListener() {
