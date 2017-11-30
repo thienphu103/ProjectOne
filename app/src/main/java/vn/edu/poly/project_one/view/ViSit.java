@@ -151,7 +151,7 @@ public class ViSit extends Fragment {
 //        mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
 //        mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
         gridview_visit.setAdapter(new ImageAdapter_visit(getActivity()));
-        setGridViewHeightBasedOnChildren(gridview_visit,3);
+        setGridViewHeightBasedOnChildren(gridview_visit,2);
         collapsingToolbarLayout = (CollapsingToolbarLayout) view_visit.findViewById(R.id.collapsingToolbar);
         collapsingToolbarLayout.setTitle(getResources().getString(R.string.txt_visit_tablayoutactivity));
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);

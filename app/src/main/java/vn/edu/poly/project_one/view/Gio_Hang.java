@@ -1,8 +1,8 @@
 package vn.edu.poly.project_one.view;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +20,7 @@ import vn.edu.poly.project_one.View_getter_setter.SanPham;
  * Created by ASUS on 11/18/2017.
  */
 
-public class Gio_Hang extends android.support.v4.app.Fragment {
+public class Gio_Hang extends Fragment {
     View view_giohang;
     Context context;
     ArrayList<SanPham> sanPhamArrayList;

@@ -1,7 +1,7 @@
 package vn.edu.poly.project_one.view;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,7 +22,7 @@ import vn.edu.poly.project_one.View_getter_setter.find_getter_setter;
  * Created by ASUS on 11/18/2017.
  */
 
-public class Find extends android.support.v4.app.Fragment {
+public class Find extends Fragment {
     View view_find;
     ListView lst_find_xuhuong;
     FindAdapter findAdapter;
