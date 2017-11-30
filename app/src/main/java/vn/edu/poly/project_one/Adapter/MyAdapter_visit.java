@@ -1,5 +1,6 @@
 package vn.edu.poly.project_one.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,19 +8,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
+import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 
 /**
  * Created by ASUS on 11/19/2017.
  */
 
 public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHolder> {
-    private ArrayList<String> strings;
+    Context context;
+    LayoutInflater inflater;
+    ArrayList<visit_1_getter_setter> arrayList;
 
-    public MyAdapter_visit(ArrayList<String> strings) {
-        this.strings = strings;
+    public MyAdapter_visit(Context context, ArrayList<visit_1_getter_setter> arrayList) {
+        this.context = context;
+        this.arrayList = arrayList;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -32,12 +40,25 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
 
     @Override
     public void onBindViewHolder(MyAdapter_visit.ViewHolder holder, int position) {
-            holder.textView.setText(strings.get(position));
+            holder.textView.setText(arrayList.get(position).getTen_sp());
+            holder.price.setText(arrayList.get(position).getGia_sp());
+        String url="";
+        if(!(arrayList.get(position).getHinhanh_sp().isEmpty())) {//null
+            url=arrayList.get(position).getHinhanh_sp();
+        }else{
+            url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+        }
+        Picasso.with(context)
+                .load(url)
+                .resize(67,67)
+                .error(R.drawable.ic_priority_high_black_24dp)//load url error
+                .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                .into(holder.img_title);
     }
 
     @Override
     public int getItemCount() {
-        return strings.size();
+        return arrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
