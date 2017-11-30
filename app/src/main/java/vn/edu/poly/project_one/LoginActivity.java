@@ -112,7 +112,6 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button_gg).setOnClickListener(this);
         findViewById(R.id.sign_in_button_gg).setOnLongClickListener(this);
         findViewById(R.id.sign_in_button_fb).setOnClickListener(this);
-        btn_logout_gg = (Button) findViewById(R.id.btn_sign_out_gg);
         txt_signup_loginactivity = (RelativeLayout) findViewById(R.id.txt_signup_loginactivity);
         btn_login_loginactivity = (Button) findViewById(R.id.btn_login_LoginActivity);
 
@@ -135,12 +134,7 @@ public class LoginActivity extends AppCompatActivity implements
                 startActivity(intent);
             }
         });
-//        btn_logout_gg.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//               revokeAccess();
-//            }
-//        });
+
     }
 
     private void initDisplay() {
@@ -245,7 +239,6 @@ public class LoginActivity extends AppCompatActivity implements
             }
 //            updateUI(true);
             Log.d("Image", acct.getPhotoUrl() + "");
-
             sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username", NameUser);
@@ -253,18 +246,9 @@ public class LoginActivity extends AppCompatActivity implements
             editor.putString("check", null);
             Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
             editor.commit();
-            sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
-            String check = sharedPreferences.getString("check", null);
-            if (check != null) {
-                btn_logout_gg.performClick();
-                SharedPreferences.Editor editor1 = sharedPreferences.edit();
-                editor.clear();
-                editor.commit();
-                signOut();
-                revokeAccess();
-
-            }
-            if(acct.getDisplayName()!=null) {
+            signOut();
+            revokeAccess();
+            if (acct.getDisplayName() != null) {
                 showQuestionDialog();
             }
             upData();
@@ -419,7 +403,7 @@ public class LoginActivity extends AppCompatActivity implements
     public boolean onLongClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button_gg:
-                showAlertDialog();
+//                showAlertDialog();
                 break;
         }
         return false;

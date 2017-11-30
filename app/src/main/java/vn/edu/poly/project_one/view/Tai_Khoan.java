@@ -130,6 +130,7 @@ public class Tai_Khoan extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
+
                 i=1;
             }
         });
@@ -145,10 +146,7 @@ public class Tai_Khoan extends Fragment {
         txt_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("check","changed");
-                editor.commit();
+
                 btn_signup.setVisibility(View.VISIBLE);
                 btn_login.setVisibility(View.VISIBLE);
             }
