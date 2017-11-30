@@ -31,6 +31,8 @@ import vn.edu.poly.project_one.Adapter.Adapter_visit_hangmoi_kieudanhsach;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangmoi_getter_setter_kieudanhsach;
 
+import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
+
 /**
  * Created by ASUS on 11/23/2017.
  */
@@ -41,7 +43,7 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
     Adapter_visit_hangmoi_kieudanhsach adapter;
     ArrayList<visit_hangmoi_getter_setter_kieudanhsach> arrayList;
     ImageView img_kieudanhsach;
-    public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96/serverlocal/get_data_sp_moi_nhat.php";
+    public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_moi_nhat.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

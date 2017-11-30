@@ -56,19 +56,20 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
+
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, View.OnLongClickListener {
     RelativeLayout txt_signup_loginactivity;
     Button btn_login_loginactivity;
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
-
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
     private TextView mStatusIdTextView;
     private ImageView imageViewAvatar;
     private ProgressDialog mProgressDialog;
-    private String url = "http://192.168.8.117//serverlocal/post_data_sign_up.php";
+    private String url = "http://"+URL_LOCAL_HOST+"//serverlocal/post_data_sign_up.php";
     private String IdUser = "";
     private String UrlImageIdUser = "";
     String s = "";
@@ -226,8 +227,7 @@ public class LoginActivity extends AppCompatActivity implements
 //            updateUI(true);
             Log.d("Image", acct.getPhotoUrl() + "");
             upData();
-            Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
-            startActivity(intent);
+
         } else {
             // Signed out, show unauthenticated UI.
 //            updateUI(false);

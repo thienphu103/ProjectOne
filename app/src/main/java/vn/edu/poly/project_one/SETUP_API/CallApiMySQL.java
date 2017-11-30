@@ -22,11 +22,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by A on 11/28/2017.
- */
-
 public class CallApiMySQL extends Activity {
+    public static final String URL_LOCAL_HOST = "192.168.8.117";
     public static final String URL_CALL_API_GET_DATA = "";
     public static final String URL_CALL_API_UP_DATA = "";
 

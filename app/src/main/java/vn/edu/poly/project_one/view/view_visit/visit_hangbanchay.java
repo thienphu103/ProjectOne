@@ -32,6 +32,8 @@ import vn.edu.poly.project_one.Adapter.MyAdapter_visit_hangbanchay;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter;
 
+import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
+
 /**
  * Created by ASUS on 11/20/2017.
  */
@@ -43,7 +45,7 @@ public class visit_hangbanchay extends Fragment {
     ArrayList<visit_hangbanchay_getter_setter> arrayList;
     ImageView img_kieudanhsach;
     ImageView img_gridview_visit_hangbanchay_tablayoutactivity;
-    public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96//serverlocal/get_data_sanpham.php";
+    public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sanpham.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
