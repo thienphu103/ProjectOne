@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".TabLayOutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
         <activity
-            android:name=".TabLayOutActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_tab_lay_out"
             android:theme="@style/AppTheme"></activity>
 

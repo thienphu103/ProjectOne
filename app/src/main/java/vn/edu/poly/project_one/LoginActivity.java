@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -56,6 +57,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import vn.edu.poly.project_one.ControlClass.LoginClass;
+
 import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
 
 public class LoginActivity extends AppCompatActivity implements
@@ -69,9 +72,11 @@ public class LoginActivity extends AppCompatActivity implements
     private TextView mStatusIdTextView;
     private ImageView imageViewAvatar;
     private ProgressDialog mProgressDialog;
-    private String url = "http://"+URL_LOCAL_HOST+"//serverlocal/post_data_sign_up.php";
+    private String url = "http://" + URL_LOCAL_HOST + "//serverlocal/post_data_sign_up.php";
     private String IdUser = "";
+    private String NameUser = "";
     private String UrlImageIdUser = "";
+    SharedPreferences sharedPreferences;
     String s = "";
     String ss = "";
     private CallbackManager callbackManager;
@@ -81,7 +86,9 @@ public class LoginActivity extends AppCompatActivity implements
     String IdProfileFb = "";
     String imageID = "";
     String UserImageUrl = "";
+    Button btn_logout_gg;
     boolean check_fb_login = true;
+    private String MY_PREFS_NAME = "name_user";
 
 
     @Override
@@ -105,6 +112,7 @@ public class LoginActivity extends AppCompatActivity implements
         findViewById(R.id.sign_in_button_gg).setOnClickListener(this);
         findViewById(R.id.sign_in_button_gg).setOnLongClickListener(this);
         findViewById(R.id.sign_in_button_fb).setOnClickListener(this);
+        btn_logout_gg = (Button) findViewById(R.id.btn_sign_out_gg);
         txt_signup_loginactivity = (RelativeLayout) findViewById(R.id.txt_signup_loginactivity);
         btn_login_loginactivity = (Button) findViewById(R.id.btn_login_LoginActivity);
 
@@ -127,6 +135,12 @@ public class LoginActivity extends AppCompatActivity implements
                 startActivity(intent);
             }
         });
+//        btn_logout_gg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//               revokeAccess();
+//            }
+//        });
     }
 
     private void initDisplay() {
@@ -210,6 +224,8 @@ public class LoginActivity extends AppCompatActivity implements
 
     // [START handleSignInResult]
     private void handleSignInResult(GoogleSignInResult result) {
+
+
         check_fb_login = false;
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
@@ -218,6 +234,9 @@ public class LoginActivity extends AppCompatActivity implements
 //            mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
 //            mStatusIdTextView.setText(acct.getId());
             IdUser = acct.getId();
+            NameUser = acct.getDisplayName();
+            LoginClass loginClass = new LoginClass();
+            loginClass.setUser_name_gg(NameUser);
             if (acct.getPhotoUrl() == null) {
                 UrlImageIdUser = "https://lh3.googleusercontent.com/H9yAIsZYqbIOh_E1ON90chVhO6SYSD6ucV-XirZXkMFDqLRjGoztobaxx1XS9CB4lfg=w300";
 
@@ -226,7 +245,30 @@ public class LoginActivity extends AppCompatActivity implements
             }
 //            updateUI(true);
             Log.d("Image", acct.getPhotoUrl() + "");
+
+            sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("username", NameUser);
+            editor.putString("url", acct.getPhotoUrl() + "");
+            editor.putString("check", null);
+            Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
+            editor.commit();
+            sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
+            String check = sharedPreferences.getString("check", null);
+            if (check != null) {
+                btn_logout_gg.performClick();
+                SharedPreferences.Editor editor1 = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+                signOut();
+                revokeAccess();
+
+            }
+            if(acct.getDisplayName()!=null) {
+                showQuestionDialog();
+            }
             upData();
+
 
         } else {
             // Signed out, show unauthenticated UI.
@@ -367,9 +409,6 @@ public class LoginActivity extends AppCompatActivity implements
                 loginButton_fb.performClick();
 
                 break;
-//            case R.id.sign_out_button:
-//                signOut();
-//                break;
 //            case R.id.disconnect_button:
 //                revokeAccess();
 //                break;
@@ -392,6 +431,30 @@ public class LoginActivity extends AppCompatActivity implements
         byte[] byteImage = outputStream.toByteArray();
         String encodeImage = Base64.encodeToString(byteImage, Base64.DEFAULT);
         return encodeImage;
+    }
+
+    public void showQuestionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Bạn có muốn đăng nhập với tên " + NameUser + " không?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     public void showAlertDialog() {

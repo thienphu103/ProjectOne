@@ -3,6 +3,7 @@ package vn.edu.poly.project_one.view;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -71,7 +71,6 @@ public class ViSit extends Fragment {
         view_visit = inflater.inflate(R.layout.fragment_thamquan, container, false);
 
         initControl();
-
         initEvent();
         initOnClick();
         return view_visit;
@@ -130,6 +129,8 @@ public class ViSit extends Fragment {
         strings = new ArrayList<>();
         strings2 = new ArrayList<>();
         getData();
+
+
 //        strings = new ArrayList<>();
 //        for(int i = 0 ; i < 10 ;i++){
 //            strings.add(new visit_1_getter_setter(getResources().getString(R.string.txt_amthuc_tablayoutactivity)
@@ -198,7 +199,19 @@ Log.d("a","aa");
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+                View view = view_visit.findViewById(R.id.fragmelayout_visit);
+                final Snackbar snackbar = Snackbar.make(view,"Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+
+                // Set an action on it, and a handler
+                snackbar.setAction("Thử Lại", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getData();
+                    }
+                });
+
+                snackbar.show();
             }
         });
 
