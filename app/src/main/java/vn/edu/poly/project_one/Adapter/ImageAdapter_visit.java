@@ -45,7 +45,7 @@ public class ImageAdapter_visit extends BaseAdapter {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(15, 15, 15, 15);
+            imageView.setPadding(15, 15, 15, 0);
         } else {
             imageView = (ImageView) convertView;
         }
