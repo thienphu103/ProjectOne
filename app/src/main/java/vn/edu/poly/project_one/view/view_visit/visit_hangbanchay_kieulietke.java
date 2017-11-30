@@ -41,7 +41,7 @@ public class visit_hangbanchay_kieulietke extends Fragment {
     GridView gridView;
     ArrayList<visit_hangbanchay_getter_setter_kieulietke> arrayList;
     Adapter_visit_hangbanchay_kieulietke adapter;
-    public static final String URL_CALL_API_GET_DATA = "http://192.168.8.117//serverlocal/get_data_sanpham.php";
+    public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96//serverlocal/get_data_sanpham.php";
 
     @Override
 

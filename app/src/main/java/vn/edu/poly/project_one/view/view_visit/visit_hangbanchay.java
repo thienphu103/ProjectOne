@@ -43,7 +43,7 @@ public class visit_hangbanchay extends Fragment {
     ArrayList<visit_hangbanchay_getter_setter> arrayList;
     ImageView img_kieudanhsach;
     ImageView img_gridview_visit_hangbanchay_tablayoutactivity;
-    public static final String URL_CALL_API_GET_DATA = "http://192.168.8.117//serverlocal/get_data_sanpham.php";
+    public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96//serverlocal/get_data_sanpham.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

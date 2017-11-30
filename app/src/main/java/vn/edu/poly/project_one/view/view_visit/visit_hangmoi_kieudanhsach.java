@@ -41,7 +41,7 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
     Adapter_visit_hangmoi_kieudanhsach adapter;
     ArrayList<visit_hangmoi_getter_setter_kieudanhsach> arrayList;
     ImageView img_kieudanhsach;
-    public static final String URL_CALL_API_GET_DATA = "http://192.168.8.117/serverlocal/get_data_sp_moi_nhat.php";
+    public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96/serverlocal/get_data_sp_moi_nhat.php";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
