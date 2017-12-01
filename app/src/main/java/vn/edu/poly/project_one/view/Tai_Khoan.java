@@ -1,10 +1,13 @@
 package vn.edu.poly.project_one.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,13 +33,14 @@ import vn.edu.poly.project_one.view.View_taikhoan.HoSoCuaToi_TaiKhoan;
 
 public class Tai_Khoan extends Fragment {
     View view_taikhoan;
-    RelativeLayout rtl_donhangcuatoi,rtl_danhsachyeuthich,rtl_danhsachmongmuon,rtl_hosocuatoi;
-    Button btn_login,btn_signup;
-    TextView txt_login_name,txt_logout;
+    RelativeLayout rtl_donhangcuatoi, rtl_danhsachyeuthich, rtl_danhsachmongmuon, rtl_hosocuatoi;
+    Button btn_login, btn_signup;
+    TextView txt_login_name, txt_logout;
     ImageView img_login;
     int i = 0;
-    private Object MY_PREFS_NAME="user_name";
-    private int MODE_PRIVATE=0;
+    String url = "";
+    private Object MY_PREFS_NAME = "user_name";
+    private int MODE_PRIVATE = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,27 +59,33 @@ public class Tai_Khoan extends Fragment {
         rtl_danhsachyeuthich = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_danhsachyeuthich_taikhoan);
         rtl_danhsachmongmuon = (RelativeLayout) view_taikhoan.findViewById(R.id.rtl_danhsachmongmuon_taikhoan);
         btn_login = (Button) view_taikhoan.findViewById(R.id.btn_login_taikhoan_tablayoutactivity);
-        btn_signup= (Button) view_taikhoan.findViewById(R.id.btn_signup_taikhoan_tablayoutactivity);
-        txt_login_name=(TextView) view_taikhoan.findViewById(R.id.txt_login_taikhoan_tablayoutactivity);
-        img_login=(ImageView) view_taikhoan.findViewById(R.id.img_login_taikhoan_tablayoutactivity);
-        txt_logout=(TextView) view_taikhoan.findViewById(R.id.txt_logout);
+        btn_signup = (Button) view_taikhoan.findViewById(R.id.btn_signup_taikhoan_tablayoutactivity);
+        txt_login_name = (TextView) view_taikhoan.findViewById(R.id.txt_login_taikhoan_tablayoutactivity);
+        img_login = (ImageView) view_taikhoan.findViewById(R.id.img_login_taikhoan_tablayoutactivity);
+        txt_logout = (TextView) view_taikhoan.findViewById(R.id.txt_logout);
 
     }
 
     private void initEvent() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", MODE_PRIVATE);
-            String user = sharedPreferences.getString("username", null);
-            String url=sharedPreferences.getString("url",null);
-         if (user!=null){
-             Picasso.with(getContext())
-                     .load(url)
-                     .resize(67,67)
-                     .error(R.drawable.ic_priority_high_black_24dp)//load url error
-                     .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
-                     .into(img_login);
-            txt_login_name.setText("Xin Chào, "+user+" !");
-             btn_signup.setVisibility(View.INVISIBLE);
-             btn_login.setVisibility(View.INVISIBLE);
+        String user = sharedPreferences.getString("username", null);
+         url=sharedPreferences.getString("url", null);
+        if (user != null) {
+            Log.d("ContentLogin", user + " " + url + "");
+            if (url == null) {
+                url = String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+            } else {
+                Picasso.with(getContext())
+                        .load(url)
+                        .resize(67, 67)
+                        .error(R.drawable.ic_priority_high_black_24dp)//load url error
+                        .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                        .into(img_login);
+            }
+
+            txt_login_name.setText("Xin Chào, " + user + " !");
+            btn_signup.setVisibility(View.INVISIBLE);
+            btn_login.setVisibility(View.INVISIBLE);
         }
 
     }
@@ -84,7 +94,7 @@ public class Tai_Khoan extends Fragment {
         rtl_donhangcuatoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DonHangcuaToi_TaiKhoan DonHangcuaToi_TaiKhoan=new DonHangcuaToi_TaiKhoan();
+                DonHangcuaToi_TaiKhoan DonHangcuaToi_TaiKhoan = new DonHangcuaToi_TaiKhoan();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_taikhoan, DonHangcuaToi_TaiKhoan);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -95,7 +105,7 @@ public class Tai_Khoan extends Fragment {
         rtl_danhsachyeuthich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DanhSachYeuThich_TaiKhoan DanhSachYeuThich_TaiKhoan=new DanhSachYeuThich_TaiKhoan();
+                DanhSachYeuThich_TaiKhoan DanhSachYeuThich_TaiKhoan = new DanhSachYeuThich_TaiKhoan();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_taikhoan, DanhSachYeuThich_TaiKhoan);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -106,7 +116,7 @@ public class Tai_Khoan extends Fragment {
         rtl_danhsachmongmuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DanhSachMongMuon_TaiKhoan DanhSachMongMuon_TaiKhoan=new DanhSachMongMuon_TaiKhoan();
+                DanhSachMongMuon_TaiKhoan DanhSachMongMuon_TaiKhoan = new DanhSachMongMuon_TaiKhoan();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_taikhoan, DanhSachMongMuon_TaiKhoan);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -117,7 +127,7 @@ public class Tai_Khoan extends Fragment {
         rtl_hosocuatoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HoSoCuaToi_TaiKhoan HoSoCuaToi_TaiKhoan=new HoSoCuaToi_TaiKhoan();
+                HoSoCuaToi_TaiKhoan HoSoCuaToi_TaiKhoan = new HoSoCuaToi_TaiKhoan();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_taikhoan, HoSoCuaToi_TaiKhoan);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -131,7 +141,7 @@ public class Tai_Khoan extends Fragment {
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
 
-                i=1;
+                i = 1;
             }
         });
         btn_signup.setOnClickListener(new View.OnClickListener() {
@@ -146,10 +156,32 @@ public class Tai_Khoan extends Fragment {
         txt_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showAlertDialog();
 
+            }
+        });
+    }
+
+    public void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("App");
+        builder.setMessage("Bạn có muốn đăng xuất không?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
                 btn_signup.setVisibility(View.VISIBLE);
                 btn_login.setVisibility(View.VISIBLE);
             }
         });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }

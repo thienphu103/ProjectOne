@@ -89,6 +89,8 @@ public class LoginActivity extends AppCompatActivity implements
     Button btn_logout_gg;
     boolean check_fb_login = true;
     private String MY_PREFS_NAME = "name_user";
+    private String name_facebook_get_data;
+    private String url_facebook_get_data;
 
 
     @Override
@@ -105,8 +107,8 @@ public class LoginActivity extends AppCompatActivity implements
 
 
     private void initControl() {
-        LoginManager.getInstance().logOut();
-        AccessToken.setCurrentAccessToken(null);
+//        LoginManager.getInstance().logOut();
+//        AccessToken.setCurrentAccessToken(null);
         callbackManager = CallbackManager.Factory.create();
         loginButton_fb = (LoginButton) findViewById(R.id.login_button_fb);
         findViewById(R.id.sign_in_button_gg).setOnClickListener(this);
@@ -278,35 +280,58 @@ public class LoginActivity extends AppCompatActivity implements
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> stringMap = new HashMap<>();
 //                Bitmap bitmap = ((BitmapDrawable)imageViewAvatar.getDrawable()).getBitmap();
-                if (check_fb_login == false) {//google
-                    try {
-                        URL url_gg = new URL(UrlImageIdUser);
-                        Bitmap image_gg = BitmapFactory.decodeStream(url_gg.openConnection().getInputStream());
-                        s = decodeImage(image_gg);
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                    stringMap.put("image_name", IdUser);
-                    stringMap.put("image_fiel", s);
-                    return stringMap;
-                } else {//facebook
-                    UserImageUrl = "https://graph.facebook.com/" + IdProfileFb + "" + "/picture?type=large";
-                    try {
-                        URL url_fb = new URL(UserImageUrl);
-                        Bitmap image_fb = BitmapFactory.decodeStream(url_fb.openConnection().getInputStream());
-                        ss = decodeImage(image_fb);
-                    } catch (IOException e) {
-                        System.out.println(e);
-                    }
-                    Log.d("ID_FB", IdProfileFb);
-                    Log.d("URL_FB", UserImageUrl);
-                    stringMap.put("image_name", IdProfileFb);
-                    stringMap.put("image_fiel", ss);
-                    return stringMap;
+
+                try {
+                    URL url_gg = new URL(UrlImageIdUser);
+                    Bitmap image_gg = BitmapFactory.decodeStream(url_gg.openConnection().getInputStream());
+                    s = decodeImage(image_gg);
+                } catch (IOException e) {
+                    System.out.println(e);
                 }
+                stringMap.put("image_name", IdUser);
+                stringMap.put("image_fiel", s);
+                return stringMap;
 
 
             }
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    private void upDataFb() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(LoginActivity.this, "" + response, Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(LoginActivity.this, "" + error, Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> stringMap = new HashMap<>();
+//                Bitmap bitmap = ((BitmapDrawable)imageViewAvatar.getDrawable()).getBitmap();
+                UserImageUrl = "https://graph.facebook.com/" + IdProfileFb + "" + "/picture?type=large";
+                try {
+                    URL url_fb = new URL(UserImageUrl);
+                    Bitmap image_fb = BitmapFactory.decodeStream(url_fb.openConnection().getInputStream());
+                    ss = decodeImage(image_fb);
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+                Log.d("ID_FB", IdProfileFb);
+                Log.d("URL_FB", UserImageUrl);
+                stringMap.put("image_name", IdProfileFb);
+                stringMap.put("image_fiel", ss);
+                return stringMap;
+            }
+
+
         };
         requestQueue.add(stringRequest);
     }
@@ -440,7 +465,29 @@ public class LoginActivity extends AppCompatActivity implements
         alertDialog.show();
 
     }
+    public void showQuestionDialogFb() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Bạn có muốn đăng nhập với tên " + name_facebook_get_data + " không?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
+                Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
     public void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("App");
@@ -467,6 +514,7 @@ public class LoginActivity extends AppCompatActivity implements
     private void initFacebook() {
 
         callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().logOut();
 //        loginButton_fb.callOnClick();
 //        btntxt.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -520,10 +568,10 @@ public class LoginActivity extends AppCompatActivity implements
                     public void onSuccess(LoginResult loginResult) {
                         // App code
 
-                        check_fb_login = true;
                         graphRequest(loginResult.getAccessToken());
+
 //                        UserImageUrl = "https://graph.facebook.com/" + IdProfileFb + "/picture?type=large";
-                        upData();
+
                     }
 
                     @Override
@@ -572,7 +620,7 @@ public class LoginActivity extends AppCompatActivity implements
                     check_fb_login = true;
 
                     Toast.makeText(getApplicationContext(), "User log in", Toast.LENGTH_SHORT).show();
-                    upData();
+
 
                 }
             }
@@ -615,9 +663,29 @@ public class LoginActivity extends AppCompatActivity implements
 
             @Override
             public void onCompleted(JSONObject object, GraphResponse response) {
-
                 parseJson(object);
+                JSONObject object1 = response.getJSONObject();
+
                 Log.d("successed", response.toString());
+                try {
+                    name_facebook_get_data = object1.getString("first_name")+" "+object.getString("last_name");
+                    url_facebook_get_data=  "https://graph.facebook.com/" +object1.getString("id")+ "" + "/picture?type=large";
+                    Log.d("data_object", name_facebook_get_data+url_facebook_get_data );
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                upDataFb();
+                sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", name_facebook_get_data);
+                editor.putString("url", url_facebook_get_data);
+                editor.putString("check", null);
+                Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
+
+                if(name_facebook_get_data!=null){
+                    showQuestionDialogFb();
+                }
+                Log.d("data_object_share", name_facebook_get_data+url_facebook_get_data );
 
             }
         });
