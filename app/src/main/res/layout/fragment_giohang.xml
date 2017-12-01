@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/fragmentlayout_giohang"
+    >
 
     <RelativeLayout
         android:id="@+id/relative_layout_giohang"
@@ -137,6 +139,7 @@
                         android:textSize="14sp" />
 
                     <android.support.v7.widget.RecyclerView
+                        android:layout_marginBottom="55dp"
                         android:id="@+id/recyclerview_2_dathang_giohang"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

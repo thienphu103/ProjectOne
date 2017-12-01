@@ -1,0 +1,58 @@
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:id="@+id/x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1x"
+        android:textColor="#000000"
+        android:textSize="11sp"
+        />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/txt_tensanpham_dathang_giohang"
+        android:paddingLeft="15dp"
+        android:layout_toRightOf="@+id/x1"
+        android:textSize="11sp"
+        android:textColor="#000000"
+        android:text="Tên sản phẩm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/txt_price_dathang_giohang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="360.000 vnd"
+        android:textSize="11sp"
+        android:layout_alignParentRight="true"
+        android:textColor="#000000"
+        />
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:id="@+id/txt_cungcap_giohang"
+        android:textColor="#000000"
+        android:textSize="11sp"
+        android:layout_below="@+id/x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_cungcap_giohang"
+        />
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:id="@+id/txt_tencuahang_giohang"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/txt_cungcap_giohang"
+        android:paddingLeft="5dp"
+        android:textColor="#000000"
+        android:textSize="11sp"
+        android:layout_below="@+id/x1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tên cửa hàng"
+        />
+</RelativeLayout>

@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CallApiMySQL extends Activity {
-    public static final String URL_LOCAL_HOST = "10.200.203.194";
+    public static final String URL_LOCAL_HOST = "10.255.250.60";
     public static final String URL_CALL_API_GET_DATA = "";
     public static final String URL_CALL_API_UP_DATA = "";
 

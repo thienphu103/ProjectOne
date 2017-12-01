@@ -20,8 +20,42 @@ public class visit_1_getter_setter implements Serializable {
     private String size_sp;
     private String mau_sp;
     private String han_sd_sp;
+    private String soluong;
+    private String name_cuahang;
+    private String logo_cuahang;
 
-    public visit_1_getter_setter(String ten_sp, String gia_sp,String hinhanh_sp) {
+    public visit_1_getter_setter(String ten_sp, String gia_sp, String soluong, String name_cuahang) {
+        this.ten_sp = ten_sp;
+        this.gia_sp = gia_sp;
+        this.soluong = soluong;
+        this.name_cuahang = name_cuahang;
+    }
+
+    public String getSoluong() {
+        return soluong;
+    }
+
+    public void setSoluong(String soluong) {
+        this.soluong = soluong;
+    }
+
+    public String getName_cuahang() {
+        return name_cuahang;
+    }
+
+    public void setName_cuahang(String name_cuahang) {
+        this.name_cuahang = name_cuahang;
+    }
+
+    public String getLogo_cuahang() {
+        return logo_cuahang;
+    }
+
+    public void setLogo_cuahang(String logo_cuahang) {
+        this.logo_cuahang = logo_cuahang;
+    }
+
+    public visit_1_getter_setter(String ten_sp, String gia_sp, String hinhanh_sp) {
         this.ten_sp = ten_sp;
         this.gia_sp = gia_sp;
         this.hinhanh_sp = hinhanh_sp;

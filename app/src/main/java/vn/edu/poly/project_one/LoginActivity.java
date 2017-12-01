@@ -681,7 +681,7 @@ public class LoginActivity extends AppCompatActivity implements
                 editor.putString("url", url_facebook_get_data);
                 editor.putString("check", null);
                 Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
-
+                editor.commit();
                 if(name_facebook_get_data!=null){
                     showQuestionDialogFb();
                 }

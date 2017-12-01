@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_thanhtoan_giohang"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/img_cardview_thanhtoan_giohang"
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="20dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txt_baomatdathang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:alpha="0.34"
+                        android:text="@string/txt_baomatdathang_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_thanhtoan_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_baomatdathang"
+                        android:layout_marginLeft="20dp"
+                        android:text="@string/txt_thanhtoan_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/line11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_thanhtoan_giohang"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="15dp"
+                        android:src="@drawable/line_10" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/line11"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/img_diachi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="-35dp"
+                            android:src="@drawable/group_330" />
+
+                        <ImageView
+                            android:id="@+id/gach"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="-35dp"
+                            android:layout_toRightOf="@id/img_diachi"
+                            android:src="@drawable/epeatrid9" />
+
+                        <ImageView
+                            android:id="@+id/img_thanhtoan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="-35dp"
+                            android:layout_toRightOf="@+id/gach"
+                            android:src="@drawable/group10" />
+
+                        <ImageView
+                            android:id="@+id/gach_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="-35dp"
+                            android:layout_toRightOf="@id/img_thanhtoan"
+                            android:src="@drawable/epeatrid9" />
+
+                        <ImageView
+                            android:id="@+id/img_dathang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="-35dp"
+                            android:layout_toRightOf="@+id/gach_2"
+                            android:src="@drawable/group_2" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/img_cardview_thanhtoan_giohang"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/txt_chonhinhthucgiaohang_giohang"
+                    android:textColor="#34495E"
+                    android:textSize="21sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <RadioButton
+                        android:id="@+id/radio_chonhinhthucgiaohang_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:button="@drawable/select_check" />
+
+                    <TextView
+                        android:id="@+id/txt_giaohangtieuchuan_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/radio_chonhinhthucgiaohang_giohang"
+                        android:paddingLeft="20dp"
+                        android:text="@string/txt_giaohangtieuchuan_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_giaohangtieuchuan_giohang"
+                        android:paddingLeft="40dp"
+                        android:text="@string/txt_dukiengiaohang_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/line_10" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/txt_chonhinhthucthanhtoan_giohang"
+                    android:textColor="#34495E"
+                    android:textSize="21sp" />
+
+                <RadioGroup
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:paddingLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/select_check"
+                        android:text="@string/txt_thanhtoan_1_giohang"
+                        android:textSize="15sp"
+                        android:textColor="#34495E"
+                        />
+
+                    <RadioButton
+                        android:paddingLeft="20dp"
+                        android:text="@string/txt_thanhtoan_2_giohang"
+                        android:textSize="15sp"
+                        android:textColor="#34495E"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/select_check" />
+
+                    <RadioButton
+                        android:paddingLeft="20dp"
+                        android:text="@string/txt_thanhtoan_3_giohang"
+                        android:textSize="15sp"
+                        android:textColor="#34495E"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/select_check" />
+
+                </RadioGroup>
+                <Button
+                    android:id="@+id/btn_continue_thanhtoan_giohang"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="20dp"
+                    android:text="@string/txt_continue_giohang"
+                    android:textSize="20dp"
+                    android:textColor="#fff"
+                    android:background="#1ABC9C"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>
