@@ -91,6 +91,8 @@ public class LoginActivity extends AppCompatActivity implements
     private String MY_PREFS_NAME = "name_user";
     private String name_facebook_get_data;
     private String url_facebook_get_data;
+    private String email_facebook_get_data;
+    private String EmailUser="";
 
 
     @Override
@@ -231,6 +233,7 @@ public class LoginActivity extends AppCompatActivity implements
 //            mStatusIdTextView.setText(acct.getId());
             IdUser = acct.getId();
             NameUser = acct.getDisplayName();
+            EmailUser=acct.getEmail();
             LoginClass loginClass = new LoginClass();
             loginClass.setUser_name_gg(NameUser);
             if (acct.getPhotoUrl() == null) {
@@ -240,12 +243,13 @@ public class LoginActivity extends AppCompatActivity implements
                 UrlImageIdUser = acct.getPhotoUrl() + "";
             }
 //            updateUI(true);
-            Log.d("Image", acct.getPhotoUrl() + "");
+            Log.d("Image", acct.getPhotoUrl() + ""+acct.getEmail());
             sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username", NameUser);
             editor.putString("url", acct.getPhotoUrl() + "");
             editor.putString("check", null);
+            editor.putString("email",EmailUser);
             Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
             editor.commit();
             signOut();
@@ -453,6 +457,7 @@ public class LoginActivity extends AppCompatActivity implements
 
                 Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -476,6 +481,7 @@ public class LoginActivity extends AppCompatActivity implements
 
                 Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -670,6 +676,7 @@ public class LoginActivity extends AppCompatActivity implements
                 try {
                     name_facebook_get_data = object1.getString("first_name")+" "+object.getString("last_name");
                     url_facebook_get_data=  "https://graph.facebook.com/" +object1.getString("id")+ "" + "/picture?type=large";
+                    email_facebook_get_data=object1.getString("email");
                     Log.d("data_object", name_facebook_get_data+url_facebook_get_data );
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -679,9 +686,10 @@ public class LoginActivity extends AppCompatActivity implements
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", name_facebook_get_data);
                 editor.putString("url", url_facebook_get_data);
+                editor.putString("email",email_facebook_get_data);
                 editor.putString("check", null);
                 Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
-
+                editor.commit();
                 if(name_facebook_get_data!=null){
                     showQuestionDialogFb();
                 }

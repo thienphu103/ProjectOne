@@ -51,7 +51,7 @@ public class HoSoCuaToi_TaiKhoan extends Fragment {
         url = sharedPreferences.getString("url", null);
         email_text = sharedPreferences.getString("email", null);
         if (user != null) {
-            Log.d("ContentLogin", user + " " + url + "");
+            Log.d("ContentLogin", user + " " + url + ""+email_text);
             if (url == null) {
                 url = String.valueOf(R.drawable.img_no_avatar);//null
             } else {
