@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class Tai_Khoan extends Fragment {
     String url = "";
     private Object MY_PREFS_NAME = "user_name";
     private int MODE_PRIVATE = 0;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,23 +71,25 @@ public class Tai_Khoan extends Fragment {
     private void initEvent() {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", MODE_PRIVATE);
         String user = sharedPreferences.getString("username", null);
-         url=sharedPreferences.getString("url", null);
+        url = sharedPreferences.getString("url", null);
         if (user != null) {
             Log.d("ContentLogin", user + " " + url + "");
             if (url == null) {
-                url = String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+                url = String.valueOf(R.drawable.img_no_avatar);//null
             } else {
                 Picasso.with(getContext())
                         .load(url)
                         .resize(67, 67)
-                        .error(R.drawable.ic_priority_high_black_24dp)//load url error
-                        .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                        .error(R.drawable.img_no_avatar)//load url error
+                        .placeholder(R.drawable.img_no_avatar)//load url error
                         .into(img_login);
             }
-
-            txt_login_name.setText("Xin Chào, " + user + " !");
+            String textBold ="Xin chào, "+"<b>" + user + "</b> !";
+            txt_login_name.setText(Html.fromHtml(textBold));
             btn_signup.setVisibility(View.INVISIBLE);
             btn_login.setVisibility(View.INVISIBLE);
+            txt_logout.setAlpha(1);
+            txt_logout.setEnabled(true);
         }
 
     }
@@ -172,6 +176,12 @@ public class Tai_Khoan extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 btn_signup.setVisibility(View.VISIBLE);
                 btn_login.setVisibility(View.VISIBLE);
+                txt_logout.setAlpha((float) 0.3);
+                txt_logout.setEnabled(false);
+                sharedPreferences = getActivity().getSharedPreferences("name_login", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
