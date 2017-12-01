@@ -39,6 +39,7 @@ public class giohang_2_thanhtoan extends Fragment {
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
                 ft.commit();
+                //;
             }
         });
     }
