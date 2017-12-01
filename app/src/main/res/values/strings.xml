@@ -133,4 +133,10 @@
     <string name="txt_phivanchuyen_giohang">Phí vận chuyển:</string>
     <string name="txt_thanhtien_giohang">Thành tiền:</string>
     <string name="btn_muahang_giohang">Mua hàng</string>
+    <string name="txt_VAT_giohang">(Đã bao gồm VAT)</string>
+    <string name="txt_xincamon_giohang">Xin cảm ơn!</string>
+    <string name="txt_donhangcuabandangxuli_giohang">Đơn hàng của bạn đang được xử lí.\nBạn có thể xem lại đơn hàng qua email</string>
+    <string name="txt_camonbandamua_giohang">Cảm ơn bạn đã mua hàng trên</string>
+    <string name="btn_dangkythanhvien_giohang">Đăng ký thành viên</string>
+    <string name="btn_trovethamquan_giohang">Trở về Tham quan</string>
 </resources>

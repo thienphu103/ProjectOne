@@ -298,7 +298,7 @@
                 android:textSize="20dp"
                 android:textColor="#fff"
                 android:background="#1ABC9C"
-                android:textAllCaps="true"
+                android:textAllCaps="false"
                 android:textStyle="bold"
                 />
 

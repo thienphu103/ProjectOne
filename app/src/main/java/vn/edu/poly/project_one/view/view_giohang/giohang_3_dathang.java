@@ -2,9 +2,11 @@ package vn.edu.poly.project_one.view.view_giohang;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class giohang_3_dathang extends Fragment {
     ListView listView;
     ArrayList<visit_1_getter_setter> arrayList;
     Adapter_3_dathang_giohang adapter;
-
+    Button btn_continue;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,9 +55,21 @@ public class giohang_3_dathang extends Fragment {
         adapter = new Adapter_3_dathang_giohang(getActivity(),arrayList);
         listView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(listView);
+        btn_continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                giohang_4_final  giohang_4_final =new  giohang_4_final();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_3_dathang,  giohang_4_final);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
     }
 
     private void initControl() {
+        btn_continue = (Button) view_dathang.findViewById(R.id.btn_muahang_thanhtoan_giohang);
         listView = (ListView) view_dathang.findViewById(R.id.lst_3_dathang_giohang);
     }
     public static void setListViewHeightBasedOnChildren(ListView listView) {

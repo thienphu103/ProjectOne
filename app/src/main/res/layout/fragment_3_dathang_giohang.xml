@@ -140,7 +140,7 @@
                         android:layout_width="55dp"
                         android:layout_height="21dp"
                         android:layout_alignParentRight="true"
-                        android:background="#EEEEEE"
+                        android:background="@drawable/custom_border_sua_dathang_giohang"
                         android:text="@string/txt_sua_giohang"
                         android:textColor="#0288D1"
                         android:textSize="13sp"
@@ -191,12 +191,13 @@
                         android:layout_width="55dp"
                         android:layout_height="21dp"
                         android:layout_alignParentRight="true"
-                        android:background="#EEEEEE"
+                        android:background="@drawable/custom_border_sua_dathang_giohang"
                         android:text="@string/txt_sua_giohang"
                         android:textColor="#0288D1"
                         android:textSize="13sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
+
                 <ImageView
                     android:id="@+id/line20"
                     android:layout_width="wrap_content"
@@ -205,13 +206,153 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
                     android:src="@drawable/line_10" />
+
                 <ListView
                     android:id="@+id/lst_3_dathang_giohang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"></ListView>
+
+                <ImageView
+                    android:id="@+id/line30"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="20dp"
+                    android:src="@drawable/line_10" />
+
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </ListView>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:id="@+id/txt_tamtinh_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/txt_tamtinh_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_toRightOf="@+id/txt_tamtinh_giohang"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1.200.000 vnd"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txt_giamgia_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/txt_giamgia_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_toRightOf="@+id/txt_giamgia_giohang"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="- 2000 vnd"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txt_phivanchuyen_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/txt_phivanchuyen_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_toRightOf="@+id/txt_phivanchuyen_giohang"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="0 vnd"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+                <ImageView
+                    android:id="@+id/line40"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    android:src="@drawable/line_10" />
+                <RelativeLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="20dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/txt_thanhtien_giohang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/txt_thanhtien_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_toRightOf="@+id/txt_thanhtien_giohang"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1.198.000 vnd"
+                        android:textColor="#34495E"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_thanhtien_giohang"
+                        android:text="@string/txt_VAT_giohang"
+                        android:textColor="#34495E"
+                        android:textSize="10sp"
+                        android:textStyle="italic"
+                        />
+                </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_muahang_thanhtoan_giohang"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_margin="20dp"
+                    android:text="@string/btn_muahang_giohang"
+                    android:textSize="20dp"
+                    android:textColor="#fff"
+                    android:background="#E74C3C"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    />
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
