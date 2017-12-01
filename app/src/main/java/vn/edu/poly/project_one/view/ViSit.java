@@ -1,5 +1,8 @@
 package vn.edu.poly.project_one.view;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,11 +14,13 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +39,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.ImageAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit_2;
+import vn.edu.poly.project_one.Details;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 import vn.edu.poly.project_one.View_getter_setter.visit_2_getter_setter;
@@ -41,6 +47,7 @@ import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
+import static android.content.Context.MODE_PRIVATE;
 import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
 
 /**
@@ -48,6 +55,7 @@ import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
  */
 
 public class ViSit extends Fragment {
+    private View.OnClickListener click;
     View view_visit;
     TextView txt_hangbanchay_tablayoutactivity,txt_hangmoi_tablayoutactivty;
     TextView txt_danhsachcuahang_tablayoutactivity;
@@ -64,6 +72,8 @@ public class ViSit extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager_visit_2;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_banchay.php";
+    private SharedPreferences sharedPreferences;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,12 +81,23 @@ public class ViSit extends Fragment {
         view_visit = inflater.inflate(R.layout.fragment_thamquan, container, false);
 
         initControl();
-        initEvent();
         initOnClick();
+        initEvent();
         return view_visit;
     }
 
     private void initOnClick() {
+        click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Details details = new Details();
+                FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                ft1.replace(R.id.fragmelayout_visit,details);
+                ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft1.addToBackStack(null);
+                ft1.commit();
+            }
+        };
         txt_hangbanchay_tablayoutactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +131,24 @@ public class ViSit extends Fragment {
                 ft.commit();
             }
         });
+//        mRecyclerView_visit.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+//            @Override
+//            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+//
+//                return false;
+//            }
+//
+//            @Override
+//            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+//                Toast.makeText(getActivity(),"b",Toast.LENGTH_SHORT).show();
+//
+//            }
+//
+//            @Override
+//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+//
+//            }
+//        });
 
     }
 
@@ -187,7 +226,7 @@ public class ViSit extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    mAdapter_visit = new MyAdapter_visit(getContext(),strings);
+                    mAdapter_visit = new MyAdapter_visit(getContext(),strings,click);
                     mAdapter_visit.notifyDataSetChanged();
                     mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
                     mAdapter_visit_2.notifyDataSetChanged();

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_detail"
+            layout="@layout/toobar_detail" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_detail">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:id="@+id/img_cardview_logo_details"
+                    android:layout_width="89dp"
+                    android:layout_height="89dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="5dp">
+                <ImageView
+                    android:layout_width="89dp"
+                    android:layout_height="89dp"
+                    android:src="@drawable/images_mau"
+                    />
+                </android.support.v7.widget.CardView>
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/img_cardview_logo_details"
+                    android:id="@+id/txt_tensanpham_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gà Sấy Giòn 500g"
+                    />
+                    <TextView
+                        android:id="@+id/txt_tencuahang_details"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/img_cardview_logo_details"
+                        android:layout_below="@+id/txt_tensanpham_detail"
+                        android:textSize="11sp"
+                        android:textColor="#000000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="QUÊ Homemade"
+                        />
+                        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_toRightOf="@+id/img_cardview_logo_details"
+                            android:layout_below="@+id/txt_tencuahang_details"
+                            android:layout_height="21dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardBackgroundColor="@android:color/white"
+                            app:cardCornerRadius="2dp"
+                            app:cardElevation="5dp">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+                                <ImageView
+                                    android:layout_alignParentLeft="true"
+                                    android:src="@drawable/logo_details"
+                                    android:id="@+id/img_logo_cuahang_details"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                                <TextView
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="20dp"
+                                    android:id="@+id/txt_price_details"
+                                    android:gravity="center"
+                                    android:layout_toRightOf="@+id/img_logo_cuahang_details"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="150.000 VND"
+                                    android:textColor="#0288D1"
+                                    android:textSize="12sp"
+                                    />
+                                <Button
+                                    android:layout_alignParentRight="true"
+                                    android:textAllCaps="false"
+                                    android:gravity="center"
+                                    android:background="#0288D1"
+                                    android:layout_toRightOf="@+id/txt_price_details"
+                                    android:id="@+id/btn_themvaogio_details"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="Thêm vào giở"
+                                    android:textSize="11sp"
+                                    android:textColor="#fff"
+                                    />
+                            </RelativeLayout>
+                        </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</FrameLayout>

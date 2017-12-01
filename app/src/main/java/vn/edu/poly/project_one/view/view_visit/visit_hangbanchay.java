@@ -1,6 +1,7 @@
 package vn.edu.poly.project_one.view.view_visit;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import vn.edu.poly.project_one.Adapter.MyAdapter_visit_hangbanchay;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter;
 
+import static android.content.Context.MODE_PRIVATE;
 import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
 
 /**

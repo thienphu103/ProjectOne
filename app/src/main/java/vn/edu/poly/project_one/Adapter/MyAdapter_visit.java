@@ -1,7 +1,11 @@
 package vn.edu.poly.project_one.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,8 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by ASUS on 11/19/2017.
  */
@@ -24,10 +30,13 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
     Context context;
     LayoutInflater inflater;
     ArrayList<visit_1_getter_setter> arrayList;
+    private View.OnClickListener click;
+    private SharedPreferences sharedPreferences;
 
-    public MyAdapter_visit(Context context, ArrayList<visit_1_getter_setter> arrayList) {
+    public MyAdapter_visit(Context context, ArrayList<visit_1_getter_setter> arrayList,View.OnClickListener click) {
         this.context = context;
         this.arrayList = arrayList;
+        this.click = click;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -59,6 +68,7 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
                 .error(R.drawable.ic_priority_high_black_24dp)//load url error
                 .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
                 .into(holder.img_title);
+
     }
 
     @Override
@@ -69,12 +79,27 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView,price;
         public ImageView img_title, img_logo;
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             textView = (TextView) itemView.findViewById(R.id.title_textview);
             price = (TextView) itemView.findViewById(R.id.txt_price_hangbanchay_thamquan);
             img_logo = (ImageView) itemView.findViewById(R.id.img_logo_hangbanchay_thamquan);
             img_title = (ImageView) itemView.findViewById(R.id.img_cardview_hangbanchay_thamquan);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    visit_1_getter_setter visit_1_getter_setter = arrayList.get(position);
+                    v.setTag(visit_1_getter_setter);
+                    sharedPreferences = context.getSharedPreferences("name_test", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("username_test", arrayList.get(position).getTen_sp()+"");
+                    Log.d("AAAAAAA", arrayList.get(position).getTen_sp());
+                    editor.commit();
+                    click.onClick(v);
+                }
+            });
         }
     }
+
 }
