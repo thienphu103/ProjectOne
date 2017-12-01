@@ -2,7 +2,10 @@ package vn.edu.poly.project_one.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.Adapter_sanpham_giohang;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.SanPham;
+import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 
 /**
  * Created by ASUS on 11/18/2017.
@@ -23,26 +27,34 @@ import vn.edu.poly.project_one.View_getter_setter.SanPham;
 public class Gio_Hang extends Fragment {
     View view_giohang;
     Context context;
-    ArrayList<SanPham> sanPhamArrayList;
-    Adapter_sanpham_giohang adapter_sanpham_giohang;
-    GridView gridview_dathang_giohang, gridview_demuasau_giohang;
-
+    private RecyclerView mRecyclerView_giohang;
+    private RecyclerView.Adapter mAdapter_giohang;
+    private RecyclerView.LayoutManager mLayoutManager_giohang;
+    private ArrayList<SanPham> sanPhamArrayList;
+    private Adapter_sanpham_giohang adapter;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view_giohang = inflater.inflate(R.layout.fragment_giohang, container, false);
+        initEvent();
         initControl();
+
         return view_giohang;
     }
 
+    private void initEvent() {
+        mRecyclerView_giohang = (RecyclerView) view_giohang.findViewById(R.id.recyclerview_dathang_giohang);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) view_giohang.findViewById(R.id.collapsingToolbar);
+        collapsingToolbarLayout.setTitle(getResources().getString(R.string.txt_giohang_tablayoutactivity));
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.black));
+    }
+
     private void initControl() {
-        context = getContext();
         sanPhamArrayList = new ArrayList<>();
-
-        gridview_dathang_giohang = (GridView) view_giohang.findViewById(R.id.gridview_dathang_giohang);
-        gridview_demuasau_giohang = (GridView) view_giohang.findViewById(R.id.gridview_demuasau_giohang);
-
         sanPhamArrayList.add(new SanPham("Vintas Lowtop",
                 "360.000 VND", "2", "3",
                 R.drawable.giay));
@@ -63,11 +75,11 @@ public class Gio_Hang extends Fragment {
                 "360.000 VND", "2", "3",
                 R.drawable.giay));
 
-        adapter_sanpham_giohang = new Adapter_sanpham_giohang(context, sanPhamArrayList);
-        gridview_dathang_giohang.setAdapter(adapter_sanpham_giohang);
-        gridview_demuasau_giohang.setAdapter(adapter_sanpham_giohang);
-        setGridViewHeightBasedOnChildren(gridview_dathang_giohang, 1);
-        setGridViewHeightBasedOnChildren(gridview_demuasau_giohang, 1);
+        mRecyclerView_giohang.setHasFixedSize(true);
+        mLayoutManager_giohang = new LinearLayoutManager(getActivity());
+        mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
+        adapter = new Adapter_sanpham_giohang(getContext(),sanPhamArrayList);
+        mRecyclerView_giohang.setAdapter(adapter);
     }
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {

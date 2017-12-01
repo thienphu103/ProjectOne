@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="20dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginTop="5dp"
+    app:cardBackgroundColor="@android:color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="10dp"
     android:background="@drawable/border_item_giohang">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/image_sanpham_giohang"
         android:layout_width="89dp"
         android:layout_height="89dp"
-        android:background="@drawable/border_item_giohang"
         android:padding="1dp"
+        android:background="@drawable/custom_border_images_cardview"
         android:src="@drawable/giay" />
 
     <TextView
@@ -22,8 +34,8 @@
         android:fontFamily="@font/robotoregular"
         android:includeFontPadding="false"
         android:text="Vintas Lowtop - Corsari"
-        android:textColor="#000"
-        android:textSize="17sp" />
+        android:textColor="#34495E"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/txt_giasanpham_giohang"
@@ -36,32 +48,32 @@
         android:fontFamily="@font/robotoregular"
         android:includeFontPadding="false"
         android:text="360.000 VND"
-        android:textColor="#000"
-        android:textSize="17sp" />
+        android:textColor="#34495E"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/txt_size_sanpham_giohang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_giasanpham_giohang"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@id/image_sanpham_giohang"
         android:fontFamily="@font/robotoregular"
         android:text="size | 42"
-        android:textSize="13sp" />
+        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/txt_soluong_sanpham_giohang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_giasanpham_giohang"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="25dp"
         android:layout_toRightOf="@id/txt_size_sanpham_giohang"
         android:fontFamily="@font/robotoregular"
         android:text="số lượng | ×1"
-        android:textSize="13sp" />
+        android:textSize="10sp" />
 
     <Button
         android:id="@+id/btn_muasau_giohang"
@@ -75,7 +87,7 @@
         android:text="Mua sau"
         android:textAllCaps="false"
         android:textColor="#737373"
-        android:textSize="12dp" />
+        android:textSize="11dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -91,6 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/icon"
+        android:background="@drawable/cancel_2"
         android:padding="1dp" />
-</RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
