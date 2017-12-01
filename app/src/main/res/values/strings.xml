@@ -41,6 +41,7 @@
     <string name="txt_visit_tablayoutactivity">Tham quan</string>
     <string name="txt_find_tablayoutactivity">Tìm kiếm</string>
     <string name="txt_giohang_tablayoutactivity">Giỏ hàng</string>
+    <string name="txt_giohang_textview_tablayoutactivity"><b>Giỏ hàng</b></string>
     <string name="txt_taikhoan_tablayoutactivity">Tài khoản</string>
     <string name="btn_bancantimgi_tablayoutactivity">Bạn cần tìm gì?</string>
     <string name="txt_xuhuong_tablayoutactivity">Xu hướng</string>
