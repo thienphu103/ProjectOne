@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
@@ -41,7 +42,11 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
     @Override
     public void onBindViewHolder(MyAdapter_visit.ViewHolder holder, int position) {
             holder.textView.setText(arrayList.get(position).getTen_sp());
-            holder.price.setText(arrayList.get(position).getGia_sp());
+
+        String pattern = "###,###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        String format = decimalFormat.format(Double.parseDouble(arrayList.get(position).getGia_sp()));
+            holder.price.setText(format+" VND");
         String url="";
         if(!(arrayList.get(position).getHinhanh_sp().isEmpty())) {//null
             url=arrayList.get(position).getHinhanh_sp();

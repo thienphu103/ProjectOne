@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
@@ -63,7 +64,10 @@ public class Adapter_visit_hangmoi_kieudanhsach extends BaseAdapter{
                 viewHolder = (ViewHolder) convertView.getTag();
             }
             viewHolder.txt_title.setText(arrayList.get(position).getTitle());
-            viewHolder.txt_price.setText(arrayList.get(position).getPrice()+" VND");
+            String pattern = "###,###.###";
+            DecimalFormat decimalFormat = new DecimalFormat(pattern);
+            String format = decimalFormat.format(Double.parseDouble(arrayList.get(position).getPrice()));
+            viewHolder.txt_price.setText(format+" VND");
             String url;
             if(!(arrayList.get(position).getImg().isEmpty())) {//null
                 url=arrayList.get(position).getImg();

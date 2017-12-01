@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -76,6 +77,7 @@ public class HoSoCuaToi_TaiKhoan extends Fragment {
             txt_change_pass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Toast.makeText(getContext(),"kkk",Toast.LENGTH_LONG).show();
                     if (relativeLayout.getVisibility() == View.VISIBLE) {
                         relativeLayout.setVisibility(View.GONE);
                         relativeLayout.startAnimation(slideClose);

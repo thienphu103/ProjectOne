@@ -41,7 +41,7 @@ public class MyAdapter_visit_2 extends RecyclerView.Adapter<MyAdapter_visit_2.Vi
     @Override
     public void onBindViewHolder(MyAdapter_visit_2.ViewHolder holder, int position) {
             holder.textView.setText(arrayList.get(position).getTen_sp());
-            holder.price.setText(arrayList.get(position).getGia_sp());
+            holder.price.setText(arrayList.get(position).getGia_sp()+" VND" );
         String url="";
         if(!(arrayList.get(position).getHinhanh_sp().isEmpty())) {//null
             url=arrayList.get(position).getHinhanh_sp();

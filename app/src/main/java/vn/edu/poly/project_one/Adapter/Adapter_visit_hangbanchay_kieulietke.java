@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
@@ -67,8 +68,11 @@ public class Adapter_visit_hangbanchay_kieulietke extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.getTxt_custom1.setText(arrayList.get(position).getTxt_custom1());
-        viewHolder.getTxt_custom2.setText(arrayList.get(position).getTxt_custom2()+" VND");
-        viewHolder.getTxt_custom3.setText(arrayList.get(position).getTxt_custom3()+" VND");
+        String pattern = "###,###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        String format = decimalFormat.format(Double.parseDouble(arrayList.get(position).getTxt_custom2()));
+        viewHolder.getTxt_custom2.setText(format+" VND");
+        viewHolder.getTxt_custom3.setText(format+" VND");
         String url="";
         if(!(arrayList.get(position).getImg_kieulietke().isEmpty())) {//null
             url=arrayList.get(position).getImg_kieulietke();
