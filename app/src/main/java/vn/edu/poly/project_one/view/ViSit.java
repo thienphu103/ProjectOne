@@ -3,6 +3,7 @@ package vn.edu.poly.project_one.view;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -41,6 +41,8 @@ import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
+import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
+
 /**
  * Created by ASUS on 11/18/2017.
  */
@@ -61,14 +63,14 @@ public class ViSit extends Fragment {
     private RecyclerView.Adapter mAdapter_visit_2;
     private RecyclerView.LayoutManager mLayoutManager_visit_2;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    public static final String URL_CALL_API_GET_DATA = "http://10.200.203.96/serverlocal/get_data_sp_banchay.php";
+    public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_banchay.php";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         view_visit = inflater.inflate(R.layout.fragment_thamquan, container, false);
-        initControl();
 
+        initControl();
         initEvent();
         initOnClick();
         return view_visit;
@@ -123,9 +125,12 @@ public class ViSit extends Fragment {
                 (TextView) view_visit.findViewById(R.id.txt_viewall_hangmoi_tablayoutactivity);
     }
     private void initEvent() {
+
         strings = new ArrayList<>();
         strings2 = new ArrayList<>();
         getData();
+
+
 //        strings = new ArrayList<>();
 //        for(int i = 0 ; i < 10 ;i++){
 //            strings.add(new visit_1_getter_setter(getResources().getString(R.string.txt_amthuc_tablayoutactivity)
@@ -140,12 +145,12 @@ public class ViSit extends Fragment {
         mLayoutManager_visit = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView_visit.setLayoutManager(mLayoutManager_visit);
 //        mAdapter_visit = new MyAdapter_visit(getContext(),strings);
-        mRecyclerView_visit.setAdapter(mAdapter_visit);
+//        mRecyclerView_visit.setAdapter(mAdapter_visit);
         mRecyclerView_visit_2.setHasFixedSize(true);
         mLayoutManager_visit_2 = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         mRecyclerView_visit_2.setLayoutManager(mLayoutManager_visit_2);
 //        mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
-        mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
+//        mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
         gridview_visit.setAdapter(new ImageAdapter_visit(getActivity()));
         setGridViewHeightBasedOnChildren(gridview_visit,2);
         collapsingToolbarLayout = (CollapsingToolbarLayout) view_visit.findViewById(R.id.collapsingToolbar);
@@ -173,25 +178,40 @@ public class ViSit extends Fragment {
                         price = object.getString("gia_sp");
                         Log.d("URl_IMAGE", image);
                         strings.add(new visit_1_getter_setter(name,price,image));
-                        adapter =new MyAdapter_visit(getContext(),strings);
-                        adapter.notifyDataSetChanged();
+//                        adapter =new MyAdapter_visit(getContext(),strings);
+//                        adapter.notifyDataSetChanged();
                         strings2.add(new visit_2_getter_setter(name,price,image));
-                        adapter2 =new MyAdapter_visit_2(getContext(),strings2);
-                        adapter.notifyDataSetChanged();
+//                        adapter2 =new MyAdapter_visit_2(getContext(),strings2);
+//                        adapter2.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     mAdapter_visit = new MyAdapter_visit(getContext(),strings);
+                    mAdapter_visit.notifyDataSetChanged();
                     mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
-
-
+                    mAdapter_visit_2.notifyDataSetChanged();
+                    mRecyclerView_visit.setAdapter(mAdapter_visit);
+                    mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
+Log.d("a","aa");
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+                View view = view_visit.findViewById(R.id.fragmelayout_visit);
+                final Snackbar snackbar = Snackbar.make(view,"Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+
+                // Set an action on it, and a handler
+                snackbar.setAction("Thử Lại", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getData();
+                    }
+                });
+
+                snackbar.show();
             }
         });
 

@@ -58,11 +58,13 @@
                                 android:orientation="horizontal">
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:id="@+id/img_login_taikhoan_tablayoutactivity"
+                                    android:layout_width="55dp"
+                                    android:layout_height="55dp"
                                     android:src="@drawable/nhat_nam" />
 
                                 <TextView
+                                    android:id="@+id/txt_login_taikhoan_tablayoutactivity"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
@@ -363,6 +365,7 @@
                     android:src="@drawable/logout" />
 
                 <TextView
+                    android:id="@+id/txt_logout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_background_loginactivity_signupactivity"
     tools:context="vn.edu.poly.project_one.LoginActivity"
+    android:id="@+id/layout_login"
     >
 
     <LinearLayout
@@ -124,7 +125,12 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/facebook"
                     />
-
+                <Button
+                    android:id="@+id/btn_sign_out_gg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="log_out"
+                    android:visibility="gone"/>
                 <ImageView
                     android:background="@android:color/transparent"
                     android:id="@+id/sign_in_button_gg"
