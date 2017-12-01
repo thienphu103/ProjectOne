@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements
     private String name_facebook_get_data;
     private String url_facebook_get_data;
     private String email_facebook_get_data;
-    private String EmailUser;
+    private String EmailUser="";
 
 
     @Override
@@ -243,13 +243,13 @@ public class LoginActivity extends AppCompatActivity implements
                 UrlImageIdUser = acct.getPhotoUrl() + "";
             }
 //            updateUI(true);
-            Log.d("Image", acct.getPhotoUrl() + "");
+            Log.d("Image", acct.getPhotoUrl() + ""+acct.getEmail());
             sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("username", NameUser);
             editor.putString("url", acct.getPhotoUrl() + "");
             editor.putString("check", null);
-            editor.putString("email",null);
+            editor.putString("email",EmailUser);
             Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
             editor.commit();
             signOut();
@@ -457,6 +457,7 @@ public class LoginActivity extends AppCompatActivity implements
 
                 Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -480,6 +481,7 @@ public class LoginActivity extends AppCompatActivity implements
 
                 Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
