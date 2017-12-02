@@ -141,4 +141,9 @@
     <string name="btn_trovethamquan_giohang">Trở về Tham quan</string>
     <string name="txt_trove_detail">Trở về</string>
     <string name="txt_themvaogio_detail">Thêm vào giỏ</string>
+    <string name="txt_thongtinsanpham_details">Thông tin sản phẩm</string>
+    <string name="txt_sanxuat_details">Sản xuất</string>
+    <string name="txt_ngaysanxuat_details">Ngày sản xuất</string>
+    <string name="txt_xephang_details">Xếp hạng và nhận xét</string>
+    <string name="txt_xemthem_details">Xem thêm</string>
 </resources>
