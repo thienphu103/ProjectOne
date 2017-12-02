@@ -9,9 +9,9 @@ public class SanPham {
     String gia_sp;
     String soluong_sp;
     String size_sp;
-    int img_sp;
+    String img_sp;
 
-    public SanPham(String ten_sp, String gia_sp, String soluong_sp, String size_sp, int img_sp) {
+    public SanPham(String ten_sp, String gia_sp, String soluong_sp, String size_sp, String img_sp) {
         this.ten_sp = ten_sp;
         this.gia_sp = gia_sp;
         this.soluong_sp = soluong_sp;
@@ -51,11 +51,11 @@ public class SanPham {
         this.size_sp = size_sp;
     }
 
-    public int getImg_sp() {
+    public String getImg_sp() {
         return img_sp;
     }
 
-    public void setImg_sp(int img_sp) {
+    public void setImg_sp(String img_sp) {
         this.img_sp = img_sp;
     }
 }

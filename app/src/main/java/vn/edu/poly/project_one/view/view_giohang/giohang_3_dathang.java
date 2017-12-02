@@ -12,7 +12,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_3_dathang_giohang;
-import vn.edu.poly.project_one.Adapter.Adapter_khaitruong_today;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 
@@ -46,12 +45,12 @@ public class giohang_3_dathang extends Fragment {
 
     private void initEvent() {
         arrayList = new ArrayList<>();
-        arrayList.add(new visit_1_getter_setter("Tên sản phẩm",
-                "360.000 vnd",
-                "1x", "tên cửa hàng"));
-        arrayList.add(new visit_1_getter_setter("Tên sản phẩm",
-                "360.000 vnd",
-                "1x", "tên cửa hàng"));
+//        arrayList.add(new visit_1_getter_setter("Tên sản phẩm",
+//                "360.000 vnd",
+//                "1x", "tên cửa hàng"));
+//        arrayList.add(new visit_1_getter_setter("Tên sản phẩm",
+//                "360.000 vnd",
+//                "1x", "tên cửa hàng"));
         adapter = new Adapter_3_dathang_giohang(getActivity(),arrayList);
         listView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(listView);

@@ -1,7 +1,5 @@
 package vn.edu.poly.project_one.view;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -14,13 +12,11 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -47,7 +43,6 @@ import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
-import static android.content.Context.MODE_PRIVATE;
 import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
 
 /**
@@ -72,6 +67,7 @@ public class ViSit extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager_visit_2;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_banchay.php";
+    public static final String URL_CALL_API_GET_DATA_2 = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_moi_nhat.php";
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -168,6 +164,7 @@ public class ViSit extends Fragment {
         strings = new ArrayList<>();
         strings2 = new ArrayList<>();
         getData();
+        getData2();
 
 
 //        strings = new ArrayList<>();
@@ -208,6 +205,64 @@ public class ViSit extends Fragment {
                 String name = "";
                 String image;
                 String price;
+                String id;
+
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject object = response.getJSONObject(i);
+                        name = object.getString("ten_sp");
+                        image = object.getString("hinhanh_sp");
+                        price = object.getString("gia_sp");
+                        id=object.getString("id_sp");
+                        Log.d("URl_IMAGE", image);
+                        strings.add(new visit_1_getter_setter(Integer.parseInt(id),name,price,image));
+//                        adapter =new MyAdapter_visit(getContext(),strings);
+//                        adapter.notifyDataSetChanged();
+
+//                        adapter2 =new MyAdapter_visit_2(getContext(),strings2);
+//                        adapter2.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    mAdapter_visit = new MyAdapter_visit(getContext(),strings,click);
+                    mAdapter_visit.notifyDataSetChanged();
+
+                    mRecyclerView_visit.setAdapter(mAdapter_visit);
+
+Log.d("a","aa");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+                View view = view_visit.findViewById(R.id.fragmelayout_visit);
+                final Snackbar snackbar = Snackbar.make(view,"Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+
+                // Set an action on it, and a handler
+                snackbar.setAction("Thử Lại", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getData();
+                        getData2();
+                    }
+                });
+
+                snackbar.show();
+            }
+        });
+
+        requestQueue.add(arrayRequest);
+    }
+    private void getData2() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, URL_CALL_API_GET_DATA_2, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                String name = "";
+                String image;
+                String price;
 
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -216,7 +271,7 @@ public class ViSit extends Fragment {
                         image = object.getString("hinhanh_sp");
                         price = object.getString("gia_sp");
                         Log.d("URl_IMAGE", image);
-                        strings.add(new visit_1_getter_setter(name,price,image));
+
 //                        adapter =new MyAdapter_visit(getContext(),strings);
 //                        adapter.notifyDataSetChanged();
                         strings2.add(new visit_2_getter_setter(name,price,image));
@@ -226,13 +281,11 @@ public class ViSit extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    mAdapter_visit = new MyAdapter_visit(getContext(),strings,click);
-                    mAdapter_visit.notifyDataSetChanged();
-                    mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2);
+
+                    mAdapter_visit_2 = new MyAdapter_visit_2(getContext(),strings2,click);
                     mAdapter_visit_2.notifyDataSetChanged();
-                    mRecyclerView_visit.setAdapter(mAdapter_visit);
                     mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
-Log.d("a","aa");
+                    Log.d("a","aa");
                 }
             }
         }, new Response.ErrorListener() {
@@ -256,7 +309,6 @@ Log.d("a","aa");
 
         requestQueue.add(arrayRequest);
     }
-
     public String decodeImage(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);

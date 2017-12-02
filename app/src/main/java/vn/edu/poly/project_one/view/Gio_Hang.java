@@ -11,19 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ListAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_sanpham_giohang;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.SanPham;
-import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 import vn.edu.poly.project_one.view.view_giohang.giohang_1_diachigiaohang;
-import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 
 /**
  * Created by ASUS on 11/18/2017.
@@ -39,6 +36,10 @@ public class Gio_Hang extends Fragment {
     private Adapter_sanpham_giohang adapter;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     Button btn_dathang;
+    private TextView txt_sum;
+    Context myContext,appContext;
+    private Bundle arguments;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class Gio_Hang extends Fragment {
         btn_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                giohang_1_diachigiaohang giohang_1_diachigiaohang =new giohang_1_diachigiaohang();
+                giohang_1_diachigiaohang giohang_1_diachigiaohang = new giohang_1_diachigiaohang();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentlayout_giohang, giohang_1_diachigiaohang);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -74,34 +75,35 @@ public class Gio_Hang extends Fragment {
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.black));
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
+        txt_sum=(TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
     }
 
     private void initControl() {
         sanPhamArrayList = new ArrayList<>();
-        sanPhamArrayList.add(new SanPham("Vintas Lowtop",
-                "360.000 VND", "2", "3",
-                R.drawable.giay));
-
-        sanPhamArrayList.add(new SanPham("Vintas Lowtop",
-                "360.000 VND", "2", "3",
-                R.drawable.giay));
-
-        sanPhamArrayList.add(new SanPham("Vintas Lowtop",
-                "360.giay VND", "2", "3",
-                R.drawable.giay));
-
-        sanPhamArrayList.add(new SanPham("Vintas Lowtop",
-                "360.000 VND", "2", "3",
-                R.drawable.giay));
-
-        sanPhamArrayList.add(new SanPham("Vintas Lowtop",
-                "360.000 VND", "2", "3",
-                R.drawable.giay));
-
+//        SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
+//        int index = sharedPreferences.getInt("index", 0);
+//        layoutView = inflater.inflate(R.layout.activity_doctor_list,container);
+//        for (int i = 1; i < index; index++) {
+//            SharedPreferences sharedPreferences_data = getContext().getSharedPreferences("post_details_gh", MODE_PRIVATE);
+////            SharedPreferences.Editor editor_index = sharedPreferences_data.edit();
+////            editor_index.putInt("index",index );
+////            editor_index.commit();
+//            String name = sharedPreferences_data.getString("name_sp_"+index, null);
+//            String price = sharedPreferences_data.getString("gia_sp_"+index, null);
+//            String url=sharedPreferences_data.getString("hinhanh_sp_"+index,null);
+//
+//            sanPhamArrayList.add(new SanPham(name,
+//                    price, "2", "3",
+//                    url));
+//            Log.d("index", index + name);
+//
+//        }
+        
+        txt_sum.setText("Có "+sanPhamArrayList.size()+" Sản Phẩm Trong Giỏ Hàng");
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
-        adapter = new Adapter_sanpham_giohang(getContext(),sanPhamArrayList);
+        adapter = new Adapter_sanpham_giohang(getContext(), sanPhamArrayList);
         mRecyclerView_giohang.setAdapter(adapter);
     }
 
@@ -121,8 +123,8 @@ public class Gio_Hang extends Fragment {
         totalHeight = listItem.getMeasuredHeight();
 
         float x = 1;
-        if( items > columns ){
-            x = items/columns;
+        if (items > columns) {
+            x = items / columns;
             rows = (int) (x + 1);
             totalHeight *= rows;
         }
