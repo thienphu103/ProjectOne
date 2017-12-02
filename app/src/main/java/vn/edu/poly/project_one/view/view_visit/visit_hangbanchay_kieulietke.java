@@ -31,8 +31,6 @@ import vn.edu.poly.project_one.Adapter.Adapter_visit_hangbanchay_kieulietke;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter_kieulietke;
 
-import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
-
 /**
  * Created by ASUS on 11/21/2017.
  */
@@ -43,7 +41,7 @@ public class visit_hangbanchay_kieulietke extends Fragment {
     GridView gridView;
     ArrayList<visit_hangbanchay_getter_setter_kieulietke> arrayList;
     Adapter_visit_hangbanchay_kieulietke adapter;
-    public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sanpham.php";
+    public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sanpham.php";
 
     @Override
 

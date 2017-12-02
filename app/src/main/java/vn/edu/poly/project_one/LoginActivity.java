@@ -59,8 +59,6 @@ import java.util.Map;
 
 import vn.edu.poly.project_one.ControlClass.LoginClass;
 
-import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
-
 public class LoginActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener, View.OnLongClickListener {
     RelativeLayout txt_signup_loginactivity;
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements
     private TextView mStatusIdTextView;
     private ImageView imageViewAvatar;
     private ProgressDialog mProgressDialog;
-    private String url = "http://" + URL_LOCAL_HOST + "//serverlocal/post_data_sign_up.php";
+    private String url = "http://namtnps06077.hol.es/post_data_sign_up_easy.php";
     private String IdUser = "";
     private String NameUser = "";
     private String UrlImageIdUser = "";
@@ -332,6 +330,7 @@ public class LoginActivity extends AppCompatActivity implements
                 Log.d("URL_FB", UserImageUrl);
                 stringMap.put("image_name", IdProfileFb);
                 stringMap.put("image_fiel", ss);
+
                 return stringMap;
             }
 

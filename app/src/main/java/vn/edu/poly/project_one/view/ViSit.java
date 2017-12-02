@@ -43,8 +43,6 @@ import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
-import static vn.edu.poly.project_one.SETUP_API.CallApiMySQL.URL_LOCAL_HOST;
-
 /**
  * Created by ASUS on 11/18/2017.
  */
@@ -66,8 +64,8 @@ public class ViSit extends Fragment {
     private RecyclerView.Adapter mAdapter_visit_2;
     private RecyclerView.LayoutManager mLayoutManager_visit_2;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    public static final String URL_CALL_API_GET_DATA = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_banchay.php";
-    public static final String URL_CALL_API_GET_DATA_2 = "http://"+URL_LOCAL_HOST+"//serverlocal/get_data_sp_moi_nhat.php";
+    public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sp_banchay.php";
+    public static final String URL_CALL_API_GET_DATA_2 = "http://namtnps06077.hol.es/get_data_sp_moi_nhat.php";
     private SharedPreferences sharedPreferences;
 
     @Override
