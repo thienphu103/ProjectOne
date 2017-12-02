@@ -140,4 +140,5 @@
     <string name="btn_dangkythanhvien_giohang">Đăng ký thành viên</string>
     <string name="btn_trovethamquan_giohang">Trở về Tham quan</string>
     <string name="txt_trove_detail">Trở về</string>
+    <string name="txt_themvaogio_detail">Thêm vào giỏ</string>
 </resources>

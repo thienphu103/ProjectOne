@@ -30,18 +30,18 @@
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:id="@+id/img_cardview_logo_details"
                     android:layout_width="89dp"
                     android:layout_height="89dp"
                     android:foreground="?android:attr/selectableItemBackground"
                     app:cardBackgroundColor="@android:color/white"
                     app:cardCornerRadius="4dp"
-                    app:cardElevation="5dp">
+                    app:cardElevation="10dp">
                 <ImageView
                     android:layout_width="89dp"
                     android:layout_height="89dp"
-                    android:src="@drawable/images_mau"
+                    android:src="@drawable/n"
                     />
                 </android.support.v7.widget.CardView>
                 <TextView
@@ -69,9 +69,9 @@
                         <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                             xmlns:app="http://schemas.android.com/apk/res-auto"
                             android:layout_width="match_parent"
-                            android:layout_marginTop="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginLeft="20dp"
+                            android:layout_marginTop="30dp"
                             android:layout_toRightOf="@+id/img_cardview_logo_details"
                             android:layout_below="@+id/txt_tencuahang_details"
                             android:layout_height="21dp"
@@ -81,20 +81,18 @@
                             app:cardElevation="5dp">
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="wrap_content">
                                 <ImageView
                                     android:layout_alignParentLeft="true"
                                     android:src="@drawable/logo_details"
                                     android:id="@+id/img_logo_cuahang_details"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="match_parent" />
                                 <TextView
-                                    android:layout_marginRight="20dp"
-                                    android:layout_marginLeft="20dp"
                                     android:id="@+id/txt_price_details"
                                     android:gravity="center"
                                     android:layout_toRightOf="@+id/img_logo_cuahang_details"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="110dp"
                                     android:layout_height="match_parent"
                                     android:text="150.000 VND"
                                     android:textColor="#0288D1"
@@ -107,9 +105,9 @@
                                     android:background="#0288D1"
                                     android:layout_toRightOf="@+id/txt_price_details"
                                     android:id="@+id/btn_themvaogio_details"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="86dp"
                                     android:layout_height="match_parent"
-                                    android:text="Thêm vào giở"
+                                    android:text="@string/txt_themvaogio_detail"
                                     android:textSize="11sp"
                                     android:textColor="#fff"
                                     />
