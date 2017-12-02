@@ -1,12 +1,14 @@
 package vn.edu.poly.project_one.view;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,8 +39,13 @@ public class Gio_Hang extends Fragment {
     private CollapsingToolbarLayout collapsingToolbarLayout;
     Button btn_dathang;
     private TextView txt_sum;
-    Context myContext,appContext;
+    Context myContext, appContext;
     private Bundle arguments;
+    private String name;
+    private String price;
+    private String url;
+    private SharedPreferences sharedPreferences_data;
+    private SharedPreferences.Editor editor_index;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,31 +82,30 @@ public class Gio_Hang extends Fragment {
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.black));
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
-        txt_sum=(TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
+        txt_sum = (TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
     }
 
     private void initControl() {
         sanPhamArrayList = new ArrayList<>();
-//        SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
-//        int index = sharedPreferences.getInt("index", 0);
-//        layoutView = inflater.inflate(R.layout.activity_doctor_list,container);
-//        for (int i = 1; i < index; index++) {
-//            SharedPreferences sharedPreferences_data = getContext().getSharedPreferences("post_details_gh", MODE_PRIVATE);
-////            SharedPreferences.Editor editor_index = sharedPreferences_data.edit();
-////            editor_index.putInt("index",index );
-////            editor_index.commit();
-//            String name = sharedPreferences_data.getString("name_sp_"+index, null);
-//            String price = sharedPreferences_data.getString("gia_sp_"+index, null);
-//            String url=sharedPreferences_data.getString("hinhanh_sp_"+index,null);
-//
-//            sanPhamArrayList.add(new SanPham(name,
-//                    price, "2", "3",
-//                    url));
-//            Log.d("index", index + name);
-//
-//        }
-        
-        txt_sum.setText("Có "+sanPhamArrayList.size()+" Sản Phẩm Trong Giỏ Hàng");
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_index", context.MODE_PRIVATE);
+        int index = sharedPreferences.getInt("index", 0);
+        sharedPreferences_data = getContext().getSharedPreferences("post_details_gh", context.MODE_PRIVATE);
+        editor_index = sharedPreferences.edit();
+//        editor_index.clear().commit();
+        for (int i = 1; i < index; i++) {
+            i++;
+            name = sharedPreferences_data.getString("name_sp_"+i, null);
+            price = sharedPreferences_data.getString("gia_sp_"+i, null);
+            url=sharedPreferences_data.getString("hinhanh_sp_"+i,null);
+
+            sanPhamArrayList.add(new SanPham(name,
+                    price, "2", "3",
+                    url));
+            Log.d("index", index + name);
+
+        }
+
+        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm Trong Giỏ Hàng, Index: " + index);
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);

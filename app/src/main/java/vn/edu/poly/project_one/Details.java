@@ -50,6 +50,9 @@ public class Details extends Fragment {
     private ArrayList<visit_1_getter_setter> arrayList_details_danhgia;
     private GridView gridView;
     private Adapter_gridview_nhanxetvadanhgia_details adapter;
+    private SharedPreferences sharedPreferences_index;
+    private SharedPreferences.Editor editor_index;
+    //
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -102,25 +105,25 @@ public class Details extends Fragment {
 //        SharedPreferences.Editor editor_index = sharedPreferences_index.edit();
 //        editor_index.putInt("index",1 );
 //        editor_index.commit();
+        sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
+        editor_index = sharedPreferences_index.edit();
+        index = sharedPreferences_index.getInt("index", 0);
+
         btn_themvaogio_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                i++;
-                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
-                index = sharedPreferences_index.getInt("index", 0);
-                SharedPreferences.Editor editor_index = sharedPreferences_index.edit();
-                editor_index.putInt("index",i );
+                index++;
+                index++;
+                editor_index.putInt("index",index);
                 editor_index.commit();
-
-//
-//                SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_gh", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences.edit();
-//                editor.putString("name_sp_"+index, name);
-//                editor.putString("gia_sp_"+index, price);
-//                editor.putString("id_sp_"+index, id);
-//                editor.putString("hinhanh_sp_"+index, url);
-                Log.d("post_details", name + price + id + url + "__" + index);
-//                editor.commit();
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_gh", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name_sp_"+index, name);
+                editor.putString("gia_sp_"+index, price);
+                editor.putString("id_sp_"+index, id);
+                editor.putString("hinhanh_sp_"+index, url);
+                Log.d("post_details",  index+"");
+                editor.commit();
 
                 Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng !", Toast.LENGTH_SHORT).show();
             }
@@ -129,7 +132,6 @@ public class Details extends Fragment {
 
 
     }
-
 
 
     private void initOnClick() {
