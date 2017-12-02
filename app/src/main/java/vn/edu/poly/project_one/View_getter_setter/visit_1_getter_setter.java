@@ -37,6 +37,10 @@ public class visit_1_getter_setter implements Serializable {
         this.name_cuahang = name_cuahang;
     }
 
+    public visit_1_getter_setter(String hinhanh_sp) {
+        this.hinhanh_sp = hinhanh_sp;
+    }
+
     public String getSoluong() {
         return soluong;
     }
