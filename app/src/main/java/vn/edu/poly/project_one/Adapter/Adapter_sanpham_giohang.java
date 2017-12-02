@@ -5,11 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.R;
@@ -45,9 +47,20 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
         holder.txt_giasanpham_giohang.setText(sanPhamArrayList.get(position).getGia_sp());
         holder.txt_size_sanpham_giohang.setText("size | " + sanPhamArrayList.get(position).getSize_sp());
         holder.txt_soluong_sanpham_giohang.setText("số lượng | ×" + sanPhamArrayList.get(position).getSoluong_sp());
-        holder.image_sanpham_giohang.setImageDrawable(v.getResources().getDrawable(sanPhamArrayList.get(position).getImg_sp()));
+//        holder.image_sanpham_giohang.setImageDrawable(v.getResources().getDrawable(sanPhamArrayList.get(position).getImg_sp()));
 
-
+        String url="";
+        if((sanPhamArrayList.get(position).getImg_sp()!=null)) {//null
+            url=sanPhamArrayList.get(position).getImg_sp();
+        }else{
+            url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+        }
+        Picasso.with(context)
+                .load(url)
+                .error(R.drawable.ic_priority_high_black_24dp)//load url error
+                .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
+                .resize(76, 76)
+                .into(holder.image_sanpham_giohang);
 
     }
 

@@ -39,6 +39,7 @@
                     app:cardCornerRadius="4dp"
                     app:cardElevation="5dp">
                 <ImageView
+                    android:id="@+id/img_sp_logo_details"
                     android:layout_width="89dp"
                     android:layout_height="89dp"
                     android:src="@drawable/images_mau"
