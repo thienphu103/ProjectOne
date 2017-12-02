@@ -206,16 +206,18 @@ public class ViSit extends Fragment {
                 String image;
                 String price;
                 String id;
-
+String number;
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
                         name = object.getString("ten_sp");
                         image = object.getString("hinhanh_sp");
                         price = object.getString("gia_sp");
+                        number=object.getString("soluongconlai_sp");
                         id=object.getString("id_sp");
+
                         Log.d("URl_IMAGE", image);
-                        strings.add(new visit_1_getter_setter(Integer.parseInt(id),name,price,image));
+                        strings.add(new visit_1_getter_setter(Integer.parseInt(id),name,price,image,number));
 //                        adapter =new MyAdapter_visit(getContext(),strings);
 //                        adapter.notifyDataSetChanged();
 

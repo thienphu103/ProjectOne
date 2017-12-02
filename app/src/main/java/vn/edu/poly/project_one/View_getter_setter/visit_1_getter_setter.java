@@ -24,11 +24,12 @@ public class visit_1_getter_setter implements Serializable {
     private String name_cuahang;
     private String logo_cuahang;
 
-    public visit_1_getter_setter(int id_sp,String ten_sp, String gia_sp, String hinhanh_sp) {
+    public visit_1_getter_setter(int id_sp,String ten_sp, String gia_sp, String hinhanh_sp,String soluongconlai_sp) {
         this.id_sp=id_sp;
         this.ten_sp = ten_sp;
         this.gia_sp = gia_sp;
         this.hinhanh_sp = hinhanh_sp;
+        this.soluongconlai_sp=soluongconlai_sp;
     }
     public visit_1_getter_setter(String ten_sp, String gia_sp, String soluong, String name_cuahang) {
         this.ten_sp = ten_sp;

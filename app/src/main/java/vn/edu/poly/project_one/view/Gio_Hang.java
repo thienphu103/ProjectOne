@@ -24,6 +24,8 @@ import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.SanPham;
 import vn.edu.poly.project_one.view.view_giohang.giohang_1_diachigiaohang;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by ASUS on 11/18/2017.
  */
@@ -46,6 +48,7 @@ public class Gio_Hang extends Fragment {
     private String url;
     private SharedPreferences sharedPreferences_data;
     private SharedPreferences.Editor editor_index;
+    private TextView txt_remove;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,6 +86,7 @@ public class Gio_Hang extends Fragment {
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.black));
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
         txt_sum = (TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
+        txt_remove = (TextView) view_giohang.findViewById(R.id.txt_remove);
     }
 
     private void initControl() {
@@ -94,9 +98,9 @@ public class Gio_Hang extends Fragment {
 //        editor_index.clear().commit();
         for (int i = 1; i < index; i++) {
             i++;
-            name = sharedPreferences_data.getString("name_sp_"+i, null);
-            price = sharedPreferences_data.getString("gia_sp_"+i, null);
-            url=sharedPreferences_data.getString("hinhanh_sp_"+i,null);
+            name = sharedPreferences_data.getString("name_sp_" + i, null);
+            price = sharedPreferences_data.getString("gia_sp_" + i, null);
+            url = sharedPreferences_data.getString("hinhanh_sp_" + i, null);
 
             sanPhamArrayList.add(new SanPham(name,
                     price, "2", "3",
@@ -106,11 +110,23 @@ public class Gio_Hang extends Fragment {
         }
 
         txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm Trong Giỏ Hàng, Index: " + index);
+
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
         adapter = new Adapter_sanpham_giohang(getContext(), sanPhamArrayList);
         mRecyclerView_giohang.setAdapter(adapter);
+        txt_remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
+                SharedPreferences.Editor editor= sharedPreferences_index.edit();
+                editor.putInt("index",0);
+                editor.commit();
+                editor_index.clear().commit();
+                initControl();
+            }
+        });
     }
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {

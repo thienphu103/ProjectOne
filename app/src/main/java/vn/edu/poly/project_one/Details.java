@@ -22,7 +22,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Details extends Fragment {
     private View view_details;
-    TextView txt_tensanpham_detail, txt_price_details;
+    TextView txt_tensanpham_detail, txt_price_details,txt_remove;
     ImageView img_sp_logo_details;
     Button btn_themvaogio_details;
     private String name = "";
@@ -96,6 +96,7 @@ public class Details extends Fragment {
         });
 
 
+
     }
 
 
@@ -107,6 +108,7 @@ public class Details extends Fragment {
         txt_price_details = (TextView) view_details.findViewById(R.id.txt_price_details);
         btn_themvaogio_details = (Button) view_details.findViewById(R.id.btn_themvaogio_details);
         img_sp_logo_details = (ImageView) view_details.findViewById(R.id.img_sp_logo_details);
+
 
     }
 

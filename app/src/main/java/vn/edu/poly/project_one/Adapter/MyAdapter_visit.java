@@ -99,6 +99,7 @@ public class MyAdapter_visit extends RecyclerView.Adapter<MyAdapter_visit.ViewHo
                     editor.putString("gia_sp", format + " VND");
                     editor.putString("id_sp", arrayList.get(position).getId_sp() + "");
                     editor.putString("hinhanh_sp", arrayList.get(position).getHinhanh_sp() + "");
+//                    editor.putString("soluong",arrayList.get(position).getSoluongconlai_sp()+"");
                     Log.d("AAAAAAA", arrayList.get(position).getTen_sp());
                     editor.commit();
                     click.onClick(v);
