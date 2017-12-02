@@ -21,9 +21,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_cardview_details;
-import vn.edu.poly.project_one.Adapter.Adapter_cardview_today;
 import vn.edu.poly.project_one.Adapter.Adapter_gridview_nhanxetvadanhgia_details;
-import vn.edu.poly.project_one.Adapter.MyAdapter_visit;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -124,7 +122,7 @@ public class Details extends Fragment {
                 editor.putString("hinhanh_sp_"+index, url);
                 Log.d("post_details",  index+"");
                 editor.commit();
-
+//
                 Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng !", Toast.LENGTH_SHORT).show();
             }
 
