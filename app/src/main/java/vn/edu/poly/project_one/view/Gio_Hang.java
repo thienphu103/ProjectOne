@@ -49,6 +49,12 @@ public class Gio_Hang extends Fragment {
     private SharedPreferences sharedPreferences_data;
     private SharedPreferences.Editor editor_index;
     private TextView txt_remove;
+    private int dongia_post;
+    private int soluong;
+    private int soluong_post;
+    private String id;
+    private String id_post;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +72,13 @@ public class Gio_Hang extends Fragment {
         btn_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_bull", MODE_PRIVATE);
+//                SharedPreferences.Editor editor = sharedPreferences_index.edit();
+//                editor.putInt("dongia", 0);
+//                editor.putString()
+//
+//
+//                editor.commit();
                 giohang_1_diachigiaohang giohang_1_diachigiaohang = new giohang_1_diachigiaohang();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentlayout_giohang, giohang_1_diachigiaohang);
@@ -87,30 +100,35 @@ public class Gio_Hang extends Fragment {
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
         txt_sum = (TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
         txt_remove = (TextView) view_giohang.findViewById(R.id.txt_remove);
+        id_post="";
+        dongia_post=0;
     }
 
     private void initControl() {
         sanPhamArrayList = new ArrayList<>();
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_index", context.MODE_PRIVATE);
         int index = sharedPreferences.getInt("index", 0);
-        sharedPreferences_data = getContext().getSharedPreferences("post_details_gh", context.MODE_PRIVATE);
+        int index_soluong = sharedPreferences.getInt("index_soluong", 0);
+
         editor_index = sharedPreferences.edit();
 //        editor_index.clear().commit();
-        for (int i = 1; i < index; i++) {
+        for (int i = 1; i < index+1; i++) {
             i++;
+            sharedPreferences_data = getContext().getSharedPreferences("post_details_giohang", context.MODE_PRIVATE);
             name = sharedPreferences_data.getString("name_sp_" + i, null);
             price = sharedPreferences_data.getString("gia_sp_" + i, null);
             url = sharedPreferences_data.getString("hinhanh_sp_" + i, null);
-
+            id = sharedPreferences_data.getString("id_sp_" + i, null);
+            soluong = sharedPreferences_data.getInt("soluong_sp_" + i, 0);
             sanPhamArrayList.add(new SanPham(name,
-                    price, "2", "3",
+                    price, soluong + "", "3",
                     url));
-            Log.d("index", index + name);
-
+            id_post += id + ",";
+            dongia_post+=Double.parseDouble(price);
+            soluong_post += soluong;
+            Log.d("index",index+"_"+i+"_"+id_post);
         }
-
-        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm Trong Giỏ Hàng, Index: " + index);
-
+        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm, Tạm Tính:" + dongia_post + ", Index: " + index);
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
@@ -120,10 +138,12 @@ public class Gio_Hang extends Fragment {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
-                SharedPreferences.Editor editor= sharedPreferences_index.edit();
-                editor.putInt("index",0);
+                SharedPreferences.Editor editor = sharedPreferences_index.edit();
+                editor.putInt("index", 0);
                 editor.commit();
                 editor_index.clear().commit();
+                dongia_post = 0;
+                id_post="";
                 initControl();
             }
         });

@@ -32,7 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Details extends Fragment {
     private View view_details;
-    TextView txt_tensanpham_detail, txt_price_details,txt_remove;
+    TextView txt_tensanpham_detail, txt_price_details, txt_remove;
     ImageView img_sp_logo_details;
     Button btn_themvaogio_details;
     private String name = "";
@@ -50,6 +50,7 @@ public class Details extends Fragment {
     private Adapter_gridview_nhanxetvadanhgia_details adapter;
     private SharedPreferences sharedPreferences_index;
     private SharedPreferences.Editor editor_index;
+
     //
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,20 +67,20 @@ public class Details extends Fragment {
 
     private void initEvent() {
         arrayList_details_danhgia = new ArrayList<>();
-        for (int i = 0; i< 3;i++) {
+        for (int i = 0; i < 3; i++) {
             arrayList_details_danhgia.add(new visit_1_getter_setter());
         }
-        adapter = new Adapter_gridview_nhanxetvadanhgia_details(arrayList_details_danhgia,getActivity());
+        adapter = new Adapter_gridview_nhanxetvadanhgia_details(arrayList_details_danhgia, getActivity());
         gridView.setAdapter(adapter);
-        setGridViewHeightBasedOnChildren(gridView,1);
+        setGridViewHeightBasedOnChildren(gridView, 1);
         arrayList_details = new ArrayList<>();
-        for (int i = 0; i< 10;i++) {
-            arrayList_details.add(new visit_1_getter_setter(""+R.drawable.thoikean));
+        for (int i = 0; i < 10; i++) {
+            arrayList_details.add(new visit_1_getter_setter("" + R.drawable.thoikean));
         }
         mRecyclerView_details.setHasFixedSize(true);
-        mLayoutManager_details = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        mLayoutManager_details = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView_details.setLayoutManager(mLayoutManager_details);
-        mAdapter_details = new Adapter_cardview_details(getContext(),arrayList_details);
+        mAdapter_details = new Adapter_cardview_details(getContext(), arrayList_details);
         mRecyclerView_details.setAdapter(mAdapter_details);
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details", MODE_PRIVATE);
         name = sharedPreferences.getString("name_sp", null);
@@ -105,29 +106,46 @@ public class Details extends Fragment {
 //        editor_index.commit();
         sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
         editor_index = sharedPreferences_index.edit();
-        index = sharedPreferences_index.getInt("index", 0);
+        index = sharedPreferences_index.getInt("index",0);
 
         btn_themvaogio_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 index++;
                 index++;
-                editor_index.putInt("index",index);
+                i++;
+                editor_index.putInt("index", index);
                 editor_index.commit();
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_gh", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("name_sp_"+index, name);
-                editor.putString("gia_sp_"+index, price);
-                editor.putString("id_sp_"+index, id);
-                editor.putString("hinhanh_sp_"+index, url);
-                Log.d("post_details",  index+"");
-                editor.commit();
-//
-                Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng !", Toast.LENGTH_SHORT).show();
+//                if (i > 1) {
+//                    int index_more = index - 2;
+//                    editor_index.putInt("index_soluong", i);
+//                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_donhang", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString("name_sp_" + index_more, name);
+//                    editor.putString("gia_sp_" + index_more, price);
+//                    editor.putString("id_sp_" + index_more, id);
+//                    editor.putString("hinhanh_sp_" + index_more, url);
+//                    editor.putInt("soluong_sp_" + index_more, i);
+//                    editor.commit();
+//                    editor_index.commit();
+//                    Log.d("test_soluong", index_more+ "");
+
+//                } else {
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_giohang", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("name_sp_" + index, name);
+                    editor.putString("gia_sp_" + index, price);
+                    editor.putString("id_sp_" + index, id);
+                    editor.putString("hinhanh_sp_" + index, url);
+                    editor.putInt("soluong_sp_" + index, i);
+                    Log.d("post_details", index + "");
+                    editor.commit();
+//                }
+
+                Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng ! Số Lượng:" + i, Toast.LENGTH_SHORT).show();
             }
 
         });
-
 
 
     }
@@ -144,6 +162,7 @@ public class Details extends Fragment {
         img_sp_logo_details = (ImageView) view_details.findViewById(R.id.img_sp_logo_details);
         gridView = (GridView) view_details.findViewById(R.id.gridview_danhgia_details);
     }
+
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
         ListAdapter listAdapter = gridView.getAdapter();
         if (listAdapter == null) {
@@ -160,8 +179,8 @@ public class Details extends Fragment {
         totalHeight = listItem.getMeasuredHeight();
 
         float x = 1;
-        if( items > columns ){
-            x = items/columns;
+        if (items > columns) {
+            x = items / columns;
             rows = (int) (x + 1);
             totalHeight *= rows;
         }
