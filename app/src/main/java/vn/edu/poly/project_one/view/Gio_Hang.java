@@ -54,6 +54,8 @@ public class Gio_Hang extends Fragment {
     private int soluong_post;
     private String id;
     private String id_post;
+    private String dongia_post_txt;
+    private String name_post_txt;
 
 
     @Override
@@ -72,13 +74,14 @@ public class Gio_Hang extends Fragment {
         btn_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_bull", MODE_PRIVATE);
-//                SharedPreferences.Editor editor = sharedPreferences_index.edit();
-//                editor.putInt("dongia", 0);
-//                editor.putString()
-//
-//
-//                editor.commit();
+                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_bull", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences_index.edit();
+                editor.putInt("dongia", dongia_post);
+                editor.putString("id_sp_txt", id_post);
+                editor.putInt("soluong_sp", soluong_post);
+                editor.putString("dongia_txt",dongia_post_txt);
+                editor.putString("name_txt",name_post_txt);
+                editor.commit();
                 giohang_1_diachigiaohang giohang_1_diachigiaohang = new giohang_1_diachigiaohang();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragmentlayout_giohang, giohang_1_diachigiaohang);
@@ -91,6 +94,7 @@ public class Gio_Hang extends Fragment {
     }
 
     private void initEvent() {
+
         mRecyclerView_giohang = (RecyclerView) view_giohang.findViewById(R.id.recyclerview_dathang_giohang);
         collapsingToolbarLayout = (CollapsingToolbarLayout) view_giohang.findViewById(R.id.collapsingToolbar);
         collapsingToolbarLayout.setTitle(getResources().getString(R.string.txt_giohang_textview_tablayoutactivity));
@@ -100,8 +104,11 @@ public class Gio_Hang extends Fragment {
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
         txt_sum = (TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
         txt_remove = (TextView) view_giohang.findViewById(R.id.txt_remove);
-        id_post="";
-        dongia_post=0;
+        id_post = "";
+        dongia_post = 0;
+        dongia_post_txt="";
+        name_post_txt="";
+
     }
 
     private void initControl() {
@@ -112,7 +119,7 @@ public class Gio_Hang extends Fragment {
 
         editor_index = sharedPreferences.edit();
 //        editor_index.clear().commit();
-        for (int i = 1; i < index+1; i++) {
+        for (int i = 1; i < index + 1; i++) {
             i++;
             sharedPreferences_data = getContext().getSharedPreferences("post_details_giohang", context.MODE_PRIVATE);
             name = sharedPreferences_data.getString("name_sp_" + i, null);
@@ -124,11 +131,20 @@ public class Gio_Hang extends Fragment {
                     price, soluong + "", "3",
                     url));
             id_post += id + ",";
-            dongia_post+=Double.parseDouble(price);
+            dongia_post += Double.parseDouble(price);
+            dongia_post_txt+=price+",";
+            name_post_txt+=name+",";
             soluong_post += soluong;
-            Log.d("index",index+"_"+i+"_"+id_post);
+            Log.d("index", index + "_" + i + "_" + id_post);
         }
-        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm, Tạm Tính:" + dongia_post + ", Index: " + index);
+        if(sanPhamArrayList.size()==0){
+            btn_dathang.setEnabled(false);
+            btn_dathang.setAlpha((float) 0.3);
+        }else {
+            btn_dathang.setEnabled(true);
+            btn_dathang.setAlpha((float) 1);
+        }
+        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm, Tạm Tính:" + dongia_post +" ");
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
@@ -143,7 +159,7 @@ public class Gio_Hang extends Fragment {
                 editor.commit();
                 editor_index.clear().commit();
                 dongia_post = 0;
-                id_post="";
+                id_post = "";
                 initControl();
             }
         });

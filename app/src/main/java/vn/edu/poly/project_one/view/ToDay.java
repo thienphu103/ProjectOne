@@ -1,32 +1,24 @@
 package vn.edu.poly.project_one.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TableLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_cardview_today;
 import vn.edu.poly.project_one.Adapter.Adapter_khaitruong_today;
-import vn.edu.poly.project_one.Adapter.ImageAdapter_visit;
-import vn.edu.poly.project_one.Adapter.MyAdapter_visit;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.today_khaitruong_setter_getter;
-import vn.edu.poly.project_one.fragment_sign_up.fragment_sign_up_2;
 
 /**
  * Created by ASUS on 11/18/2017.
@@ -124,8 +116,45 @@ public class ToDay extends Fragment {
     private void initControl() {
         listView = (ListView) view_today.findViewById(R.id.lst_today_khaitruong);
         mRecyclerView_today = (RecyclerView) view_today.findViewById(R.id.my_recycler_view_today);
+        view_today.setFocusableInTouchMode(true);
+        view_today.requestFocus();
+        view_today.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                 showQuestionDialog();
+                    return true;
+                }
+                return false;
+            }
+        } );
+    }
+    public void showQuestionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("App");
+        builder.setMessage("Bạn có muốn thoát app không");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                getActivity().finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
     }
+
+
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         Adapter_khaitruong_today listAdapter = (Adapter_khaitruong_today) listView.getAdapter();
         if (listAdapter == null) {
@@ -149,4 +178,8 @@ public class ToDay extends Fragment {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
+
+
 }
+

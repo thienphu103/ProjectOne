@@ -1,5 +1,6 @@
 package vn.edu.poly.project_one.view.view_giohang;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 
 import vn.edu.poly.project_one.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by ASUS on 12/1/2017.
  */
@@ -21,6 +24,9 @@ public class giohang_1_diachigiaohang extends Fragment {
     View view_diachigiaohang;
     EditText ten, email, sdt, tinh, quan, xa, sonha;
     String txt_ten, txt_email, txt_sdt, txt_tinh, txt_quan, txt_xa, txt_sonha;
+    private String diachi_post;
+    private String email_post;
+    private String ten_post;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +60,17 @@ public class giohang_1_diachigiaohang extends Fragment {
                         && !(txt_quan.isEmpty())
                         && !(txt_xa.isEmpty())
                         && !(txt_sonha.isEmpty())) {
+
+                    diachi_post=txt_tinh+" "+txt_quan+" "+txt_xa+" "+txt_sonha;
+                    email_post=txt_email;
+                    ten_post=txt_ten;
+                    SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_bull", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences_index.edit();
+                    editor.putString("diachi", diachi_post);
+                    editor.putString("email", email_post);
+                    editor.putString("ten", ten_post);
+                    editor.putString("sdt",txt_sdt);
+                    editor.commit();
                     giohang_2_thanhtoan giohang_2_thanhtoan = new giohang_2_thanhtoan();
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     ft.replace(R.id.fragment_1_diachigiaohang, giohang_2_thanhtoan);
