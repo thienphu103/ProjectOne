@@ -80,31 +80,31 @@ public class giohang_1_diachigiaohang extends Fragment {
                 } else {
 //
                     if ((txt_ten.isEmpty())) {
-                        ten.setHint("Xin Lòng Không Bỏ Trống");
+                        ten.setHint("*Xin vui lòng không bỏ trống");
                         ten.setHintTextColor(Color.RED);
                     }
                     if ((txt_email.isEmpty())) {
-                        email.setHint("Xin Lòng Không Bỏ Trống");
+                        email.setHint("*Xin vui lòng không bỏ trống");
                         email.setHintTextColor(Color.RED);
                     }
                     if ((txt_sdt.isEmpty())) {
-                        sdt.setHint("Xin Lòng Không Bỏ Trống");
+                        sdt.setHint("*Xin vui lòng không bỏ trống");
                         sdt.setHintTextColor(Color.RED);
                     }
                     if ((txt_tinh.isEmpty())) {
-                        tinh.setHint("Xin Lòng Không Bỏ Trống");
+                        tinh.setHint("*Xin vui lòng không bỏ trống");
                         tinh.setHintTextColor(Color.RED);
                     }
                     if ((txt_quan.isEmpty())) {
-                        quan.setHint("Xin Lòng Không Bỏ Trống");
+                        quan.setHint("*Xin vui lòng không bỏ trống");
                         quan.setHintTextColor(Color.RED);
                     }
                     if ((txt_xa.isEmpty())) {
-                        xa.setHint("Xin Lòng Không Bỏ Trống");
+                        xa.setHint("*Xin vui lòng không bỏ trống");
                         xa.setHintTextColor(Color.RED);
                     }
                     if ((txt_sonha.isEmpty())) {
-                        sonha.setHint("Xin Lòng Không Bỏ Trống");
+                        sonha.setHint("*Xin vui lòng không bỏ trống");
                         sonha.setHintTextColor(Color.RED);
                     }
                 }

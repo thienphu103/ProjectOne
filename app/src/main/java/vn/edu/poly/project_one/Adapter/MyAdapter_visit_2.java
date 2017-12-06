@@ -89,7 +89,11 @@ public class MyAdapter_visit_2 extends RecyclerView.Adapter<MyAdapter_visit_2.Vi
                     v.setTag(visit_2_getter_setter);
                     sharedPreferences = context.getSharedPreferences("post_details", MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("name_test", arrayList.get(position).getTen_sp()+"");
+                    editor.putString("name_sp", arrayList.get(position).getTen_sp() + "");
+                    editor.putString("gia_sp", arrayList.get(position).getGia_sp()+"");
+                    editor.putString("id_sp", arrayList.get(position).getId_sp() + "");
+                    editor.putString("hinhanh_sp", arrayList.get(position).getHinhanh_sp() + "");
+//                    editor.putString("soluong",arrayList.get(position).getSoluongconlai_sp()+"");
                     Log.d("AAAAAAA", arrayList.get(position).getTen_sp());
                     editor.commit();
                     click.onClick(v);
