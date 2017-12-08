@@ -1,28 +1,12 @@
 package vn.edu.poly.project_one;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -38,11 +22,11 @@ import vn.edu.poly.project_one.view.ViSit;
 
 public class TabLayOutActivity extends AppCompatActivity {
     private ViewPager mViewPager;
-    TabLayout tab_layout;
+    public TabLayout tab_layout;
     ArrayList listFragment;
     ArrayList<String> listTitle;
     AdapterTabLayoutFrangment adapterTabLayoutFrangment;
-    TextView tabOne,tabTwo,tabThree,tabFour,tabFive;
+   public TextView tabOne,tabTwo,tabThree,tabFour,tabFive;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -269,4 +253,12 @@ public class TabLayOutActivity extends AppCompatActivity {
         // icon Tài khoản
 
     }
+    @Override
+    public void onBackPressed()
+    {
+
+            super.onBackPressed();
+
+    }
+
 }

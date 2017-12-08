@@ -91,7 +91,6 @@ public class giohang_3_dathang extends Fragment {
         name_post_txt = sharedPreferences.getString("name_txt", null);
         thanhtoan_post = sharedPreferences.getString("thanhtoan", null);
 
-
         txt_ten_giohang3.setText(ten_post);
         txt_diachi_giohang3.setText(diachi_post);
         txt_sdt_giohang3.setText(sdt_post);
@@ -123,6 +122,11 @@ public class giohang_3_dathang extends Fragment {
             @Override
             public void onClick(View v) {
                 upData();
+                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences_index.edit();
+                editor.putInt("index", 0);
+                editor.commit();
+                editor.clear().commit();
                 giohang_4_final giohang_4_final = new giohang_4_final();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.fragment_3_dathang, giohang_4_final);
