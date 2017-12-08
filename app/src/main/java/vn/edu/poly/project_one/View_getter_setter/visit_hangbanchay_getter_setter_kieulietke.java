@@ -10,7 +10,7 @@ public class visit_hangbanchay_getter_setter_kieulietke implements Serializable 
 
     public String img_kieulietke;
     public String txt_custom1;
-    public  String txt_custom2;
+    public String txt_custom2;
     public String txt_custom3;
 
     public visit_hangbanchay_getter_setter_kieulietke(String img_kieulietke, String txt_custom1, String txt_custom2, String txt_custom3) {

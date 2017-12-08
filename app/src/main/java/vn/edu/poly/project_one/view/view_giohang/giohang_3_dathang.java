@@ -59,6 +59,7 @@ public class giohang_3_dathang extends Fragment {
     TextView txt_soluong_giohang3;
     TextView txt_tamtinh_giohang3;
     TextView txt_thanhtien_final_giohang3;
+    private int thanhtien_final;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -99,7 +100,7 @@ public class giohang_3_dathang extends Fragment {
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         String format = decimalFormat.format(dongia_post);
         txt_tamtinh_giohang3.setText(format+ "VND");
-        int thanhtien_final=dongia_post-2000;
+        thanhtien_final=dongia_post-2000;
         String format_final = decimalFormat.format(thanhtien_final);
         txt_thanhtien_final_giohang3.setText(format_final+"");
 
@@ -201,6 +202,8 @@ public class giohang_3_dathang extends Fragment {
                 stringMap.put("id_sp", id_post_txt);
                 stringMap.put("giao_hang_dh", "giao hàng tiêu chuẩn");
                 stringMap.put("thanh_toan_dh", thanhtoan_post);
+                stringMap.put("noi_dung_dh", name_post_txt);
+                stringMap.put("dongia_dh", thanhtien_final+"");
                 stringMap.put("tinh_trang_dh", "Thành Công");
                 return stringMap;
             }

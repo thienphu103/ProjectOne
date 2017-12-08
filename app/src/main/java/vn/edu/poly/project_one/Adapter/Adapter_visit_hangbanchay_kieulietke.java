@@ -48,7 +48,7 @@ public class Adapter_visit_hangbanchay_kieulietke extends BaseAdapter {
         return position;
     }
 
-    public class ViewHolder {
+    public static class ViewHolder {
         TextView getTxt_custom1, getTxt_custom2, getTxt_custom3;
         ImageView img_kieulietke;
     }
