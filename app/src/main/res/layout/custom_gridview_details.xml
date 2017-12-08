@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="77dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#EEEEEE"
-    app:cardBackgroundColor="@android:color/white"
+    app:cardBackgroundColor="#EEEEEE"
     app:cardCornerRadius="3dp"
-    app:cardElevation="5dp">
+        >
     <RelativeLayout
-        android:background="#EEEEEE"
+        android:background="@drawable/custom_gridview_details"
         android:layout_width="match_parent"
         android:layout_height="77dp">
         <RatingBar

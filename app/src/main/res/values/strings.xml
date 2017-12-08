@@ -1,6 +1,6 @@
 <resources>
     <string name="facebook_app_id">256254391542777</string>
-    <string name="app_name">Project_One</string>
+    <string name="app_name">aMarket</string>
     <string name="txt_login_LoginActivity">Đăng nhập</string>
     <string name="ext_users_LoginActivity">Tên đăng nhập hoặc số điện thoại</string>
     <string name="ext_password_LoginActivity">Mật khẩu</string>
@@ -146,4 +146,5 @@
     <string name="txt_ngaysanxuat_details">Ngày sản xuất</string>
     <string name="txt_xephang_details">Xếp hạng và nhận xét</string>
     <string name="txt_xemthem_details">Xem thêm</string>
+    <string name="txt_hoacdangnhapbang_loginactivity">Hoặc đăng nhập bằng</string>
 </resources>
