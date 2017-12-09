@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -197,23 +196,23 @@ public class ViSit extends Fragment {
 
         view_visit.setFocusableInTouchMode(true);
         view_visit.requestFocus();
-        view_visit.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK) {
-//                    ToDay visit_view = new ToDay();
-//                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                    ft.replace(R.id.fragmelayout_visit, visit_view);
-//                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-//                    ft.addToBackStack(null);
-//                    ft.commit();
-                    return true;
-
-                }
-
-                return false;
-            }
-        });
+//        view_visit.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (keyCode == KeyEvent.KEYCODE_BACK) {
+////                    ToDay visit_view = new ToDay();
+////                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+////                    ft.replace(R.id.fragmelayout_visit, visit_view);
+////                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+////                    ft.addToBackStack(null);
+////                    ft.commit();
+//                    return true;
+//
+//                }
+//
+//                return false;
+//            }
+//        });
 
     }
 

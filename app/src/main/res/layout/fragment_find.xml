@@ -28,7 +28,7 @@
             android:layout_marginRight="@dimen/dimens_marginleft_find_tablayoutactivity"
             android:weightSum="5">
             <EditText
-                android:id="@+id/ext_find_tablayoutactivity"
+                android:id="@+id/edt_find_tablayoutactivity"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimens_edittext_height_loginactivity"
                 android:layout_weight="1"
