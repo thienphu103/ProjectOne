@@ -1,11 +1,14 @@
 package vn.edu.poly.project_one;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
@@ -21,12 +24,15 @@ import vn.edu.poly.project_one.view.ToDay;
 import vn.edu.poly.project_one.view.ViSit;
 
 public class TabLayOutActivity extends AppCompatActivity {
-    private ViewPager mViewPager;
+    public ViewPager mViewPager;
     public TabLayout tab_layout;
     ArrayList listFragment;
     ArrayList<String> listTitle;
     AdapterTabLayoutFrangment adapterTabLayoutFrangment;
-   public TextView tabOne,tabTwo,tabThree,tabFour,tabFive;
+    public TextView tabOne, tabTwo, tabThree, tabFour, tabFive;
+    public int index_change;
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +55,7 @@ public class TabLayOutActivity extends AppCompatActivity {
             @SuppressLint({"ResourceAsColor", "ResourceType"})
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
 //                        tabOne = (TextView) LayoutInflater.from(TabLayOutActivity.this).inflate(R.layout.custom_tab_select, null);
                         tabOne.setText(getResources().getString(R.string.txt_today_tablayoutactivity));
@@ -192,6 +198,7 @@ public class TabLayOutActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager_content);
         tab_layout.setupWithViewPager(mViewPager);
     }
+
     private void initEvent() {
         listFragment = new ArrayList();
         listFragment.add(new ToDay());
@@ -221,6 +228,7 @@ public class TabLayOutActivity extends AppCompatActivity {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_statusbar_tablayotactivity));
     }
+
     private void createTabIcons() {
         tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabOne.setText(getResources().getString(R.string.txt_today_tablayoutactivity));
@@ -251,14 +259,18 @@ public class TabLayOutActivity extends AppCompatActivity {
         tabFive.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.icon_taikhoan, 0, 0);
         tab_layout.getTabAt(4).setCustomView(tabFive);
         // icon Tài khoản
-
+        ChangeTab();
+        mViewPager.setCurrentItem(index_change);
     }
-    @Override
-    public void onBackPressed()
-    {
-
-            super.onBackPressed();
-
-    }
+public void ChangeTab(){
+    SharedPreferences sharedPreferences_index = TabLayOutActivity.this.getSharedPreferences("index_tab", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences_index.edit();
+    editor.putInt("index", 0);
+    editor.commit();
+    sharedPreferences_index = TabLayOutActivity.this.getSharedPreferences("index_tab", MODE_PRIVATE);
+    int i=sharedPreferences_index.getInt("index", 0);
+    Log.d("AAAbbCC",i+"");
+    index_change = sharedPreferences_index.getInt("index", 0);
+}
 
 }
