@@ -2,6 +2,8 @@ package vn.edu.poly.project_one.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import vn.edu.poly.project_one.Adapter.Adapter_sanpham_giohang;
 import vn.edu.poly.project_one.Adapter.FindAdapter;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.find_getter_setter;
@@ -38,13 +41,15 @@ import vn.edu.poly.project_one.View_getter_setter.find_getter_setter;
 
 public class Find extends Fragment implements View.OnClickListener, TextWatcher {
     View view_find;
-    ListView lst_find_xuhuong;
     FindAdapter findAdapter;
     ArrayList<find_getter_setter> mFindArrayList;
     Button btn_cancel_tablayoutactivity;
     EditText edt_find_tablayoutactivity;
     private String url = "http://namtnps06077.hol.es/get_data_query.php";
     private String txt_search;
+    private RecyclerView mRecyclerView_find;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,7 +62,7 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
     }
 
     private void initControl() {
-        lst_find_xuhuong = (ListView) view_find.findViewById(R.id.lst_xuhuong_tablayotactivity);
+        mRecyclerView_find = (RecyclerView) view_find.findViewById(R.id.lst_xuhuong_tablayotactivity);
         btn_cancel_tablayoutactivity = (Button) view_find.findViewById(R.id.btn_cancel_tablayoutactivity);
         edt_find_tablayoutactivity = (EditText) view_find.findViewById(R.id.edt_find_tablayoutactivity);
 
@@ -71,7 +76,11 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
         mFindArrayList.add(new find_getter_setter("mì gói"));
         mFindArrayList.add(new find_getter_setter("khô gà lá chanh"));
         findAdapter = new FindAdapter(mFindArrayList, getContext());
-        lst_find_xuhuong.setAdapter(findAdapter);
+        mRecyclerView_find.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView_find.setLayoutManager(layoutManager);
+        adapter = new FindAdapter( mFindArrayList,getContext());
+        mRecyclerView_find.setAdapter(adapter);
         edt_find_tablayoutactivity.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

@@ -63,14 +63,11 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_xuhuong_tablayoutactivity"
             />
-        <ListView
-            android:id="@+id/lst_xuhuong_tablayotactivity"
-            android:layout_marginTop="@dimen/dimens_listview_find_margintop_tablayoutactivity"
-            android:layout_marginLeft="@dimen/dimens_marginleft_find_tablayoutactivity"
-            android:layout_width="match_parent"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:layout_height="wrap_content">
-        </ListView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/lst_xuhuong_tablayotactivity"
+                android:layout_marginTop="@dimen/dimens_listview_find_margintop_tablayoutactivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
     </LinearLayout>
 </FrameLayout>

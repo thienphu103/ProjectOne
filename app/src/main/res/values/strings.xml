@@ -87,7 +87,7 @@
     <string name="txt_caidat_taikhoan">Cài đặt</string>
     <string name="txt_giupdo_taikhoan">Giúp đỡ</string>
     <string name="txt_dangxuat_taikhoan">Đăng xuất</string>
-    <string name="txt_giaohang_donhangcuatoi_taikhoan">Giao hàng thành công</string>
+    <string name="txt_giaohang_donhangcuatoi_taikhoan">Giao hàng\nthành công</string>
     <string name="txt_hoten_hosocuatoi_taikhoan">Họ tên</string>
     <string name="txt_email_hosocuatoi_taikhoan">Email</string>
     <string name="txt_gioitinh_hosocuatoi_taikhoan">Giới tính</string>
