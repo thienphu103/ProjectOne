@@ -47,8 +47,9 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/image_avatar_today"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="20dp"
                     android:src="@drawable/account_2" />

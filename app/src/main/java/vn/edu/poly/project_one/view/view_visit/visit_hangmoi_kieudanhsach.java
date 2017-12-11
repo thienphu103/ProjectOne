@@ -2,15 +2,18 @@ package vn.edu.poly.project_one.view.view_visit;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.Adapter_visit_hangmoi_kieudanhsach;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangmoi_getter_setter_kieudanhsach;
+import vn.edu.poly.project_one.view.ViSit;
 
 /**
  * Created by ASUS on 11/23/2017.
@@ -42,6 +46,7 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
     ArrayList<visit_hangmoi_getter_setter_kieudanhsach> arrayList;
     ImageView img_kieudanhsach;
     public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sp_moi_nhat.php";
+    private RelativeLayout layout_back_hangmoi_kieudanhsach;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -112,6 +117,19 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
     private void initControl() {
         img_kieudanhsach = (ImageView) view_visit_hangmoi_kieudanhsach.findViewById(R.id.img_kieudanhsachlietke_visit_hangmoi_kieudanhsach_tablayoutactivity);
         gridView = (GridView) view_visit_hangmoi_kieudanhsach.findViewById(R.id.gridview_visit_hangmoi_kieudanhsach);
+        layout_back_hangmoi_kieudanhsach=(RelativeLayout) view_visit_hangmoi_kieudanhsach.findViewById(R.id.layout_back_hangmoi_kieudanhsach);
+        layout_back_hangmoi_kieudanhsach.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                ViSit visit_view = new ViSit();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_hangmoi_kieudanhsach, visit_view);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+                return false;
+            }
+        });
 
     }
 
@@ -162,6 +180,19 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+                View view = view_visit_hangmoi_kieudanhsach.findViewById(R.id.fragment_hangmoi_kieudanhsach);
+                final Snackbar snackbar = Snackbar.make(view, "Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+
+                // Set an action on it, and a handler
+                snackbar.setAction("Thử Lại", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getData();
+
+                    }
+                });
+
+                snackbar.show();
             }
         });
 

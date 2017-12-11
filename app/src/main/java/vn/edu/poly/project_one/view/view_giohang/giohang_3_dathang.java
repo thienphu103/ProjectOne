@@ -20,8 +20,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -192,7 +195,10 @@ public class giohang_3_dathang extends Fragment {
             @Override
             public Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> stringMap = new HashMap<>();
-
+                DateFormat dateFormatter = new SimpleDateFormat("yyyyMMdd");
+                dateFormatter.setLenient(false);
+                Date today = new Date();
+                String date = dateFormatter.format(today);
 //                    stringMap.put("image_name", IdUser);
 //                    stringMap.put("image_fiel", s);
                 stringMap.put("ho_ten_kh_dh", ten_post);
@@ -205,6 +211,7 @@ public class giohang_3_dathang extends Fragment {
                 stringMap.put("noi_dung_dh", name_post_txt);
                 stringMap.put("dongia_dh", thanhtien_final+"");
                 stringMap.put("tinh_trang_dh", "Thành Công");
+
                 return stringMap;
             }
 

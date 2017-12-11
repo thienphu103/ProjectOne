@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +40,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.ImageAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit;
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit_2;
+import vn.edu.poly.project_one.ControlClass.CircleTransform;
 import vn.edu.poly.project_one.Details;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
@@ -73,6 +76,7 @@ public class ViSit extends Fragment {
     private FragmentManager fragmentManager;
     private int index_back_fragment;
     private FragmentManager fm;
+    private ImageView imageView_avatar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -164,6 +168,7 @@ public class ViSit extends Fragment {
                 (TextView) view_visit.findViewById(R.id.txt_viewall_danhsachcuahang_tablayoutactivity);
         txt_hangmoi_tablayoutactivty =
                 (TextView) view_visit.findViewById(R.id.txt_viewall_hangmoi_tablayoutactivity);
+        imageView_avatar=(ImageView) view_visit.findViewById(R.id.image_avatar_visit);
     }
 
     private void initEvent() {
@@ -215,6 +220,23 @@ public class ViSit extends Fragment {
 //                return false;
 //            }
 //        });
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", getContext().MODE_PRIVATE);
+        String user = sharedPreferences.getString("username", null);
+        String url = sharedPreferences.getString("url", null);
+        if (user != null) {
+            Log.d("ContentLogin", user + " " + url + "");
+            if (url == null) {
+                url = String.valueOf(R.drawable.img_no_avatar);//null
+            } else {
+                Picasso.with(getContext())
+                        .load(url)
+
+                        .transform(new CircleTransform())
+                        .error(R.drawable.img_no_avatar)//load url error
+                        .placeholder(R.drawable.img_no_avatar)//load url error
+                        .into(imageView_avatar);
+            }
+        }
 
     }
 

@@ -1,6 +1,7 @@
 package vn.edu.poly.project_one.view;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -86,11 +87,11 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
 //        mFindArrayList.add(new find_getter_setter("giày"));
 //        mFindArrayList.add(new find_getter_setter("mì gói"));
 //        mFindArrayList.add(new find_getter_setter("khô gà lá chanh"));
-        findAdapter = new FindAdapter(mFindArrayList, getContext(),click);
+        findAdapter = new FindAdapter(mFindArrayList, getContext(), click);
         mRecyclerView_find.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView_find.setLayoutManager(layoutManager);
-        adapter = new FindAdapter( mFindArrayList,getContext(),click);
+        adapter = new FindAdapter(mFindArrayList, getContext(), click);
         mRecyclerView_find.setAdapter(adapter);
         edt_find_tablayoutactivity.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -123,21 +124,19 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
         };
         view_find.setFocusableInTouchMode(true);
         view_find.requestFocus();
-        view_find.setOnKeyListener( new View.OnKeyListener()
-        {
+        view_find.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey( View v, int keyCode, KeyEvent event )
-            {
-                if( keyCode == KeyEvent.KEYCODE_BACK )
-                {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
                     TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
                     tabhost.getTabAt(0).select();
                     return true;
                 }
                 return false;
             }
-        } );
+        });
     }
+
     public void init_check_fragment() {
         view_find.setFocusableInTouchMode(true);
         view_find.requestFocus();
@@ -148,8 +147,8 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     index_back_fragment--;
-                    if(index_back_fragment==0){
-                        Toast.makeText(getContext(),"Nhấn Lần Nữa Để Về Home",Toast.LENGTH_LONG).show();
+                    if (index_back_fragment == 0) {
+                        Toast.makeText(getContext(), "Nhấn Lần Nữa Để Về Home", Toast.LENGTH_LONG).show();
                     }
                     try {
                         if (index_back_fragment > 0) {
@@ -169,8 +168,9 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
             }
         });
     }
+
     private void initDisplay(final String txt_query) {
-        if (txt_query.length() == 0){
+        if (txt_query.length() == 0) {
 
         } else {
             final RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -185,20 +185,20 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
                                 String image;
                                 String price;
                                 String id;
-                                for (int i = 0; i < array.length(); i++){
+                                for (int i = 0; i < array.length(); i++) {
                                     object = array.getJSONObject(i);
                                     ten_sp = object.getString("ten_sp");
                                     image = object.getString("hinhanh_sp");
                                     price = object.getString("gia_sp");
                                     id = object.getString("id_sp");
-                                    mFindArrayList.add(new find_getter_setter(ten_sp,image,price,id));
+                                    mFindArrayList.add(new find_getter_setter(ten_sp, image, price, id));
                                 }
 //                                Toast.makeText(getActivity(), "" + ten_sp , Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 Toast.makeText(getActivity(), "Exception " + e, Toast.LENGTH_SHORT).show();
                             }
-                            adapter = new FindAdapter( mFindArrayList,getContext(),click);
+                            adapter = new FindAdapter(mFindArrayList, getContext(), click);
                             findAdapter.notifyDataSetChanged();
                             mRecyclerView_find.setAdapter(adapter);
                         }
@@ -206,14 +206,25 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getActivity(), "" + error, Toast.LENGTH_SHORT).show();
-//                    mFindArrayList.add(new find_getter_setter(error.toString()));
-//                    findAdapter.notifyDataSetChanged();
+                    View view = view_find.findViewById(R.id.fragmelayout_find);
+                    final Snackbar snackbar = Snackbar.make(view, "Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+
+                    // Set an action on it, and a handler
+                    snackbar.setAction("Thử Lại", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            initDisplay("");
+
+                        }
+                    });
+
+                    snackbar.show();
                 }
-            }){
+            }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("txt_search",txt_query);
+                    hashMap.put("txt_search", txt_query);
                     return hashMap;
                 }
             };
@@ -239,7 +250,7 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
         mFindArrayList.clear();
-        adapter = new FindAdapter( mFindArrayList,getContext(),click);
+        adapter = new FindAdapter(mFindArrayList, getContext(), click);
         findAdapter.notifyDataSetChanged();
         txt_search = edt_find_tablayoutactivity.getText().toString().trim();
         initDisplay(txt_search);
@@ -250,4 +261,8 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
     public void afterTextChanged(Editable editable) {
 
     }
+
+    boolean isOpened = false;
+
+
 }

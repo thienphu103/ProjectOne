@@ -13,10 +13,11 @@ public class donhangcuatui_taikhoan_getter_setter implements Serializable {
     public String txt_price;
     public String txt_content;
 
-    public donhangcuatui_taikhoan_getter_setter(String txt_id, String txt_price, String txt_content) {
+    public donhangcuatui_taikhoan_getter_setter(String txt_id, String txt_price, String txt_content,String txt_date) {
         this.txt_id = txt_id;
         this.txt_price = txt_price;
         this.txt_content = txt_content;
+        this.txt_date=txt_date;
     }
 
     public String getTxt_date() {

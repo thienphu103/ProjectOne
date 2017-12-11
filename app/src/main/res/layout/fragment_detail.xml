@@ -297,33 +297,33 @@
                     android:layout_marginTop="10dp"
                     android:alpha="0.21"
                     android:background="#95989A"></View>
+
                 <TextView
-                    android:layout_below="@id/view_4"
                     android:id="@+id/txt_xephangvanhanxet_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/view_4"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
                     android:text="@string/txt_xephang_details"
                     android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:textSize="20sp" />
+
                 <GridView
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_below="@+id/txt_xephangvanhanxet_details"
                     android:id="@+id/gridview_danhgia_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_xephangvanhanxet_details"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:numColumns="1"
-                    android:verticalSpacing="20dp"
-                    android:horizontalSpacing="30dp"
-                    android:stretchMode="columnWidth"
                     android:gravity="center"
-                    />
+                    android:horizontalSpacing="30dp"
+                    android:numColumns="1"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="20dp" />
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>

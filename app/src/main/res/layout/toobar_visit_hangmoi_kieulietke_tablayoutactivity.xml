@@ -9,8 +9,12 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/layout_back_hangmoi_kieulietke"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
         <ImageView
             android:id="@+id/btn_visit_hangmoi_kieulietke_tablayoutactivity"
             android:layout_width="19dp"
@@ -20,12 +24,13 @@
         <TextView
             android:textColor="@color/color_textview_text_thamquan_tablayoutactivity"
             android:layout_toRightOf="@+id/btn_visit_hangmoi_kieulietke_tablayoutactivity"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="@string/txt_visit_tablayoutactivity"
             android:textSize="11sp"
             />
+    </RelativeLayout>
         <TextView
             android:textColor="@color/color_text_tablayoutactivity"
             android:textSize="13sp"

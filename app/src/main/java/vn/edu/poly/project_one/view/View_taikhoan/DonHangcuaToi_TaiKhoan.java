@@ -64,6 +64,7 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
                 String id;
                 String content;
                 String price;
+                String date;
                 arrayList = new ArrayList();
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -71,7 +72,9 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
                         id = object.getString("id_dh");
                         content = object.getString("noi_dung_dh");
                         price = object.getString("dongia_dh");
-                        arrayList.add(new donhangcuatui_taikhoan_getter_setter(id,price,content));
+                        date=object.getString("ngay_thang_dh");
+
+                        arrayList.add(new donhangcuatui_taikhoan_getter_setter(id,price,content,date));
                         adapter = new Adapter_donhangcuatoi_taikhoan(getActivity(),arrayList);
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {

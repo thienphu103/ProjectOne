@@ -2,10 +2,12 @@ package vn.edu.poly.project_one.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +15,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_cardview_today;
 import vn.edu.poly.project_one.Adapter.Adapter_khaitruong_today;
+import vn.edu.poly.project_one.ControlClass.CircleTransform;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.today_khaitruong_setter_getter;
 
@@ -35,6 +40,7 @@ public class ToDay extends Fragment {
     private ArrayList<String> strings;
     ImageView imageView;
     private int index_handle_back;
+    private ImageView imageView_avatar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,43 +106,59 @@ public class ToDay extends Fragment {
                 getResources().getString(R.string.txt_cuahangbabay_today),
                 getResources().getString(R.string.btn_vao_tablayoutactivity)));
 
-        adapter = new Adapter_khaitruong_today(getActivity(),arrayList);
+        adapter = new Adapter_khaitruong_today(getActivity(), arrayList);
         listView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(listView);
 
         strings = new ArrayList<>();
-        for(int i = 0 ; i < 8 ;i++){
+        for (int i = 0; i < 8; i++) {
             strings.add(getResources().getString(R.string.txt_giaynam));
         }
         mRecyclerView_today.setHasFixedSize(true);
-        mLayoutManager_today = new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        mLayoutManager_today = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView_today.setLayoutManager(mLayoutManager_today);
         mAdapter_today = new Adapter_cardview_today(strings);
         mRecyclerView_today.setAdapter(mAdapter_today);
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", getContext().MODE_PRIVATE);
+        String user = sharedPreferences.getString("username", null);
+        String url = sharedPreferences.getString("url", null);
+        if (user != null) {
+            Log.d("ContentLogin", user + " " + url + "");
+            if (url == null) {
+                url = String.valueOf(R.drawable.img_no_avatar);//null
+            } else {
+                Picasso.with(getContext())
+                        .load(url)
+
+                        .transform(new CircleTransform())
+                        .error(R.drawable.img_no_avatar)//load url error
+                        .placeholder(R.drawable.img_no_avatar)//load url error
+                        .into(imageView_avatar);
+            }
+        }
     }
 
     private void initControl() {
-        index_handle_back=0;
+        index_handle_back = 0;
         listView = (ListView) view_today.findViewById(R.id.lst_today_khaitruong);
         mRecyclerView_today = (RecyclerView) view_today.findViewById(R.id.my_recycler_view_today);
+        imageView_avatar = (ImageView) view_today.findViewById(R.id.image_avatar_today);
         view_today.setFocusableInTouchMode(true);
         view_today.requestFocus();
-        view_today.setOnKeyListener( new View.OnKeyListener()
-        {
+        view_today.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey( View v, int keyCode, KeyEvent event )
-            {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
                 index_handle_back++;
-                if( keyCode == KeyEvent.KEYCODE_BACK &&index_handle_back>1)
-                {
+                if (keyCode == KeyEvent.KEYCODE_BACK && index_handle_back > 1) {
                     showQuestionDialog();
                     return true;
                 }
 
                 return false;
             }
-        } );
+        });
     }
+
     public void showQuestionDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("App");
@@ -151,7 +173,7 @@ public class ToDay extends Fragment {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                index_handle_back=0;
+                index_handle_back = 0;
                 dialogInterface.cancel();
             }
         });
@@ -184,7 +206,6 @@ public class ToDay extends Fragment {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
-
 
 
 }

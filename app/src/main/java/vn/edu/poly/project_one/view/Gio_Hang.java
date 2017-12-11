@@ -17,13 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_sanpham_giohang;
+import vn.edu.poly.project_one.ControlClass.CircleTransform;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.SanPham;
 import vn.edu.poly.project_one.view.view_giohang.giohang_1_diachigiaohang;
@@ -63,6 +67,7 @@ public class Gio_Hang extends Fragment {
     private FragmentManager fragmentManager;
     private int index_back_fragment;
     private FragmentManager fm;
+    private ImageView imageView_avatar;
 
 
     @Override
@@ -112,10 +117,29 @@ public class Gio_Hang extends Fragment {
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
         txt_sum = (TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
         txt_remove = (TextView) view_giohang.findViewById(R.id.txt_remove);
+        imageView_avatar=(ImageView) view_giohang.findViewById(R.id.image_avatar_giohang) ;
         id_post = "";
         dongia_post = 0;
         dongia_post_txt="";
         name_post_txt="";
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", getContext().MODE_PRIVATE);
+        String user = sharedPreferences.getString("username", null);
+        String url = sharedPreferences.getString("url", null);
+        if (user != null) {
+            Log.d("ContentLogin", user + " " + url + "");
+            if (url == null) {
+                url = String.valueOf(R.drawable.img_no_avatar);//null
+            } else {
+                Picasso.with(getContext())
+                        .load(url)
+
+                        .transform(new CircleTransform())
+                        .error(R.drawable.img_no_avatar)//load url error
+                        .placeholder(R.drawable.img_no_avatar)//load url error
+                        .into(imageView_avatar);
+            }
+        }
 
     }
 

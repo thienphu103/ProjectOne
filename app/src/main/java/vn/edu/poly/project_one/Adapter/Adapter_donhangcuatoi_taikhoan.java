@@ -46,7 +46,7 @@ public class Adapter_donhangcuatoi_taikhoan extends BaseAdapter {
     }
 
     public class ViewHolder {
-        TextView getTxt_id, getTxt_dongia, getTxt_noidung;
+        TextView getTxt_id, getTxt_dongia, getTxt_noidung,getTxt_date;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -57,6 +57,7 @@ public class Adapter_donhangcuatoi_taikhoan extends BaseAdapter {
             viewHolder.getTxt_id = (TextView) convertView.findViewById(R.id.id_donhangcuatui_taikhoan);
             viewHolder.getTxt_dongia = (TextView) convertView.findViewById(R.id.dongia_donhangcuatui_taikhoan);
             viewHolder.getTxt_noidung = (TextView) convertView.findViewById(R.id.noidung_donhangcuatui_taikhoan);
+            viewHolder.getTxt_date=(TextView) convertView.findViewById(R.id.date_donhangcuatui_taikhoan) ;
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (Adapter_donhangcuatoi_taikhoan.ViewHolder) convertView.getTag();
@@ -67,6 +68,7 @@ public class Adapter_donhangcuatoi_taikhoan extends BaseAdapter {
         String format = decimalFormat.format(Double.parseDouble(arrayList.get(position).getTxt_price()));
         viewHolder.getTxt_dongia.setText(format+" VND");
         viewHolder.getTxt_noidung.setText(arrayList.get(position).getTxt_content());
+        viewHolder.getTxt_date.setText(arrayList.get(position).getTxt_date());
         return convertView;
     }
     @Nullable

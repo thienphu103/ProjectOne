@@ -58,7 +58,6 @@ public class Tai_Khoan extends Fragment {
         view_taikhoan = inflater.inflate(R.layout.fragment_taikhoan, container, false);
         initControl();
         initOnClick();
-
         initEvent();
         init_check_fragment();
         return view_taikhoan;
@@ -99,6 +98,9 @@ public class Tai_Khoan extends Fragment {
             btn_login.setVisibility(View.INVISIBLE);
             txt_logout.setAlpha(1);
             txt_logout.setEnabled(true);
+        }else{
+            txt_logout.setAlpha((float) 0.3);
+            txt_logout.setEnabled(false);
         }
     }
 
@@ -239,4 +241,5 @@ public class Tai_Khoan extends Fragment {
         alertDialog.show();
 
     }
+
 }

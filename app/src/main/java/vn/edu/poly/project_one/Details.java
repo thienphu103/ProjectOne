@@ -3,16 +3,19 @@ package vn.edu.poly.project_one;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.Adapter_cardview_details;
 import vn.edu.poly.project_one.Adapter.Adapter_gridview_nhanxetvadanhgia_details;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
+import vn.edu.poly.project_one.view.ViSit;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -50,7 +54,7 @@ public class Details extends Fragment {
     private Adapter_gridview_nhanxetvadanhgia_details adapter;
     private SharedPreferences sharedPreferences_index;
     private SharedPreferences.Editor editor_index;
-
+private RelativeLayout layout_back_details;
     //
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -146,7 +150,18 @@ public class Details extends Fragment {
             }
 
         });
-
+layout_back_details.setOnTouchListener(new View.OnTouchListener() {
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        ViSit viSit = new ViSit();
+        FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+        ft1.replace(R.id.fragmelayout_visit, viSit);
+        ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft1.addToBackStack(null);
+        ft1.commit();
+        return false;
+    }
+});
 
     }
 
@@ -161,6 +176,8 @@ public class Details extends Fragment {
         btn_themvaogio_details = (Button) view_details.findViewById(R.id.btn_themvaogio_details);
         img_sp_logo_details = (ImageView) view_details.findViewById(R.id.img_sp_logo_details);
         gridView = (GridView) view_details.findViewById(R.id.gridview_danhgia_details);
+        layout_back_details=(RelativeLayout) view_details.findViewById(R.id.layout_back_details);
+
     }
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {

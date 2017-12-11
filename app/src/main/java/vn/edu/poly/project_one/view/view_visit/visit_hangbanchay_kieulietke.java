@@ -2,16 +2,19 @@ package vn.edu.poly.project_one.view.view_visit;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.Adapter_visit_hangbanchay_kieulietke;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter_kieulietke;
+import vn.edu.poly.project_one.view.ViSit;
 
 /**
  * Created by ASUS on 11/21/2017.
@@ -44,6 +48,7 @@ public class visit_hangbanchay_kieulietke extends Fragment {
     Adapter_visit_hangbanchay_kieulietke adapter;
     public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sanpham.php";
     private FragmentManager fm;
+    private RelativeLayout layout_back_hangbanchay_kieulietke;
 
 
     @Override
@@ -80,6 +85,19 @@ public class visit_hangbanchay_kieulietke extends Fragment {
 
     private void initEvent() {
         getData();
+        layout_back_hangbanchay_kieulietke=(RelativeLayout) view_visit_hangbanchay_kieulietke.findViewById(R.id.layout_back_hangbanchay_kieulietke);
+        layout_back_hangbanchay_kieulietke.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                ViSit visit_view = new ViSit();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_hangbanchay_kieulietke, visit_view);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+                return false;
+            }
+        });
 //        arrayList = new ArrayList<>();
 //        arrayList.add(new visit_hangbanchay_getter_setter_kieulietke(R.drawable.giay_bike,
 //                getResources().getString(R.string.txt_tenhang_hangbanchay_kieulietke_tablayoutactivity),
@@ -176,6 +194,22 @@ public class visit_hangbanchay_kieulietke extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), "" + error.toString(), Toast.LENGTH_SHORT).show();
+                View view = view_visit_hangbanchay_kieulietke.findViewById(R.id.fragment_hangbanchay_kieulietke);
+                final Snackbar snackbar = Snackbar.make(view, "Không Có Kết Nối Internet.", Snackbar.LENGTH_INDEFINITE);
+
+                // Set an action on it, and a handler
+                snackbar.setAction("Thử Lại", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        getData();
+
+                    }
+                });
+
+                snackbar.show();
+
+
+
             }
         });
 

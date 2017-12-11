@@ -59,11 +59,12 @@
                         android:text="@string/txt_visit_tablayoutactivity"
                         />
                     <ImageView
+                        android:id="@+id/image_avatar_visit"
                         android:layout_marginRight="@dimen/dimens_marginleft_find_tablayoutactivity"
                         android:layout_weight="1"
                         android:layout_gravity="center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
                         android:src="@drawable/account_2"
                         />
                 </LinearLayout>
