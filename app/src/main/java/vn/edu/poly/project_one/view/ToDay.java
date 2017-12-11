@@ -34,6 +34,8 @@ public class ToDay extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager_today;
     private ArrayList<String> strings;
     ImageView imageView;
+    private int index_handle_back;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -114,6 +116,7 @@ public class ToDay extends Fragment {
     }
 
     private void initControl() {
+        index_handle_back=0;
         listView = (ListView) view_today.findViewById(R.id.lst_today_khaitruong);
         mRecyclerView_today = (RecyclerView) view_today.findViewById(R.id.my_recycler_view_today);
         view_today.setFocusableInTouchMode(true);
@@ -123,20 +126,22 @@ public class ToDay extends Fragment {
             @Override
             public boolean onKey( View v, int keyCode, KeyEvent event )
             {
-                if( keyCode == KeyEvent.KEYCODE_BACK )
+                index_handle_back++;
+                if( keyCode == KeyEvent.KEYCODE_BACK &&index_handle_back>1)
                 {
-                 showQuestionDialog();
+                    showQuestionDialog();
                     return true;
                 }
+
                 return false;
             }
         } );
     }
     public void showQuestionDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("App");
         builder.setMessage("Bạn có muốn thoát app không");
-        builder.setCancelable(false);
+//        builder.setCancelable(false);
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -146,7 +151,8 @@ public class ToDay extends Fragment {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
+                index_handle_back=0;
+                dialogInterface.cancel();
             }
         });
         AlertDialog alertDialog = builder.create();

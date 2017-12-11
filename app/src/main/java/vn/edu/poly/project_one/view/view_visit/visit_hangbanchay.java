@@ -4,6 +4,7 @@ package vn.edu.poly.project_one.view.view_visit;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
@@ -44,6 +45,8 @@ public class visit_hangbanchay extends Fragment {
     ImageView img_kieudanhsach;
     ImageView img_gridview_visit_hangbanchay_tablayoutactivity;
     public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sanpham.php";
+    private FragmentManager fm;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +56,7 @@ public class visit_hangbanchay extends Fragment {
         initControl();
         initEvent();
         initOnClick();
+
         return view_visit_hangbanchay;
     }
 
@@ -182,5 +186,6 @@ public class visit_hangbanchay extends Fragment {
         String encodeImage = Base64.encodeToString(byteImage, Base64.DEFAULT);
         return encodeImage;
     }
+
 
 }

@@ -1,11 +1,16 @@
 package vn.edu.poly.project_one.view;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vn.edu.poly.project_one.Adapter.FindAdapter;
+import vn.edu.poly.project_one.Details;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.find_getter_setter;
 
@@ -49,6 +55,11 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
     private RecyclerView mRecyclerView_find;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ViewPager mViewPager;
+    private FragmentManager fragmentManager;
+    private int index_back_fragment;
+    private FragmentManager fm;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,6 +68,7 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
         view_find = inflater.inflate(R.layout.fragment_find, container, false);
         initControl();
         initEvent();
+        init_check_fragment();
         return view_find;
     }
 
@@ -99,16 +111,64 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
 //                TabLayOutActivity tabLayOutActivity=new TabLayOutActivity();
 //                tabLayOutActivity.ChangeTab();
 //                Toast.makeText(getContext(),"Click",Toast.LENGTH_LONG).show();
-//                Details details = new Details();
-//                FragmentTransaction ft1 = getFragmentManager().beginTransaction();
-//                ft1.replace(R.id.fragmelayout_visit, details);
-//                ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                ft1.addToBackStack(null);
-//                ft1.commit();
+                TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                tabhost.getTabAt(1).select();
+                Details details = new Details();
+                FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                ft1.replace(R.id.fragmelayout_visit, details);
+                ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft1.addToBackStack(null);
+                ft1.commit();
             }
         };
+        view_find.setFocusableInTouchMode(true);
+        view_find.requestFocus();
+        view_find.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                if( keyCode == KeyEvent.KEYCODE_BACK )
+                {
+                    TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                    tabhost.getTabAt(0).select();
+                    return true;
+                }
+                return false;
+            }
+        } );
     }
+    public void init_check_fragment() {
+        view_find.setFocusableInTouchMode(true);
+        view_find.requestFocus();
+        fm = getActivity().getSupportFragmentManager();
+        index_back_fragment = fm.getBackStackEntryCount() + 2;
+        view_find.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    index_back_fragment--;
+                    if(index_back_fragment==0){
+                        Toast.makeText(getContext(),"Nhấn Lần Nữa Để Về Home",Toast.LENGTH_LONG).show();
+                    }
+                    try {
+                        if (index_back_fragment > 0) {
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                        }
+                        if (index_back_fragment < 0) {
+                            TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                            tabhost.getTabAt(0).select();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
 
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
     private void initDisplay(final String txt_query) {
         if (txt_query.length() == 0){
 

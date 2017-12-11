@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -56,6 +60,9 @@ public class Gio_Hang extends Fragment {
     private String id_post;
     private String dongia_post_txt;
     private String name_post_txt;
+    private FragmentManager fragmentManager;
+    private int index_back_fragment;
+    private FragmentManager fm;
 
 
     @Override
@@ -66,6 +73,7 @@ public class Gio_Hang extends Fragment {
         initEvent();
         initControl();
         initOnClick();
+        init_check_fragment();
         return view_giohang;
     }
 
@@ -161,6 +169,38 @@ public class Gio_Hang extends Fragment {
                 dongia_post = 0;
                 id_post = "";
                 initControl();
+            }
+        });
+
+    }
+    public void init_check_fragment() {
+        view_giohang.setFocusableInTouchMode(true);
+        view_giohang.requestFocus();
+        fm = getActivity().getSupportFragmentManager();
+        index_back_fragment = fm.getBackStackEntryCount() + 2;
+        view_giohang.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    index_back_fragment--;
+                    if(index_back_fragment==0){
+                        Toast.makeText(getContext(),"Nhấn Lần Nữa Để Về Home",Toast.LENGTH_LONG).show();
+                    }
+                    try {
+                        if (index_back_fragment > 0) {
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                        }
+                        if (index_back_fragment < 0) {
+                            TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                            tabhost.getTabAt(0).select();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                    return true;
+                }
+                return false;
             }
         });
     }

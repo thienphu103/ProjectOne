@@ -5,10 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -43,6 +47,9 @@ public class Tai_Khoan extends Fragment {
     private Object MY_PREFS_NAME = "user_name";
     private int MODE_PRIVATE = 0;
     private SharedPreferences sharedPreferences;
+    private FragmentManager fragmentManager;
+    private int index_back_fragment;
+    private FragmentManager fm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +58,9 @@ public class Tai_Khoan extends Fragment {
         view_taikhoan = inflater.inflate(R.layout.fragment_taikhoan, container, false);
         initControl();
         initOnClick();
+
         initEvent();
+        init_check_fragment();
         return view_taikhoan;
     }
 
@@ -84,26 +93,27 @@ public class Tai_Khoan extends Fragment {
                         .placeholder(R.drawable.img_no_avatar)//load url error
                         .into(img_login);
             }
-            String textBold ="Xin chào, "+"<b>" + user + "</b> !";
+            String textBold = "Xin chào, " + "<b>" + user + "</b> !";
             txt_login_name.setText(Html.fromHtml(textBold));
             btn_signup.setVisibility(View.INVISIBLE);
             btn_login.setVisibility(View.INVISIBLE);
             txt_logout.setAlpha(1);
             txt_logout.setEnabled(true);
         }
-
     }
 
     private void initOnClick() {
         rtl_donhangcuatoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 DonHangcuaToi_TaiKhoan DonHangcuaToi_TaiKhoan = new DonHangcuaToi_TaiKhoan();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_taikhoan, DonHangcuaToi_TaiKhoan);
+                ft.replace(R.id.fragment_taikhoan, DonHangcuaToi_TaiKhoan, "sometag");
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
                 ft.commit();
+                init_check_fragment();
             }
         });
         rtl_danhsachyeuthich.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +136,7 @@ public class Tai_Khoan extends Fragment {
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft.addToBackStack(null);
                 ft.commit();
+
             }
         });
         rtl_hosocuatoi.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +173,40 @@ public class Tai_Khoan extends Fragment {
             public void onClick(View view) {
                 showAlertDialog();
 
+            }
+        });
+
+
+    }
+
+    public void init_check_fragment() {
+        view_taikhoan.setFocusableInTouchMode(true);
+        view_taikhoan.requestFocus();
+        fm = getActivity().getSupportFragmentManager();
+        index_back_fragment = fm.getBackStackEntryCount() + 2;
+        view_taikhoan.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    index_back_fragment--;
+                    if(index_back_fragment==0){
+                        Toast.makeText(getContext(),"Nhấn Lần Nữa Để Về Home",Toast.LENGTH_LONG).show();
+                    }
+                    try {
+                        if (index_back_fragment > 0) {
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();
+                        }
+                        if (index_back_fragment < 0) {
+                            TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                            tabhost.getTabAt(0).select();
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                    return true;
+                }
+                return false;
             }
         });
     }

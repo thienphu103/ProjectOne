@@ -3,6 +3,7 @@ package vn.edu.poly.project_one.view.view_visit;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
@@ -42,6 +43,8 @@ public class visit_hangbanchay_kieulietke extends Fragment {
     ArrayList<visit_hangbanchay_getter_setter_kieulietke> arrayList;
     Adapter_visit_hangbanchay_kieulietke adapter;
     public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sanpham.php";
+    private FragmentManager fm;
+
 
     @Override
 
@@ -186,4 +189,5 @@ public class visit_hangbanchay_kieulietke extends Fragment {
         String encodeImage = Base64.encodeToString(byteImage, Base64.DEFAULT);
         return encodeImage;
     }
+
 }

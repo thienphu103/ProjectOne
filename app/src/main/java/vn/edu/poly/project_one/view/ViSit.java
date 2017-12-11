@@ -5,12 +5,15 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +70,9 @@ public class ViSit extends Fragment {
     public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sp_banchay.php";
     public static final String URL_CALL_API_GET_DATA_2 = "http://namtnps06077.hol.es/get_data_sp_moi_nhat.php";
     private SharedPreferences sharedPreferences;
+    private FragmentManager fragmentManager;
+    private int index_back_fragment;
+    private FragmentManager fm;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,7 +82,9 @@ public class ViSit extends Fragment {
 
         initControl();
         initOnClick();
+        init_check_fragment();
         initEvent();
+
         return view_visit;
     }
 
@@ -193,30 +201,24 @@ public class ViSit extends Fragment {
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(android.R.color.black));
-
-        view_visit.setFocusableInTouchMode(true);
-        view_visit.requestFocus();
+//        view_visit.setFocusableInTouchMode(true);
+//        view_visit.requestFocus();
 //        view_visit.setOnKeyListener(new View.OnKeyListener() {
 //            @Override
 //            public boolean onKey(View v, int keyCode, KeyEvent event) {
 //                if (keyCode == KeyEvent.KEYCODE_BACK) {
-////                    ToDay visit_view = new ToDay();
-////                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-////                    ft.replace(R.id.fragmelayout_visit, visit_view);
-////                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
-////                    ft.addToBackStack(null);
-////                    ft.commit();
+////                     view_find.setFocusableInTouchMode(true);
+//                    TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+//                    tabhost.getTabAt(0).select();
 //                    return true;
-//
 //                }
-//
 //                return false;
 //            }
 //        });
 
     }
 
-//    public void showQuestionDialog() {
+    //    public void showQuestionDialog() {
 //        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 //        builder.setTitle("App");
 //        builder.setMessage("Bạn có muốn thoát app không");
@@ -237,6 +239,36 @@ public class ViSit extends Fragment {
 //        alertDialog.show();
 //
 //    }
+    public void init_check_fragment() {
+        view_visit.setFocusableInTouchMode(true);
+        view_visit.requestFocus();
+        fm = getActivity().getSupportFragmentManager();
+        index_back_fragment = fm.getBackStackEntryCount() + 3;
+        view_visit.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+//                    index_back_fragment--;
+//                    if (index_back_fragment == 0) {
+//                        Toast.makeText(getContext(), "Nhấn Lần Nữa Để Về Home", Toast.LENGTH_LONG).show();
+//                    }
+                    try {
+                        if (index_back_fragment > 0) {
+                            getActivity().getSupportFragmentManager().popBackStackImmediate();                 }
+                    if (index_back_fragment < 0) {
+                        TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                        tabhost.getTabAt(0).select();
+                    }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
 
     private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
