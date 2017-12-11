@@ -132,8 +132,9 @@ public class LoginActivity extends AppCompatActivity implements
         btn_login_loginactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
-                startActivity(intent);
+                showQuestionLoginMail();
+//                Intent intent = new Intent(LoginActivity.this, TabLayOutActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -443,6 +444,23 @@ public class LoginActivity extends AppCompatActivity implements
         byte[] byteImage = outputStream.toByteArray();
         String encodeImage = Base64.encodeToString(byteImage, Base64.DEFAULT);
         return encodeImage;
+    }
+    public void showQuestionLoginMail() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("App");
+        builder.setMessage("Đăng nhập bằng mail đang trong quá trình phát triển\n" +
+                "Vui lòng đăng nhập bằng Google hoặc Facebook\n" +
+                "Xin Lỗi Vì Sự Bất Tiện Này");
+        builder.setCancelable(false);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     public void showQuestionDialog() {
