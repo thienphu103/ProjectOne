@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:text="THÁNG MƯỜI HAI 2017"
+        android:id="@+id/txt_ngaythangnam_thongke"
+        android:textColor="#000000"
+        android:alpha="0.34"
+        android:layout_marginBottom="20dp"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_below="@+id/txt_ngaythangnam_thongke"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="135dp"
+        android:background="@drawable/border_item_giohang"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txt_donhang_khohang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tổng số đơn hàng"
+                android:textSize="15sp"
+                android:textColor="#1ABC9C"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/txt_tongdonhang_khohang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="144"
+                android:textSize="15sp"
+                android:textColor="#1ABC9C"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                />
+            <TextView
+                android:layout_below="@+id/txt_donhang_khohang"
+                android:id="@+id/txt_doanhthua_khohang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doanh thu"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/txt_tongdoanhthu_khohang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/txt_tongdonhang_khohang"
+                android:text="9.550.000 vnd"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:layout_marginRight="20dp"
+                />
+            <View
+                android:id="@+id/view_1"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_below="@+id/txt_tongdoanhthu_khohang"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="30dp"
+                android:alpha="0.21"
+                android:background="#95989A" />
+            <TextView
+                android:layout_below="@+id/view_1"
+                android:id="@+id/txt_loinhuan_khohang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lợi nhuận"
+                android:textSize="15sp"
+                android:textColor="#0288D1"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                />
+            <TextView
+                android:id="@+id/txt_tongloinhuan_khohang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/view_1"
+                android:text="6.320.000  vnd"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:textColor="#0288D1"
+                android:layout_marginRight="20dp"
+                />
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -31,6 +31,8 @@ public class visit_1_getter_setter implements Serializable {
         this.hinhanh_sp = hinhanh_sp;
         this.soluongconlai_sp=soluongconlai_sp;
     }
+
+
     public visit_1_getter_setter(String ten_sp, String gia_sp, String soluong, String name_cuahang) {
         this.ten_sp = ten_sp;
         this.gia_sp = gia_sp;

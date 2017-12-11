@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="89dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="5dp"
+    android:background="@drawable/border_item_giohang">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_sanpham_khohang"
+            android:layout_width="89dp"
+            android:layout_height="89dp"
+            android:background="@drawable/custom_border_images_cardview"
+            android:src="@drawable/anhtesstkhohang" />
+
+        <TextView
+            android:id="@+id/txt_sanpham_khohang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@id/image_sanpham_khohang"
+            android:fontFamily="@font/robotoregular"
+            android:includeFontPadding="false"
+            android:text="Gà Sấy Giòn Bình Thủy Tinh"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txt_giasanpham_khohang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_sanpham_khohang"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="3dp"
+            android:layout_toRightOf="@id/image_sanpham_khohang"
+            android:fontFamily="@font/robotoregular"
+            android:includeFontPadding="false"
+            android:text="Trong kho còn: "
+            android:textColor="#34495E"
+            android:textSize="12sp" />
+        <TextView
+            android:text=" 64"
+            android:textStyle="bold"
+            android:textColor="#0288D1"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_sanpham_khohang"
+            android:layout_toRightOf="@+id/txt_giasanpham_khohang"
+            />
+
+
+        <Button
+            android:id="@+id/btn_chinhsua_khohang"
+            android:layout_width="76dp"
+            android:layout_height="21dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="3dp"
+            android:layout_toLeftOf="@id/btn_nhaphang_khohang"
+            android:background="#34495E"
+            android:fontFamily="@font/robotoregular"
+            android:text="Chỉnh sửa"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="11dp" />
+
+
+        <Button
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_nhaphang_khohang"
+            android:layout_width="76dp"
+            android:layout_height="21dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="3dp"
+            android:background="#0288D1"
+            android:fontFamily="@font/robotoregular"
+            android:text="Nhập hàng"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:textSize="11dp" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

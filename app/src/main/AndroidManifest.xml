@@ -14,8 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".TabLayOutActivity">
-        </activity>
+        <activity android:name=".TabLayOutActivity" />
         <activity android:name=".SignUpActivity" />
 
         <meta-data
@@ -32,7 +31,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity android:name=".TablayoutActivity_manage">
+
+            />
+        </activity>
+
     </application>
 
 </manifest>

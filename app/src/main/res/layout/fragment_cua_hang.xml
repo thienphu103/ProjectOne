@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_cuahang_manage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="vn.edu.poly.project_one.View_manage.CuaHang">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/rel_cuahang_tencuahang_manage"
+                android:layout_width="match_parent"
+                android:layout_height="103dp"
+                android:layout_alignParentTop="true"
+                android:background="#039BE5">
+
+                <TextView
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/txt_tencuahang_cuahang_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quê Homemade"
+                    android:textColor="#fff"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_toRightOf="@+id/txt_tencuahang_cuahang_manage"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="10dp">
+
+                    <ImageView
+                        android:id="@+id/img_sanpham_cuahang_manage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/anh_beyeu" />
+
+                    />
+                </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/txt_subtitle_cuahang_manage"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/txt_tencuahang_cuahang_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đặc sản quê nhà được làm thủ công truyền thống."
+                    android:textSize="10sp"
+                    android:textColor="#fff"/>
+            </RelativeLayout>
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/rel_cuahang_tencuahang_manage"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/cardview_timkiem_cuahang"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="5dp">
+                <EditText
+                    android:id="@+id/ext_timkiem_cuahang_manage"
+                    android:textSize="13sp"
+                    android:paddingRight="20dp"
+                    android:hint="Bạn cần mua gì?"
+                    android:inputType="text"
+                    android:drawablePadding="20dp"
+                    android:paddingLeft="20dp"
+                    android:drawableLeft="@drawable/search"
+                    android:background="#fff"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </android.support.v7.widget.CardView>
+                <View
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_below="@+id/cardview_timkiem_cuahang"
+                    android:id="@+id/view_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="#95989A"
+                    android:alpha="0.21"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@+id/view_1"
+                android:id="@+id/recyclerview_trungbay_cuahang_manage"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/recyclerview_trungbay_cuahang_manage"
+                android:id="@+id/view_2"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#95989A"
+                android:alpha="0.21"
+                />
+            <TextView
+                android:id="@+id/txt_khuyenmai_cuahang_manage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#34495E"
+                android:alpha="0.34"
+                android:layout_below="@+id/view_2"
+                android:text="KHUYẾN MÃI"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="144dp"
+                android:layout_below="@+id/txt_khuyenmai_cuahang_manage"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/cardview_khuyenmai_cuahang_manage"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+                <ImageView
+                    android:id="@+id/img_khuyenmai_cuahang_manage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/xuan"
+                    />
+            </android.support.v7.widget.CardView>
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/cardview_khuyenmai_cuahang_manage"
+                android:id="@+id/view_3"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#95989A"
+                android:alpha="0.21"
+                />
+            <TextView
+                android:id="@+id/txt_hangbanchay_cuahang_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#34495E"
+                android:alpha="0.34"
+                android:layout_below="@+id/view_3"
+                android:text="HÀNG BÁN CHẠY"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/txt_viewall_hangbanchay_cuahang_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#34495E"
+                android:alpha="0.34"
+                android:layout_below="@+id/view_3"
+                android:text="Xem tất cả"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@+id/txt_hangbanchay_cuahang_manage"
+                android:id="@+id/recyclerview_hangbanchay_cuahang_manage"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
+            <View
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/recyclerview_hangbanchay_cuahang_manage"
+                android:id="@+id/view_4"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#95989A"
+                android:alpha="0.21"
+                />
+            <TextView
+                android:id="@+id/txt_hangmoi_cuahang_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#34495E"
+                android:alpha="0.34"
+                android:layout_below="@+id/view_4"
+                android:text="HÀNG MỚI"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:id="@+id/txt_viewall_hangmoi_cuahang_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#34495E"
+                android:alpha="0.34"
+                android:layout_below="@+id/view_4"
+                android:text="Xem tất cả"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_below="@+id/txt_hangmoi_cuahang_manage"
+                android:id="@+id/recyclerview_hangmoi_cuahang_manage"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical" />
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</FrameLayout>

@@ -50,7 +50,6 @@ public class Tai_Khoan extends Fragment {
     private FragmentManager fragmentManager;
     private int index_back_fragment;
     private FragmentManager fm;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
