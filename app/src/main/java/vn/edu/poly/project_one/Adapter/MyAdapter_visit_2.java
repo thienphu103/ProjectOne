@@ -55,7 +55,7 @@ public class MyAdapter_visit_2 extends RecyclerView.Adapter<MyAdapter_visit_2.Vi
         holder.price.setText(format+" VND");
         String url="";
         if(!(arrayList.get(position).getHinhanh_sp().isEmpty())) {//null
-            url=arrayList.get(position).getHinhanh_sp();
+            url="http://namtnps06077.hol.es/"+arrayList.get(position).getHinhanh_sp();
         }else{
             url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }

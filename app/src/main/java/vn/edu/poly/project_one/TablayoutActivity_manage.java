@@ -2,36 +2,24 @@ package vn.edu.poly.project_one;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import vn.edu.poly.project_one.Adapter.AdapterTabLayoutFrangment;
 import vn.edu.poly.project_one.Adapter.AdapterTabLayoutFrangment_Manage;
 import vn.edu.poly.project_one.View_manage.CuaHang;
-import vn.edu.poly.project_one.View_manage.DonHang;
 import vn.edu.poly.project_one.View_manage.KhoHang;
 import vn.edu.poly.project_one.View_manage.ThongKe;
-import vn.edu.poly.project_one.view.Find;
-import vn.edu.poly.project_one.view.Gio_Hang;
 import vn.edu.poly.project_one.view.Tai_Khoan;
-import vn.edu.poly.project_one.view.ToDay;
-import vn.edu.poly.project_one.view.ViSit;
+import vn.edu.poly.project_one.view.View_taikhoan.DonHangcuaToi_TaiKhoan;
 
 public class TablayoutActivity_manage extends AppCompatActivity {
     public ViewPager mViewPager_manage;
@@ -244,7 +232,7 @@ public class TablayoutActivity_manage extends AppCompatActivity {
         listFragment = new ArrayList();
         listFragment.add(new CuaHang());
         listFragment.add(new KhoHang());
-        listFragment.add(new DonHang());
+        listFragment.add(new DonHangcuaToi_TaiKhoan());
         listFragment.add(new ThongKe());
         listFragment.add(new Tai_Khoan());
 

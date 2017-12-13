@@ -54,7 +54,8 @@ public class Details extends Fragment {
     private Adapter_gridview_nhanxetvadanhgia_details adapter;
     private SharedPreferences sharedPreferences_index;
     private SharedPreferences.Editor editor_index;
-private RelativeLayout layout_back_details;
+    private RelativeLayout layout_back_details;
+
     //
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -110,7 +111,7 @@ private RelativeLayout layout_back_details;
 //        editor_index.commit();
         sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
         editor_index = sharedPreferences_index.edit();
-        index = sharedPreferences_index.getInt("index",0);
+        index = sharedPreferences_index.getInt("index", 0);
 
         btn_themvaogio_details.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,33 +136,33 @@ private RelativeLayout layout_back_details;
 //                    Log.d("test_soluong", index_more+ "");
 
 //                } else {
-                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_giohang", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("name_sp_" + index, name);
-                    editor.putString("gia_sp_" + index, price);
-                    editor.putString("id_sp_" + index, id);
-                    editor.putString("hinhanh_sp_" + index, url);
-                    editor.putInt("soluong_sp_" + index, i);
-                    Log.d("post_details", index + "");
-                    editor.commit();
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_giohang", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("name_sp_" + index, name);
+                editor.putString("gia_sp_" + index, price);
+                editor.putString("id_sp_" + index, id);
+                editor.putString("hinhanh_sp_" + index, url);
+                editor.putInt("soluong_sp_" + index, i);
+                Log.d("post_details", index + "");
+                editor.commit();
 //                }
 
                 Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng ! Số Lượng:" + i, Toast.LENGTH_SHORT).show();
             }
 
         });
-layout_back_details.setOnTouchListener(new View.OnTouchListener() {
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        ViSit viSit = new ViSit();
-        FragmentTransaction ft1 = getFragmentManager().beginTransaction();
-        ft1.replace(R.id.fragmelayout_visit, viSit);
-        ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft1.addToBackStack(null);
-        ft1.commit();
-        return false;
-    }
-});
+        layout_back_details.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                ViSit viSit = new ViSit();
+                FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                ft1.replace(R.id.fragmelayout_visit, viSit);
+                ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft1.addToBackStack(null);
+                ft1.commit();
+                return false;
+            }
+        });
 
     }
 
@@ -176,7 +177,7 @@ layout_back_details.setOnTouchListener(new View.OnTouchListener() {
         btn_themvaogio_details = (Button) view_details.findViewById(R.id.btn_themvaogio_details);
         img_sp_logo_details = (ImageView) view_details.findViewById(R.id.img_sp_logo_details);
         gridView = (GridView) view_details.findViewById(R.id.gridview_danhgia_details);
-        layout_back_details=(RelativeLayout) view_details.findViewById(R.id.layout_back_details);
+        layout_back_details = (RelativeLayout) view_details.findViewById(R.id.layout_back_details);
 
     }
 

@@ -70,7 +70,7 @@ public class Adapter_visit_hangmoi_kieudanhsach extends BaseAdapter{
             viewHolder.txt_price.setText(format+" VND");
             String url;
             if(!(arrayList.get(position).getImg().isEmpty())) {//null
-                url=arrayList.get(position).getImg();
+                url="http://namtnps06077.hol.es/"+arrayList.get(position).getImg();
             }else{
                 url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
             }

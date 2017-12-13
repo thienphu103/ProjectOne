@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 import vn.edu.poly.project_one.LoginActivity;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.SignUpActivity;
+import vn.edu.poly.project_one.TabLayOutActivity;
+import vn.edu.poly.project_one.TablayoutActivity_manage;
 import vn.edu.poly.project_one.view.View_taikhoan.DanhSachMongMuon_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.DanhSachYeuThich_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.DonHangcuaToi_TaiKhoan;
@@ -50,6 +52,13 @@ public class Tai_Khoan extends Fragment {
     private FragmentManager fragmentManager;
     private int index_back_fragment;
     private FragmentManager fm;
+    private TextView txt_ban_hang_cung_chung_tui;
+    private String text_change = "";
+    private SharedPreferences.Editor editor_click;
+    private SharedPreferences sharedPreferences_click;
+    private String text_change_SP;
+    private TextView txt_ve_trang_chu;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,6 +81,9 @@ public class Tai_Khoan extends Fragment {
         txt_login_name = (TextView) view_taikhoan.findViewById(R.id.txt_login_taikhoan_tablayoutactivity);
         img_login = (ImageView) view_taikhoan.findViewById(R.id.img_login_taikhoan_tablayoutactivity);
         txt_logout = (TextView) view_taikhoan.findViewById(R.id.txt_logout);
+        txt_ban_hang_cung_chung_tui = (TextView) view_taikhoan.findViewById(R.id.txt_ban_hang_cung_chung_tui);
+        txt_ve_trang_chu = (TextView) view_taikhoan.findViewById(R.id.txt_ve_trang_chu);
+
 
     }
 
@@ -97,10 +109,17 @@ public class Tai_Khoan extends Fragment {
             btn_login.setVisibility(View.INVISIBLE);
             txt_logout.setAlpha(1);
             txt_logout.setEnabled(true);
-        }else{
+            txt_ban_hang_cung_chung_tui.setAlpha(1);
+            txt_ban_hang_cung_chung_tui.setEnabled(true);
+
+
+        } else {
             txt_logout.setAlpha((float) 0.3);
             txt_logout.setEnabled(false);
+            txt_ban_hang_cung_chung_tui.setAlpha((float) 0.3);
+            txt_ban_hang_cung_chung_tui.setEnabled(false);
         }
+
     }
 
     private void initOnClick() {
@@ -177,8 +196,25 @@ public class Tai_Khoan extends Fragment {
             }
         });
 
+        txt_ban_hang_cung_chung_tui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TablayoutActivity_manage.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
 
+            }
+        });
+        txt_ve_trang_chu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TabLayOutActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+            }
+        });
     }
+
 
     public void init_check_fragment() {
         view_taikhoan.setFocusableInTouchMode(true);
@@ -190,8 +226,8 @@ public class Tai_Khoan extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     index_back_fragment--;
-                    if(index_back_fragment==0){
-                        Toast.makeText(getContext(),"Nhấn Lần Nữa Để Về Home",Toast.LENGTH_LONG).show();
+                    if (index_back_fragment == 0) {
+                        Toast.makeText(getContext(), "Nhấn Lần Nữa Để Về Home", Toast.LENGTH_LONG).show();
                     }
                     try {
                         if (index_back_fragment > 0) {
@@ -224,6 +260,8 @@ public class Tai_Khoan extends Fragment {
                 btn_login.setVisibility(View.VISIBLE);
                 txt_logout.setAlpha((float) 0.3);
                 txt_logout.setEnabled(false);
+                txt_ban_hang_cung_chung_tui.setAlpha((float) 0.3);
+                txt_ban_hang_cung_chung_tui.setEnabled(false);
                 sharedPreferences = getActivity().getSharedPreferences("name_login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();

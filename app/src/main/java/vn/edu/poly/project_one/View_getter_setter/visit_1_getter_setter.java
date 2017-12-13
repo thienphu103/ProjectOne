@@ -39,7 +39,11 @@ public class visit_1_getter_setter implements Serializable {
         this.soluong = soluong;
         this.name_cuahang = name_cuahang;
     }
-
+    public visit_1_getter_setter(String ten_sp,String soluongconlai_sp,String hinhanh_sp) {
+        this.ten_sp = ten_sp;
+        this.soluongconlai_sp=soluongconlai_sp;
+        this.hinhanh_sp = hinhanh_sp;
+    }
     public visit_1_getter_setter(String hinhanh_sp) {
         this.hinhanh_sp = hinhanh_sp;
     }
@@ -71,6 +75,8 @@ public class visit_1_getter_setter implements Serializable {
 
 
     public visit_1_getter_setter() {
+
+
     }
 
     public int getId_sp() {

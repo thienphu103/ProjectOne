@@ -70,7 +70,7 @@ public class Adapter_visit_hangmoi_kieulietke extends BaseAdapter {
         viewHolder1.getTxt_custom3_kieulietke.setText(arrayList.get(position).getTxt_custom3());
         String url="";
         if(!(arrayList.get(position).getImg_kieulietke().isEmpty())) {//null
-            url=arrayList.get(position).getImg_kieulietke();
+            url="http://namtnps06077.hol.es/"+arrayList.get(position).getImg_kieulietke();
         }else{
             url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }

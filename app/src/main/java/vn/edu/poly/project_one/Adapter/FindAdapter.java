@@ -56,7 +56,7 @@ public class FindAdapter extends RecyclerView.Adapter<FindAdapter.ViewHolder> {
         holder.txt_listview_find_price.setText(format + " VND");
         String url = "";
         if (!(mFindArrayList.get(position).getImage().isEmpty())) {//null
-            url = mFindArrayList.get(position).getImage();
+            url = "http://namtnps06077.hol.es/"+mFindArrayList.get(position).getImage();
         } else {
             url = String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }

@@ -61,6 +61,7 @@
                 android:alpha="0.21"
                 android:background="#95989A" />
             <Button
+
                 android:paddingLeft="100dp"
                 android:id="@+id/btn_nhaphang_khohang"
                 android:layout_below="@+id/view_1"

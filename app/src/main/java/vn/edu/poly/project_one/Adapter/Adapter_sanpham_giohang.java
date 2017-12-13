@@ -51,7 +51,7 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
 
         String url="";
         if((sanPhamArrayList.get(position).getImg_sp()!=null)) {//null
-            url=sanPhamArrayList.get(position).getImg_sp();
+            url="http://namtnps06077.hol.es/"+sanPhamArrayList.get(position).getImg_sp();
         }else{
             url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }

@@ -249,6 +249,7 @@ public class LoginActivity extends AppCompatActivity implements
             editor.putString("url", acct.getPhotoUrl() + "");
             editor.putString("check", null);
             editor.putString("email",EmailUser);
+            editor.putString("id_user",IdUser+"");
             Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_SHORT).show();
             editor.commit();
             signOut();
@@ -702,6 +703,7 @@ public class LoginActivity extends AppCompatActivity implements
                 sharedPreferences = getSharedPreferences("name_login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", name_facebook_get_data);
+                editor.putString("id_user",IdProfileFb+"");
                 editor.putString("url", url_facebook_get_data);
                 editor.putString("email",email_facebook_get_data);
                 editor.putString("check", null);

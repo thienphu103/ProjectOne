@@ -335,10 +335,11 @@
                     android:src="@drawable/help" />
 
                 <TextView
+                    android:id="@+id/txt_ve_trang_chu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:text="@string/txt_giupdo_taikhoan"
+                    android:text="Về Trang Chủ"
                     android:textColor="#34495E"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -357,12 +358,14 @@
                     android:src="@drawable/handshake_g" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="@string/txt_banhangcungchungtoi_taikhoan"
-                    android:textColor="#34495E"
-                    android:textSize="15sp" />
+                android:id="@+id/txt_ban_hang_cung_chung_tui"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="@string/txt_banhangcungchungtoi_taikhoan"
+                android:textColor="#34495E"
+                android:textSize="15sp" />
+
             </LinearLayout>
 
             <View
