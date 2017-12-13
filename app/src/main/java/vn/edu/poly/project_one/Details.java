@@ -97,7 +97,7 @@ public class Details extends Fragment {
             url = String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }
         Picasso.with(getContext())
-                .load(url)
+                .load("http://namtnps06077.hol.es/"+url)
                 .resize(67, 67)
                 .error(R.drawable.ic_priority_high_black_24dp)//load url error
                 .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
