@@ -374,6 +374,9 @@ public class NhapHang extends Fragment {
                 img_view_photo_nhaphang.setImageBitmap(thePic);
             }
 
+
+
+
         }
     }
 
