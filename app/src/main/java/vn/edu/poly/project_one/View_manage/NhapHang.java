@@ -60,10 +60,13 @@ public class NhapHang extends Fragment {
     private Uri picUri;
     private int PIC_CROP = 3;
     private String URL_CALL_API_UP_DATA = "http://namtnps06077.hol.es/post_data_sanpham.php";
+    private String URL_CALL_API_UPDATE_DATA = "http://namtnps06077.hol.es/update_data_sanpham.php";
     String txt_user;
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     private static final int PERMISSION_REQUEST_CAMERA = 0;
     private RelativeLayout layout_back_nhaphang;
+    private int index_listview;
+    private int index_listview_sp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,9 +81,15 @@ public class NhapHang extends Fragment {
     }
 
     private void initOnClick() {
-
+        final SharedPreferences sharedPreferences2 = getContext().getSharedPreferences("get_index_list_view_kho_hang", Context.MODE_PRIVATE);
+        index_listview = sharedPreferences2.getInt("index_listview", 0);
+        index_listview_sp = sharedPreferences2.getInt("id_sp", 0);
+        String ten_sp = sharedPreferences2.getString("ten_sp", null);
+        final String check = sharedPreferences2.getString("check_click", null);
+        if (check != null) {
+            ten.setText(ten_sp);
+        }
         btn_continue.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 txt_ten = ten.getText().toString();
@@ -96,8 +105,13 @@ public class NhapHang extends Fragment {
                         && !(txt_gia.isEmpty())
                         && !(txt_soluong.isEmpty())
                         && !(txt_mota.isEmpty())) {
+                    if (check != null) {
+                        updataData();
+                    } else {
+                        upData();
+                    }
 
-                    upData();
+
                 } else {
 //
                     if ((txt_ten.isEmpty())) {
@@ -174,6 +188,8 @@ public class NhapHang extends Fragment {
                 return false;
             }
         });
+
+
     }
 
 
@@ -236,10 +252,11 @@ public class NhapHang extends Fragment {
         btn_camera = (Button) view_nhap_hang.findViewById(R.id.btn_camera_nhaphang);
         btn_gallary = (Button) view_nhap_hang.findViewById(R.id.btn_gallary_nhaphang);
         img_view_photo_nhaphang = (ImageView) view_nhap_hang.findViewById(R.id.img_view_photo_nhaphang);
-        layout_back_nhaphang=(RelativeLayout) view_nhap_hang.findViewById(R.id.layout_back_nhaphang);
+        layout_back_nhaphang = (RelativeLayout) view_nhap_hang.findViewById(R.id.layout_back_nhaphang);
 
 
     }
+
 
     public void upData() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -280,6 +297,49 @@ public class NhapHang extends Fragment {
             }
 
         };
+        requestQueue.add(stringRequest);
+    }
+
+    public void updataData() {
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_UPDATE_DATA, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Toast.makeText(getContext(), "Data_User_" + txt_user + "|" + response.toString(), Toast.LENGTH_SHORT).show();
+                initUpdateUI();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> stringMap = new HashMap<>();
+                Bitmap bitmap = ((BitmapDrawable) img_view_photo_nhaphang.getDrawable()).getBitmap();
+//                Bitmap image_fb = BitmapFactory.decodeStream(url_fb.openConnection().getInputStream());
+                String image = decodeImage(bitmap);
+                stringMap.put("ten_sp", txt_ten);
+                stringMap.put("gia_sp", txt_gia);
+                stringMap.put("mota_sp", txt_mota);
+                stringMap.put("soluongdaban_sp", "0");
+                stringMap.put("soluongconlai_sp", txt_soluong);
+                stringMap.put("id_shop", txt_user);
+                stringMap.put("id_loaisp", "Sản Phẩm");
+                stringMap.put("id_danhgia_sp", "Tốt");
+                stringMap.put("hinhanh_sp", image);
+                stringMap.put("size_sp", txt_kichco);
+                stringMap.put("mau_sp", "Đa sắc");
+                stringMap.put("han_sd_sp", txt_nsx + " & " + txt_hsd);
+                stringMap.put("txt_id", String.valueOf(index_listview_sp));
+                return stringMap;
+
+            }
+        };
+
         requestQueue.add(stringRequest);
     }
 

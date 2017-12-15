@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    android:id="@+id/img_cardview_detail"
+    android:layout_width="match_parent"
+    android:layout_height="34dp"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardElevation="5dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/layout_back_details_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_back_detail"
+            android:layout_width="19dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/left_arrow"
+            />
+        <TextView
+            android:textColor="@color/color_textview_text_thamquan_tablayoutactivity"
+            android:layout_toRightOf="@+id/btn_back_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/txt_trove_detail"
+            android:textSize="11sp"
+            />
+        </RelativeLayout>
+        <TextView
+            android:textColor="@color/color_text_tablayoutactivity"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="QUÊ Homemade"
+            />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

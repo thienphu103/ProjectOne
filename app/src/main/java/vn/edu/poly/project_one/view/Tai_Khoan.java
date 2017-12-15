@@ -25,7 +25,6 @@ import com.squareup.picasso.Picasso;
 
 import vn.edu.poly.project_one.LoginActivity;
 import vn.edu.poly.project_one.R;
-import vn.edu.poly.project_one.SignUpActivity;
 import vn.edu.poly.project_one.TabLayOutActivity;
 import vn.edu.poly.project_one.TablayoutActivity_manage;
 import vn.edu.poly.project_one.view.View_taikhoan.DanhSachMongMuon_TaiKhoan;
@@ -182,7 +181,7 @@ public class Tai_Khoan extends Fragment {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
 
             }

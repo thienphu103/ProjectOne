@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_detail_manager"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/toolbar_detail"
+            layout="@layout/toobar_detail_manager" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar_detail">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/relarivelayout_details_1_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp">
+
+                    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/img_cardview_logo_details_manager"
+                        android:layout_width="89dp"
+                        android:layout_height="89dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="4dp"
+                        app:cardElevation="10dp">
+
+                        <ImageView
+                            android:id="@+id/img_sp_logo_details_manager"
+                            android:layout_width="89dp"
+                            android:layout_height="89dp"
+                            android:src="@drawable/n" />
+                    </android.support.v7.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/txt_tensanpham_detail_manager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/img_cardview_logo_details_manager"
+                        android:text="Gà Sấy Giòn 500g"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txt_tencuahang_details_manager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_tensanpham_detail_manager"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toRightOf="@+id/img_cardview_logo_details_manager"
+                        android:text="QUÊ Homemade"
+                        android:textColor="#000000"
+                        android:textSize="11sp" />
+
+                    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:layout_width="match_parent"
+                        android:layout_height="21dp"
+                        android:layout_below="@+id/txt_tencuahang_details_manager"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_toRightOf="@+id/img_cardview_logo_details_manager"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardBackgroundColor="@android:color/white"
+                        app:cardCornerRadius="2dp"
+                        app:cardElevation="5dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/img_logo_cuahang_details_manager"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:src="@drawable/logo_details" />
+
+                            <TextView
+                                android:id="@+id/txt_price_details_manager"
+                                android:layout_width="110dp"
+                                android:layout_height="match_parent"
+                                android:layout_toRightOf="@+id/img_logo_cuahang_details_manager"
+                                android:gravity="center"
+                                android:text="150.000 VND"
+                                android:textColor="#0288D1"
+                                android:textSize="12sp" />
+
+                            <Button
+                                android:id="@+id/btn_themvaogio_details_manager"
+                                android:layout_width="86dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_toRightOf="@+id/txt_price_details_manager"
+                                android:background="#0288D1"
+                                android:gravity="center"
+                                android:text="Trở Lại "
+                                android:textAllCaps="false"
+                                android:textColor="#fff"
+                                android:textSize="11sp" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txt_star_danhgia_details_manager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/relarivelayout_details_1_manager"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="0.34"
+                    android:text="4,5"
+                    android:textColor="#000"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingbar_details_manager"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_star_danhgia_details_manager"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:progressDrawable="@drawable/custom_rating_bar"
+                    android:rating="4" />
+
+                <View
+                    android:id="@+id/view_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_below="@+id/ratingbar_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:alpha="0.21"
+                    android:background="#95989A"></View>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/my_recycler_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_1"
+                    android:scrollbars="vertical" />
+
+                <View
+                    android:id="@+id/view_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_below="@+id/my_recycler_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:alpha="0.21"
+                    android:background="#95989A"></View>
+
+                <TextView
+                    android:id="@+id/txt_chitietsanham_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Gà sấy giòn với vị ngon không thể chối từ. Từng miếng gà đậm đà thấm vị sẽ đưa các bạn quay trở về tuổi thơ để tận hưởng hương vị của thời gian,..."
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/txt_xemthem_details_manager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_chitietsanham_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:text="@string/txt_xemthem_details"
+                    android:textColor="#0288D1"
+                    android:textSize="15sp" />
+
+                <View
+                    android:id="@+id/view_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_below="@+id/txt_xemthem_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:alpha="0.21"
+                    android:background="#95989A"></View>
+
+                <TextView
+                    android:id="@+id/txt_thongtinsanpham_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_3"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/txt_thongtinsanpham_details"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rla_sanxuat_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_thongtinsanpham_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/txt_sanxuat_details_manager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_sanxuat_details"
+                        android:textColor="#95989A"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txt_sanxuat_model_details_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/txt_sanxuat_details_manager"
+                        android:gravity="right"
+                        android:text="Quê Homemade"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rla_ngaysanxuat_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rla_sanxuat_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:id="@+id/txt_ngaysanxuat_details_manager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_ngaysanxuat_details"
+                        android:textColor="#95989A"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ngaysanxuat_model_details_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:gravity="right"
+                        android:text="01/11/2017"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ngaysanxuat_model_hethan_details_manager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_ngaysanxuat_model_details"
+                        android:layout_toRightOf="@+id/txt_ngaysanxuat_details"
+                        android:gravity="right"
+                        android:text="01/03/2018"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/view_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_below="@+id/rla_ngaysanxuat_details_manager"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:alpha="0.21"
+                    android:background="#95989A"></View>
+
+                <TextView
+                    android:id="@+id/txt_xephangvanhanxet_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/view_4"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/txt_xephang_details"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <GridView
+                    android:id="@+id/gridview_danhgia_details_manager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txt_xephangvanhanxet_details_manager"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:horizontalSpacing="30dp"
+                    android:numColumns="1"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="20dp" />
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+</FrameLayout>

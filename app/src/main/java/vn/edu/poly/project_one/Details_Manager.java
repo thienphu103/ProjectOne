@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -26,7 +24,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.Adapter_cardview_details;
 import vn.edu.poly.project_one.Adapter.Adapter_gridview_nhanxetvadanhgia_details;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
-import vn.edu.poly.project_one.view.ViSit;
+import vn.edu.poly.project_one.View_manage.CuaHang;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -34,7 +32,7 @@ import static android.content.Context.MODE_PRIVATE;
  * Created by ASUS on 12/1/2017.
  */
 
-public class Details extends Fragment {
+public class Details_Manager extends Fragment {
     private View view_details;
     TextView txt_tensanpham_detail, txt_price_details, txt_remove;
     ImageView img_sp_logo_details;
@@ -61,7 +59,7 @@ public class Details extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view_details = inflater.inflate(R.layout.fragment_detail, container, false);
+        view_details = inflater.inflate(R.layout.fragment_detail_manager, container, false);
 
         initControl();
         initOnClick();
@@ -116,47 +114,22 @@ public class Details extends Fragment {
         btn_themvaogio_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index++;
-                index++;
-                i++;
-                editor_index.putInt("index", index);
-                editor_index.commit();
-//                if (i > 1) {
-//                    int index_more = index - 2;
-//                    editor_index.putInt("index_soluong", i);
-//                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_donhang", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("name_sp_" + index_more, name);
-//                    editor.putString("gia_sp_" + index_more, price);
-//                    editor.putString("id_sp_" + index_more, id);
-//                    editor.putString("hinhanh_sp_" + index_more, url);
-//                    editor.putInt("soluong_sp_" + index_more, i);
-//                    editor.commit();
-//                    editor_index.commit();
-//                    Log.d("test_soluong", index_more+ "");
+                CuaHang viSit = new CuaHang();
+                FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                ft1.replace(R.id.fragment_detail_manager, viSit);
+                ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft1.addToBackStack(null);
+                ft1.commit();
 
-//                } else {
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_giohang", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("name_sp_" + index, name);
-                editor.putString("gia_sp_" + index, price);
-                editor.putString("id_sp_" + index, id);
-                editor.putString("hinhanh_sp_" + index, url);
-                editor.putInt("soluong_sp_" + index, i);
-                Log.d("post_details", index + "");
-                editor.commit();
-//                }
-
-                Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng ! Số Lượng:" + i, Toast.LENGTH_SHORT).show();
             }
 
         });
         layout_back_details.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                ViSit viSit = new ViSit();
+                CuaHang viSit = new CuaHang();
                 FragmentTransaction ft1 = getFragmentManager().beginTransaction();
-                ft1.replace(R.id.fragment_detail, viSit);
+                ft1.replace(R.id.fragment_detail_manager, viSit);
                 ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 ft1.addToBackStack(null);
                 ft1.commit();
@@ -171,13 +144,13 @@ public class Details extends Fragment {
     }
 
     private void initControl() {
-        mRecyclerView_details = (RecyclerView) view_details.findViewById(R.id.my_recycler_details);
-        txt_tensanpham_detail = (TextView) view_details.findViewById(R.id.txt_tensanpham_detail);
-        txt_price_details = (TextView) view_details.findViewById(R.id.txt_price_details);
-        btn_themvaogio_details = (Button) view_details.findViewById(R.id.btn_themvaogio_details);
-        img_sp_logo_details = (ImageView) view_details.findViewById(R.id.img_sp_logo_details);
-        gridView = (GridView) view_details.findViewById(R.id.gridview_danhgia_details);
-        layout_back_details = (RelativeLayout) view_details.findViewById(R.id.layout_back_details);
+        mRecyclerView_details = (RecyclerView) view_details.findViewById(R.id.my_recycler_details_manager);
+        txt_tensanpham_detail = (TextView) view_details.findViewById(R.id.txt_tensanpham_detail_manager);
+        txt_price_details = (TextView) view_details.findViewById(R.id.txt_price_details_manager);
+        btn_themvaogio_details = (Button) view_details.findViewById(R.id.btn_themvaogio_details_manager);
+        img_sp_logo_details = (ImageView) view_details.findViewById(R.id.img_sp_logo_details_manager);
+        gridView = (GridView) view_details.findViewById(R.id.gridview_danhgia_details_manager);
+        layout_back_details = (RelativeLayout) view_details.findViewById(R.id.layout_back_details_manager);
 
     }
 
