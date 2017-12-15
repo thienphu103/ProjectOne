@@ -1,8 +1,10 @@
 package vn.edu.poly.project_one.view.view_visit;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -28,18 +31,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.Adapter_visit_hangmoi_kieudanhsach;
+import vn.edu.poly.project_one.Details;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangmoi_getter_setter_kieudanhsach;
 import vn.edu.poly.project_one.view.ViSit;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ASUS on 11/23/2017.
  */
 
-public class visit_hangmoi_kieudanhsach extends Fragment {
+public class visit_hangmoi_kieudanhsach extends Fragment  {
     View view_visit_hangmoi_kieudanhsach;
     GridView gridView;
     Adapter_visit_hangmoi_kieudanhsach adapter;
@@ -156,6 +163,8 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
                 String name = "";
                 String image;
                 String price;
+                String id;
+
                 arrayList = new ArrayList<>();
                 for (int i = 0; i < response.length(); i++) {
                     try {
@@ -163,16 +172,42 @@ public class visit_hangmoi_kieudanhsach extends Fragment {
                         name = object.getString("ten_sp");
                         image = object.getString("hinhanh_sp");
                         price = object.getString("gia_sp");
+                        id=object.getString("id_sp");
+
                         Log.d("URl_IMAGE", image);
                         arrayList.add(new
                                 visit_hangmoi_getter_setter_kieudanhsach(image,
-                                name, price));
+                                name, price,id));
                         adapter = new Adapter_visit_hangmoi_kieudanhsach(getActivity(),arrayList);
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     gridView.setAdapter(adapter);
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            String pattern = "###,###.###";
+                            DecimalFormat decimalFormat = new DecimalFormat(pattern);
+                            String format = decimalFormat.format(Double.parseDouble(arrayList.get(i).getPrice()));
+                            SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("name_sp", arrayList.get(i).getTitle() + "");
+                            editor.putString("gia_sp", arrayList.get(i).getPrice() + "");
+                            editor.putString("id_sp", arrayList.get(i).getId() + "");
+                            editor.putString("hinhanh_sp", arrayList.get(i).getImg() + "");
+//                    editor.putString("soluong",arrayList.get(position).getSoluongconlai_sp()+"");
+                            editor.commit();
+                            TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                            tabhost.getTabAt(1).select();
+                            Details details = new Details();
+                            FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                            ft1.replace(R.id.fragment_hangmoi_kieudanhsach, details);
+                            ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            ft1.addToBackStack(null);
+                            ft1.commit();
+                        }
+                    });
 
                 }
             }

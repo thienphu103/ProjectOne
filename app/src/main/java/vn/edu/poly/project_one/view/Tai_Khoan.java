@@ -199,9 +199,12 @@ public class Tai_Khoan extends Fragment {
         txt_ban_hang_cung_chung_tui.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TablayoutActivity_manage.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                if(getContext()!=null){
+                    Intent intent = new Intent(getActivity(), TablayoutActivity_manage.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                }
+
 
             }
         });

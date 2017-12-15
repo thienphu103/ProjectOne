@@ -10,11 +10,21 @@ public class visit_hangmoi_getter_setter_kieudanhsach implements Serializable {
     public String img;
     public String title;
     public String price;
+    public String id;
 
-    public visit_hangmoi_getter_setter_kieudanhsach(String img, String title, String price) {
+    public visit_hangmoi_getter_setter_kieudanhsach(String img, String title, String price,String id) {
         this.img = img;
         this.title = title;
         this.price = price;
+        this.id=id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImg() {

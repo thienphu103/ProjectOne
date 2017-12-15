@@ -10,14 +10,23 @@ public class visit_hangbanchay_getter_setter implements Serializable {
     public String img;
     public String title;
     public String price;
-
-    public visit_hangbanchay_getter_setter(String img, String title, String price) {
+public String id;
+    public visit_hangbanchay_getter_setter(String img, String title, String price,String id) {
         this.img = img;
         this.title = title;
         this.price = price;
+        this.id=id;
     }
 
     public visit_hangbanchay_getter_setter() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImg() {

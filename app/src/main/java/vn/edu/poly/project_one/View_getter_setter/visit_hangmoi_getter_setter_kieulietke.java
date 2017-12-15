@@ -12,15 +12,25 @@ public class visit_hangmoi_getter_setter_kieulietke implements Serializable {
     public String txt_custom1;
     public  String txt_custom2;
     public String txt_custom3;
+    public String id;
 
-    public visit_hangmoi_getter_setter_kieulietke(String img_kieulietke, String txt_custom1, String txt_custom2, String txt_custom3) {
+    public visit_hangmoi_getter_setter_kieulietke(String img_kieulietke, String txt_custom1, String txt_custom2, String txt_custom3,String id) {
         this.img_kieulietke = img_kieulietke;
         this.txt_custom1 = txt_custom1;
         this.txt_custom2 = txt_custom2;
         this.txt_custom3 = txt_custom3;
+        this.id=id;
     }
 
     public visit_hangmoi_getter_setter_kieulietke() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImg_kieulietke() {

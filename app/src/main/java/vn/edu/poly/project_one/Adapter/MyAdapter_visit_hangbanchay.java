@@ -61,7 +61,6 @@ public class MyAdapter_visit_hangbanchay extends BaseAdapter {
             viewHolder.img = (ImageView) convertView.findViewById(R.id.img_gridview_visit_hangbanchay_tablayoutactivity);
             convertView.setTag(viewHolder);
 
-
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }

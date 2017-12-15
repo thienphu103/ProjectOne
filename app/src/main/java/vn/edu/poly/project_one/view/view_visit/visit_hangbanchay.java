@@ -1,9 +1,11 @@
 package vn.edu.poly.project_one.view.view_visit;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -30,12 +33,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.MyAdapter_visit_hangbanchay;
+import vn.edu.poly.project_one.Details;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_hangbanchay_getter_setter;
 import vn.edu.poly.project_one.view.ViSit;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by ASUS on 11/20/2017.
@@ -50,7 +57,7 @@ public class visit_hangbanchay extends Fragment {
     ImageView img_gridview_visit_hangbanchay_tablayoutactivity;
     public static final String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_sanpham.php";
     private FragmentManager fm;
-private RelativeLayout layout_back_hangbanchay;
+    private RelativeLayout layout_back_hangbanchay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -80,7 +87,7 @@ private RelativeLayout layout_back_hangbanchay;
 
     private void initControl() {
         img_kieudanhsach = (ImageView) view_visit_hangbanchay.findViewById(R.id.img_kieudanhsachlietke_visit_hangbanchay_tablayoutactivity);
-        layout_back_hangbanchay=(RelativeLayout) view_visit_hangbanchay.findViewById(R.id.layout_back_hangbanchay);
+        layout_back_hangbanchay = (RelativeLayout) view_visit_hangbanchay.findViewById(R.id.layout_back_hangbanchay);
         gridView = (GridView) view_visit_hangbanchay.findViewById(R.id.gridview_visit__hangbanchay_tablayoutactivity);
         layout_back_hangbanchay.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -151,7 +158,6 @@ private RelativeLayout layout_back_hangbanchay;
 
     private void initEvent() {
 
-
 //        FragmentManager fm = getFragmentManager();
 //        visit_hangbanchay visit_hangbanchay  = (visit_hangbanchay) fm.findFragmentById(R.id.fragment_visit_hangbanchay);
 //        FragmentTransaction ft = fm.beginTransaction();
@@ -167,22 +173,48 @@ private RelativeLayout layout_back_hangbanchay;
                 String name = "";
                 String image;
                 String price;
+                String id;
                 arrayList = new ArrayList<>();
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
                         name = object.getString("ten_sp");
                         image = object.getString("hinhanh_sp");
-                        price =object.getString("gia_sp");
+                        price = object.getString("gia_sp");
+                        id = object.getString("id_sp");
                         Log.d("URl_IMAGE", image);
                         arrayList.add(new visit_hangbanchay_getter_setter(
-                           image,name,price));
-                        adapter = new MyAdapter_visit_hangbanchay(getContext(),arrayList);
+                                image, name, price, id));
+                        adapter = new MyAdapter_visit_hangbanchay(getContext(), arrayList);
                         adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                     gridView.setAdapter(adapter);
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            String pattern = "###,###.###";
+                            DecimalFormat decimalFormat = new DecimalFormat(pattern);
+                            String format = decimalFormat.format(Double.parseDouble(arrayList.get(i).getPrice()));
+                            SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("name_sp", arrayList.get(i).getTitle() + "");
+                            editor.putString("gia_sp", arrayList.get(i).getPrice() + "");
+                            editor.putString("id_sp", arrayList.get(i).getId() + "");
+                            editor.putString("hinhanh_sp", arrayList.get(i).getImg() + "");
+//                    editor.putString("soluong",arrayList.get(position).getSoluongconlai_sp()+"");
+                            editor.commit();
+                            TabLayout tabhost = (TabLayout) getActivity().findViewById(R.id.tabs);
+                            tabhost.getTabAt(1).select();
+                            Details details = new Details();
+                            FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                            ft1.replace(R.id.fragment_hangbanchay, details);
+                            ft1.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            ft1.addToBackStack(null);
+                            ft1.commit();
+                        }
+                    });
 
                 }
             }
@@ -208,6 +240,7 @@ private RelativeLayout layout_back_hangbanchay;
 
         requestQueue.add(arrayRequest);
     }
+
     public String decodeImage(Bitmap bitmap) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
