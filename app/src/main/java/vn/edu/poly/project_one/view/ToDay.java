@@ -105,9 +105,10 @@ public class ToDay extends Fragment {
                 getResources().getString(R.string.txt_beyeu_tablayoutactivity),
                 getResources().getString(R.string.txt_cuahangbabay_today),
                 getResources().getString(R.string.btn_vao_tablayoutactivity)));
-
-        adapter = new Adapter_khaitruong_today(getActivity(), arrayList);
-        listView.setAdapter(adapter);
+        if (getActivity() != null) {
+            adapter = new Adapter_khaitruong_today(getActivity(), arrayList);
+            listView.setAdapter(adapter);
+        }
         setListViewHeightBasedOnChildren(listView);
 
         strings = new ArrayList<>();

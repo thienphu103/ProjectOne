@@ -45,9 +45,10 @@ public class DanhSachYeuThich_TaiKhoan extends Fragment {
         arrayList.add(new taikhoan_danhsachyeuthich_getter_setter(R.drawable.images_2));
         arrayList.add(new taikhoan_danhsachyeuthich_getter_setter(R.drawable.giay_bike));
         arrayList.add(new taikhoan_danhsachyeuthich_getter_setter(R.drawable.images_2));
-        adapter = new Adapter_danhsachyeuthich_taikhoan(getActivity(),arrayList);
-        gridView.setAdapter(adapter);
-
+        if (getActivity() != null) {
+            adapter = new Adapter_danhsachyeuthich_taikhoan(getActivity(), arrayList);
+            gridView.setAdapter(adapter);
+        }
     }
 
     private void initControl() {

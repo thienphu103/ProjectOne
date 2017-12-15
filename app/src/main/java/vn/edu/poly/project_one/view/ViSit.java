@@ -322,11 +322,12 @@ public class ViSit extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    mAdapter_visit = new MyAdapter_visit(getContext(), strings, click);
-                    mAdapter_visit.notifyDataSetChanged();
+                    if (getActivity() != null) {
+                        mAdapter_visit = new MyAdapter_visit(getContext(), strings, click);
+                        mAdapter_visit.notifyDataSetChanged();
 
-                    mRecyclerView_visit.setAdapter(mAdapter_visit);
-
+                        mRecyclerView_visit.setAdapter(mAdapter_visit);
+                    }
                     Log.d("a", "aa");
                 }
             }

@@ -25,12 +25,14 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
     Context context;
     LayoutInflater inflater;
     ArrayList<SanPham> sanPhamArrayList;
+    private View.OnClickListener click;
     View v;
 
-    public Adapter_sanpham_giohang(Context context, ArrayList<SanPham> sanPhamArrayList) {
+    public Adapter_sanpham_giohang(Context context, ArrayList<SanPham> sanPhamArrayList, View.OnClickListener click) {
         this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.sanPhamArrayList = sanPhamArrayList;
+        this.click = click;
     }
 
     @Override
@@ -42,11 +44,18 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
     }
 
     @Override
-    public void onBindViewHolder(Adapter_sanpham_giohang.ViewHolder holder, int position) {
+    public void onBindViewHolder(Adapter_sanpham_giohang.ViewHolder holder, final int position) {
         holder.txt_sanpham_giohang.setText(sanPhamArrayList.get(position).getTen_sp());
         holder.txt_giasanpham_giohang.setText(sanPhamArrayList.get(position).getGia_sp());
         holder.txt_size_sanpham_giohang.setText("size | " + sanPhamArrayList.get(position).getSize_sp());
         holder.txt_soluong_sanpham_giohang.setText("số lượng | ×" + sanPhamArrayList.get(position).getSoluong_sp());
+        holder.btn_xoasanpham_giohang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setTag(new Integer(position));
+                click.onClick(v);
+            }
+        });
 //        holder.image_sanpham_giohang.setImageDrawable(v.getResources().getDrawable(sanPhamArrayList.get(position).getImg_sp()));
 
         String url="";

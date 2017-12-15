@@ -56,7 +56,7 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
 //        gridView.setAdapter(adapter);
     }
 
-    private void getData(){
+    private void getData() {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         JsonArrayRequest arrayRequest = new JsonArrayRequest(Request.Method.GET, URL_CALL_API_GET_DATA, null, new Response.Listener<JSONArray>() {
             @Override
@@ -72,11 +72,13 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
                         id = object.getString("id_dh");
                         content = object.getString("noi_dung_dh");
                         price = object.getString("dongia_dh");
-                        date=object.getString("ngay_thang_dh");
+                        date = object.getString("ngay_thang_dh");
+                        if (getActivity() != null) {
+                            arrayList.add(new donhangcuatui_taikhoan_getter_setter(id, price, content, date));
+                            adapter = new Adapter_donhangcuatoi_taikhoan(getActivity(), arrayList);
+                            adapter.notifyDataSetChanged();
+                        }
 
-                        arrayList.add(new donhangcuatui_taikhoan_getter_setter(id,price,content,date));
-                        adapter = new Adapter_donhangcuatoi_taikhoan(getActivity(),arrayList);
-                        adapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -92,7 +94,6 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
 
         requestQueue.add(arrayRequest);
     }
-
 
 
     private void initControl() {

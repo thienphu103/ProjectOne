@@ -46,8 +46,10 @@ public class DanhSachMongMuon_TaiKhoan extends Fragment {
         arrayList.add(new taikhoan_danhsachmongmuon_getter_setter(R.drawable.giay_bike));
         arrayList.add(new taikhoan_danhsachmongmuon_getter_setter(R.drawable.giay_bike));
         arrayList.add(new taikhoan_danhsachmongmuon_getter_setter(R.drawable.giay_bike));
-        adapter = new Adapter_danhsachmongmuon_taikhoan(getActivity(),arrayList);
-        gridView.setAdapter(adapter);
+        if (getActivity() != null) {
+            adapter = new Adapter_danhsachmongmuon_taikhoan(getActivity(), arrayList);
+            gridView.setAdapter(adapter);
+        }
 
     }
 

@@ -198,9 +198,11 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
                                 e.printStackTrace();
                                 Toast.makeText(getActivity(), "Exception " + e, Toast.LENGTH_SHORT).show();
                             }
-                            adapter = new FindAdapter(mFindArrayList, getContext(), click);
-                            findAdapter.notifyDataSetChanged();
-                            mRecyclerView_find.setAdapter(adapter);
+                            if (getActivity() != null) {
+                                adapter = new FindAdapter(mFindArrayList, getContext(), click);
+                                findAdapter.notifyDataSetChanged();
+                                mRecyclerView_find.setAdapter(adapter);
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override

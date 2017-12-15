@@ -40,6 +40,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class Gio_Hang extends Fragment {
     View view_giohang;
+    private View.OnClickListener click;
     Context context;
     private RecyclerView mRecyclerView_giohang;
     private RecyclerView.Adapter mAdapter_giohang;
@@ -83,7 +84,17 @@ public class Gio_Hang extends Fragment {
     }
 
     private void initOnClick() {
-
+        click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer integer = (Integer)v.getTag();
+                sanPhamArrayList.remove(integer);
+                adapter.notifyItemRemoved(integer);
+                adapter.notifyItemRangeChanged(integer,sanPhamArrayList.size());
+                adapter.notifyDataSetChanged();
+                Toast.makeText(getContext(),integer+"",Toast.LENGTH_SHORT).show();
+            }
+        };
         btn_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -180,7 +191,7 @@ public class Gio_Hang extends Fragment {
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
-        adapter = new Adapter_sanpham_giohang(getContext(), sanPhamArrayList);
+        adapter = new Adapter_sanpham_giohang(getContext(), sanPhamArrayList,click);
         mRecyclerView_giohang.setAdapter(adapter);
         txt_remove.setOnClickListener(new View.OnClickListener() {
             @Override

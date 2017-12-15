@@ -112,8 +112,10 @@ public class giohang_3_dathang extends Fragment {
             arrayList.add(new visit_1_getter_setter(name_post_txt,
                     dongia_post_txt,
                     "1x", "tên cửa hàng"));
-            adapter = new Adapter_3_dathang_giohang(getActivity(), arrayList);
-            listView.setAdapter(adapter);
+            if (getActivity() != null) {
+                adapter = new Adapter_3_dathang_giohang(getActivity(), arrayList);
+                listView.setAdapter(adapter);
+            }
         }
 
 //
