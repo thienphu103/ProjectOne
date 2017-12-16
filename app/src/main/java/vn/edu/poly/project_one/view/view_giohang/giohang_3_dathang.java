@@ -63,7 +63,6 @@ public class giohang_3_dathang extends Fragment {
     TextView txt_tamtinh_giohang3;
     TextView txt_thanhtien_final_giohang3;
     private int thanhtien_final;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,7 +97,7 @@ public class giohang_3_dathang extends Fragment {
         txt_ten_giohang3.setText(ten_post);
         txt_diachi_giohang3.setText(diachi_post);
         txt_sdt_giohang3.setText(sdt_post);
-        txt_soluong_giohang3.setText("Đơn hàng("+ soluong_post+ "sản phẩm)");
+        txt_soluong_giohang3.setText("Đơn hàng("+ soluong_post+ " sản phẩm)");
         String pattern = "###,###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         String format = decimalFormat.format(dongia_post);
@@ -111,11 +110,11 @@ public class giohang_3_dathang extends Fragment {
             arrayList = new ArrayList<>();
             arrayList.add(new visit_1_getter_setter(name_post_txt,
                     dongia_post_txt,
-                    "1x", "tên cửa hàng"));
-            if (getActivity() != null) {
+                    "1x", "aMarket"));
+
                 adapter = new Adapter_3_dathang_giohang(getActivity(), arrayList);
                 listView.setAdapter(adapter);
-            }
+
         }
 
 //

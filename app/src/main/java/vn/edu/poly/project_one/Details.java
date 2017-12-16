@@ -19,12 +19,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 import vn.edu.poly.project_one.Adapter.Adapter_cardview_details;
 import vn.edu.poly.project_one.Adapter.Adapter_gridview_nhanxetvadanhgia_details;
+import vn.edu.poly.project_one.ControlClass.MySharedPreference;
+import vn.edu.poly.project_one.View_getter_setter.SanPham;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 import vn.edu.poly.project_one.view.ViSit;
 
@@ -55,6 +62,11 @@ public class Details extends Fragment {
     private SharedPreferences sharedPreferences_index;
     private SharedPreferences.Editor editor_index;
     private RelativeLayout layout_back_details;
+    private MySharedPreference sharedPreference;
+    private HashSet<String> scoreset;
+    private Gson gson;
+    private ArrayList<SanPham> Arraydetails;
+
 
     //
     @Override
@@ -87,7 +99,7 @@ public class Details extends Fragment {
         mRecyclerView_details.setLayoutManager(mLayoutManager_details);
         mAdapter_details = new Adapter_cardview_details(getContext(), arrayList_details);
         mRecyclerView_details.setAdapter(mAdapter_details);
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details", MODE_PRIVATE);
+        final SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details", MODE_PRIVATE);
         name = sharedPreferences.getString("name_sp", null);
         url = sharedPreferences.getString("hinhanh_sp", null);
         price = sharedPreferences.getString("gia_sp", null);
@@ -97,7 +109,7 @@ public class Details extends Fragment {
             url = String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }
         Picasso.with(getContext())
-                .load("http://namtnps06077.hol.es/"+url)
+                .load("http://namtnps06077.hol.es/" + url)
                 .resize(67, 67)
                 .error(R.drawable.ic_priority_high_black_24dp)//load url error
                 .placeholder(R.drawable.ic_priority_high_black_24dp)//load url error
@@ -112,44 +124,25 @@ public class Details extends Fragment {
         sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
         editor_index = sharedPreferences_index.edit();
         index = sharedPreferences_index.getInt("index", 0);
+        Arraydetails = new ArrayList<>();
+        sharedPreference = new MySharedPreference(getContext());
+        gson = new Gson();
 
+        String jsonScore = sharedPreference.getHighScoreList();
+        Log.d("GSON", jsonScore);
+        if (jsonScore != "") {
+            Type type = new TypeToken<List<SanPham>>() {
+            }.getType();
+            Arraydetails = gson.fromJson(jsonScore, type);
+        }
         btn_themvaogio_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                index++;
-                index++;
-                i++;
-                editor_index.putInt("index", index);
-                editor_index.commit();
-//                if (i > 1) {
-//                    int index_more = index - 2;
-//                    editor_index.putInt("index_soluong", i);
-//                    SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_donhang", MODE_PRIVATE);
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString("name_sp_" + index_more, name);
-//                    editor.putString("gia_sp_" + index_more, price);
-//                    editor.putString("id_sp_" + index_more, id);
-//                    editor.putString("hinhanh_sp_" + index_more, url);
-//                    editor.putInt("soluong_sp_" + index_more, i);
-//                    editor.commit();
-//                    editor_index.commit();
-//                    Log.d("test_soluong", index_more+ "");
-
-//                } else {
-                SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_giohang", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("name_sp_" + index, name);
-                editor.putString("gia_sp_" + index, price);
-                editor.putString("id_sp_" + index, id);
-                editor.putString("hinhanh_sp_" + index, url);
-                editor.putInt("soluong_sp_" + index, i);
-                Log.d("post_details", index + "");
-                editor.commit();
-//                }
-
-                Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng ! Số Lượng:" + i, Toast.LENGTH_SHORT).show();
+                sharedPreference.deleteHighScoreList("");
+                Arraydetails.add(new SanPham(name, price, "1", id, url));
+                saveScoreListToSharedpreference(Arraydetails);
+                Toast.makeText(getContext(), "Sản Phẩm: " + name + " Đã Vào Giỏ Hàng ! Số Lượng:" + 1, Toast.LENGTH_SHORT).show();
             }
-
         });
         layout_back_details.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -165,6 +158,18 @@ public class Details extends Fragment {
         });
 
     }
+
+    private void saveScoreListToSharedpreference(ArrayList<SanPham> detailsList) {
+        //convert ArrayList object to String by Gson
+        String jsonScore = gson.toJson(detailsList);
+
+        //save to shared preference
+        sharedPreference.saveHighScoreList(jsonScore);
+    }
+
+    /**
+     * Retrieving data from sharepref
+     */
 
 
     private void initOnClick() {

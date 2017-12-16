@@ -60,7 +60,7 @@
         android:layout_marginLeft="16dp"
         android:layout_toRightOf="@id/image_sanpham_giohang"
         android:fontFamily="@font/robotoregular"
-        android:text="size | 42"
+        android:text="id | 42"
         android:textSize="10sp" />
 
     <TextView

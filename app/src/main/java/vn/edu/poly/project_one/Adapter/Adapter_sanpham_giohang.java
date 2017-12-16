@@ -37,7 +37,7 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
 
     @Override
     public Adapter_sanpham_giohang.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-         v =  LayoutInflater.from(parent.getContext())
+        v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.custom_gridview_giohang, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -52,17 +52,18 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
         holder.btn_xoasanpham_giohang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int index = position;
                 v.setTag(new Integer(position));
                 click.onClick(v);
             }
         });
 //        holder.image_sanpham_giohang.setImageDrawable(v.getResources().getDrawable(sanPhamArrayList.get(position).getImg_sp()));
 
-        String url="";
-        if((sanPhamArrayList.get(position).getImg_sp()!=null)) {//null
-            url="http://namtnps06077.hol.es/"+sanPhamArrayList.get(position).getImg_sp();
-        }else{
-            url= String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
+        String url = "";
+        if ((sanPhamArrayList.get(position).getImg_sp() != null)) {//null
+            url = "http://namtnps06077.hol.es/" + sanPhamArrayList.get(position).getImg_sp();
+        } else {
+            url = String.valueOf(R.drawable.ic_priority_high_black_24dp);//null
         }
         Picasso.with(context)
                 .load(url)
@@ -84,6 +85,7 @@ public class Adapter_sanpham_giohang extends RecyclerView.Adapter<Adapter_sanpha
         ImageButton btn_xoasanpham_giohang;
         Button btn_muasau_giohang;
         ImageView image_sanpham_giohang;
+
         public ViewHolder(View itemView) {
             super(itemView);
             txt_sanpham_giohang = (TextView) itemView.findViewById(R.id.txt_sanpham_giohang);

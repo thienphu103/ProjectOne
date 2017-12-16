@@ -1,6 +1,8 @@
 package vn.edu.poly.project_one.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -22,12 +24,18 @@ import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Type;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import vn.edu.poly.project_one.Adapter.Adapter_sanpham_giohang;
 import vn.edu.poly.project_one.ControlClass.CircleTransform;
+import vn.edu.poly.project_one.ControlClass.MySharedPreference;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.SanPham;
 import vn.edu.poly.project_one.view.view_giohang.giohang_1_diachigiaohang;
@@ -69,6 +77,9 @@ public class Gio_Hang extends Fragment {
     private int index_back_fragment;
     private FragmentManager fm;
     private ImageView imageView_avatar;
+    private MySharedPreference sharedPreference;
+    private Gson gson;
+    private String name_sp;
 
 
     @Override
@@ -84,17 +95,6 @@ public class Gio_Hang extends Fragment {
     }
 
     private void initOnClick() {
-        click = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Integer integer = (Integer)v.getTag();
-                sanPhamArrayList.remove(integer);
-                adapter.notifyItemRemoved(integer);
-                adapter.notifyItemRangeChanged(integer,sanPhamArrayList.size());
-                adapter.notifyDataSetChanged();
-                Toast.makeText(getContext(),integer+"",Toast.LENGTH_SHORT).show();
-            }
-        };
         btn_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,8 +103,8 @@ public class Gio_Hang extends Fragment {
                 editor.putInt("dongia", dongia_post);
                 editor.putString("id_sp_txt", id_post);
                 editor.putInt("soluong_sp", soluong_post);
-                editor.putString("dongia_txt",dongia_post_txt);
-                editor.putString("name_txt",name_post_txt);
+                editor.putString("dongia_txt", dongia_post_txt);
+                editor.putString("name_txt", name_post_txt);
                 editor.commit();
                 giohang_1_diachigiaohang giohang_1_diachigiaohang = new giohang_1_diachigiaohang();
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -114,7 +114,7 @@ public class Gio_Hang extends Fragment {
                 ft.commit();
             }
         });
-
+        initControl();
     }
 
     private void initEvent() {
@@ -128,11 +128,11 @@ public class Gio_Hang extends Fragment {
         btn_dathang = (Button) view_giohang.findViewById(R.id.btn_dathang_giohang);
         txt_sum = (TextView) view_giohang.findViewById(R.id.txt_dathang_giohang);
         txt_remove = (TextView) view_giohang.findViewById(R.id.txt_remove);
-        imageView_avatar=(ImageView) view_giohang.findViewById(R.id.image_avatar_giohang) ;
+        imageView_avatar = (ImageView) view_giohang.findViewById(R.id.image_avatar_giohang);
         id_post = "";
         dongia_post = 0;
-        dongia_post_txt="";
-        name_post_txt="";
+        dongia_post_txt = "";
+        name_post_txt = "";
 
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("name_login", getContext().MODE_PRIVATE);
         String user = sharedPreferences.getString("username", null);
@@ -144,7 +144,6 @@ public class Gio_Hang extends Fragment {
             } else {
                 Picasso.with(getContext())
                         .load(url)
-
                         .transform(new CircleTransform())
                         .error(R.drawable.img_no_avatar)//load url error
                         .placeholder(R.drawable.img_no_avatar)//load url error
@@ -155,59 +154,111 @@ public class Gio_Hang extends Fragment {
     }
 
     private void initControl() {
-        sanPhamArrayList = new ArrayList<>();
-        SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_index", context.MODE_PRIVATE);
-        int index = sharedPreferences.getInt("index", 0);
-        int index_soluong = sharedPreferences.getInt("index_soluong", 0);
+//        SharedPreferences sharedPreferences = getContext().getSharedPreferences("post_details_index", context.MODE_PRIVATE);
+//        int index = sharedPreferences.getInt("index", 0);
 
-        editor_index = sharedPreferences.edit();
-//        editor_index.clear().commit();
-        for (int i = 1; i < index + 1; i++) {
-            i++;
-            sharedPreferences_data = getContext().getSharedPreferences("post_details_giohang", context.MODE_PRIVATE);
-            name = sharedPreferences_data.getString("name_sp_" + i, null);
-            price = sharedPreferences_data.getString("gia_sp_" + i, null);
-            url = sharedPreferences_data.getString("hinhanh_sp_" + i, null);
-            id = sharedPreferences_data.getString("id_sp_" + i, null);
-            soluong = sharedPreferences_data.getInt("soluong_sp_" + i, 0);
-            sanPhamArrayList.add(new SanPham(name,
-                    price, soluong + "", "3",
-                    url));
+        sanPhamArrayList = new ArrayList<>();
+        sharedPreference = new MySharedPreference(getContext());
+        gson = new Gson();
+        getHighScoreListFromSharedPreference();
+        String jsonScore = sharedPreference.getHighScoreList();
+        Log.d("GSON_GET", jsonScore);
+        Type type = new TypeToken<List<SanPham>>() {
+        }.getType();
+        if (jsonScore != "") {
+            sanPhamArrayList = gson.fromJson(jsonScore, type);
+            dongia_post = 0;
+            dongia_post_txt="";
+            name_post_txt="";
+
+        }
+        for (int i = 0; i < sanPhamArrayList.size(); i++) {
+            id = sanPhamArrayList.get(i).getSize_sp();
+            price = sanPhamArrayList.get(i).getGia_sp();
+            name = sanPhamArrayList.get(i).getTen_sp();
             id_post += id + ",";
             dongia_post += Double.parseDouble(price);
-            dongia_post_txt+=price+",";
-            name_post_txt+=name+",";
-            soluong_post += soluong;
-            Log.d("index", index + "_" + i + "_" + id_post);
+            dongia_post_txt += price + ",";
+            name_post_txt += name + ",";
+            soluong_post = sanPhamArrayList.size();
+            Log.d("name_post",name_post_txt+dongia_post_txt+soluong_post);
         }
-        if(sanPhamArrayList.size()==0){
+        String pattern = "###,###.###";
+        DecimalFormat decimalFormat = new DecimalFormat(pattern);
+        String format = decimalFormat.format(Double.parseDouble(String.valueOf(dongia_post)));
+        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm, Tạm Tính:" + format + " VND" + " ");
+        if (sanPhamArrayList.size() == 0) {
             btn_dathang.setEnabled(false);
             btn_dathang.setAlpha((float) 0.3);
-        }else {
+        } else {
             btn_dathang.setEnabled(true);
             btn_dathang.setAlpha((float) 1);
         }
-        txt_sum.setText("Có " + sanPhamArrayList.size() + " Sản Phẩm, Tạm Tính:" + dongia_post +" ");
         mRecyclerView_giohang.setHasFixedSize(true);
         mLayoutManager_giohang = new LinearLayoutManager(getActivity());
         mRecyclerView_giohang.setLayoutManager(mLayoutManager_giohang);
-        adapter = new Adapter_sanpham_giohang(getContext(), sanPhamArrayList,click);
+        adapter = new Adapter_sanpham_giohang(getContext(), sanPhamArrayList, click);
         mRecyclerView_giohang.setAdapter(adapter);
         txt_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPreferences_index = getContext().getSharedPreferences("post_details_index", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences_index.edit();
-                editor.putInt("index", 0);
-                editor.commit();
-                editor_index.clear().commit();
+                sharedPreference.deleteHighScoreList("");
                 dongia_post = 0;
                 id_post = "";
                 initControl();
             }
         });
+        click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer integer = (Integer) v.getTag();
+                int index = integer.intValue();
+                String jsonScore = sharedPreference.getHighScoreList();
+                Type type = new TypeToken<List<SanPham>>() {
+                }.getType();
+                if (jsonScore != "") {
+                    sanPhamArrayList.clear();
+                    sharedPreference.deleteHighScoreList("");
+                    sanPhamArrayList = gson.fromJson(jsonScore, type);
+                    try {
+                        name_sp = sanPhamArrayList.get(index).getTen_sp();
+                        showAlertDialog(name_sp, index);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+//                    sanPhamArrayList.remove(index);
+//                    saveScoreListToSharedpreference(sanPhamArrayList);
+//                    initControl();
+                    String jsonScore2 = sharedPreference.getHighScoreList();
 
+
+                    Log.d("GSON_GET_del", jsonScore2 + "size:" + sanPhamArrayList.size() + "");
+                }
+
+            }
+        };
     }
+
+    private void getHighScoreListFromSharedPreference() {
+        //retrieve data from shared preference
+        String jsonScore = sharedPreference.getHighScoreList();
+        Type type = new TypeToken<List<SanPham>>() {
+        }.getType();
+        sanPhamArrayList = gson.fromJson(jsonScore, type);
+
+        if (sanPhamArrayList == null) {
+            sanPhamArrayList = new ArrayList<>();
+        }
+    }
+
+    private void saveScoreListToSharedpreference(ArrayList<SanPham> detailsList) {
+        //convert ArrayList object to String by Gson
+        String jsonScore = gson.toJson(detailsList);
+
+        //save to shared preference
+        sharedPreference.saveHighScoreList(jsonScore);
+    }
+
     public void init_check_fragment() {
         view_giohang.setFocusableInTouchMode(true);
         view_giohang.requestFocus();
@@ -218,8 +269,8 @@ public class Gio_Hang extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     index_back_fragment--;
-                    if(index_back_fragment==0){
-                        Toast.makeText(getContext(),"Nhấn Lần Nữa Để Về Home",Toast.LENGTH_LONG).show();
+                    if (index_back_fragment == 0) {
+                        Toast.makeText(getContext(), "Nhấn Lần Nữa Để Về Home", Toast.LENGTH_LONG).show();
                     }
                     try {
                         if (index_back_fragment > 0) {
@@ -238,6 +289,31 @@ public class Gio_Hang extends Fragment {
                 return false;
             }
         });
+    }
+
+    public void showAlertDialog(String name, final int index) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("App");
+        builder.setMessage("Bạn có muốn xoá " + name + " không ?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sanPhamArrayList.remove(index);
+                saveScoreListToSharedpreference(sanPhamArrayList);
+                Toast.makeText(getContext(), "Xóa Sản Phẩm: " + name_sp + "", Toast.LENGTH_SHORT).show();
+                initControl();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
     public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
