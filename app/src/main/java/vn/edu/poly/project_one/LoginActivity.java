@@ -124,9 +124,7 @@ public class LoginActivity extends AppCompatActivity implements
         txt_signup_loginactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                showQuestionLoginMail();
             }
         });
         btn_login_loginactivity.setOnClickListener(new View.OnClickListener() {

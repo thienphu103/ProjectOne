@@ -42,6 +42,8 @@ public class giohang_3_dathang extends Fragment {
     View view_dathang;
     ListView listView;
     ArrayList<visit_1_getter_setter> arrayList;
+    ArrayList<String> arrayList_name;
+    ArrayList<String> arrayList_price;
     Adapter_3_dathang_giohang adapter;
     Button btn_continue;
     public static final String URL_CALL_API_UP_DATA = "http://namtnps06077.hol.es/post_don_hang.php";
@@ -63,6 +65,7 @@ public class giohang_3_dathang extends Fragment {
     TextView txt_tamtinh_giohang3;
     TextView txt_thanhtien_final_giohang3;
     private int thanhtien_final;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -93,29 +96,47 @@ public class giohang_3_dathang extends Fragment {
         dongia_post_txt = sharedPreferences.getString("dongia_txt", null);
         name_post_txt = sharedPreferences.getString("name_txt", null);
         thanhtoan_post = sharedPreferences.getString("thanhtoan", null);
-
         txt_ten_giohang3.setText(ten_post);
         txt_diachi_giohang3.setText(diachi_post);
         txt_sdt_giohang3.setText(sdt_post);
-        txt_soluong_giohang3.setText("Đơn hàng("+ soluong_post+ " sản phẩm)");
+        txt_soluong_giohang3.setText("Đơn hàng(" + soluong_post + " sản phẩm)");
         String pattern = "###,###.###";
         DecimalFormat decimalFormat = new DecimalFormat(pattern);
         String format = decimalFormat.format(dongia_post);
-        txt_tamtinh_giohang3.setText(format+ "VND");
-        thanhtien_final=dongia_post-2000;
+        txt_tamtinh_giohang3.setText(format + "VND");
+        thanhtien_final = dongia_post - 2000;
         String format_final = decimalFormat.format(thanhtien_final);
-        txt_thanhtien_final_giohang3.setText(format_final+"");
-
-        for (int i = 0; i < soluong_post; i++) {
-            arrayList = new ArrayList<>();
-            arrayList.add(new visit_1_getter_setter(name_post_txt,
-                    dongia_post_txt,
-                    "1x", "aMarket"));
-
-                adapter = new Adapter_3_dathang_giohang(getActivity(), arrayList);
-                listView.setAdapter(adapter);
+        txt_thanhtien_final_giohang3.setText(format_final + "");
+        String result_name[] = name_post_txt.split("[,]");
+        String result_price[] = dongia_post_txt.split("[,]");
+        arrayList = new ArrayList<>();
+        arrayList_name = new ArrayList<>();
+        arrayList_price = new ArrayList<>();
+        for (String r : result_name) {
+            arrayList_name.add(r);
 
         }
+        for (String rr : result_price) {
+            arrayList_price.add(rr);
+        }
+        for (int i = 0; i < soluong_post; i++) {
+            String r = arrayList_name.get(i).toString();
+            String rr = arrayList_price.get(i).toString();
+            arrayList.add(new visit_1_getter_setter(r, rr, "1x", "aMarket"));
+            adapter = new Adapter_3_dathang_giohang(getActivity(), arrayList);
+            listView.setAdapter(adapter);
+        }
+
+//        for (int i = 0; i < soluong_post; i++) {
+//            arrayList = new ArrayList<>();
+//            arrayList.add(new visit_1_getter_setter(name_post_txt,
+//                    dongia_post_txt,
+//                    "1x", "aMarket"));
+//
+//            adapter = new Adapter_3_dathang_giohang(getActivity(), arrayList);
+//            listView.setAdapter(adapter);
+//
+//        }
 
 //
 //        arrayList.add(new visit_1_getter_setter("Tên sản phẩm",
@@ -210,7 +231,7 @@ public class giohang_3_dathang extends Fragment {
                 stringMap.put("giao_hang_dh", "giao hàng tiêu chuẩn");
                 stringMap.put("thanh_toan_dh", thanhtoan_post);
                 stringMap.put("noi_dung_dh", name_post_txt);
-                stringMap.put("dongia_dh", thanhtien_final+"");
+                stringMap.put("dongia_dh", thanhtien_final + "");
                 stringMap.put("tinh_trang_dh", "Thành Công");
 
                 return stringMap;

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
@@ -57,6 +58,7 @@ public class NhapHang extends Fragment {
     private String ten_post;
     private ImageView img_view_photo_nhaphang;
     private int CAMERA_REQUEST = 1;
+    private int CAMERA_REQUEST_MAX = 1999;
     private Uri picUri;
     private int PIC_CROP = 3;
     private String URL_CALL_API_UP_DATA = "http://namtnps06077.hol.es/post_data_sanpham.php";
@@ -111,7 +113,6 @@ public class NhapHang extends Fragment {
                         upData();
                     }
 
-
                 } else {
 //
                     if ((txt_ten.isEmpty())) {
@@ -138,25 +139,46 @@ public class NhapHang extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-                            == PackageManager.PERMISSION_GRANTED) {
-                        // Permission is already available, start camera preview
-                        Snackbar.make(view_nhap_hang,
-                                "Camera permission is available. Starting preview.",
-                                Snackbar.LENGTH_SHORT).show();
+                    if (Build.VERSION.SDK_INT > 21) {
+                        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
+                                == PackageManager.PERMISSION_GRANTED) {
+                            // Permission is already available, start camera preview
+                            Snackbar.make(view_nhap_hang,
+                                    "Camera permission is available (API: " + Build.VERSION.SDK_INT + "). Starting preview.",
+                                    Snackbar.LENGTH_SHORT).show();
 
-                        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                            startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+                            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                                startActivityForResult(takePictureIntent, CAMERA_REQUEST_MAX);
+                            }
+                        } else {
+                            // Permission is missing and must be requested.
+                            requestCameraPermission();
                         }
                     } else {
-                        // Permission is missing and must be requested.
-                        requestCameraPermission();
+                        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(takePictureIntent, CAMERA_REQUEST);
                     }
 
 
-                    // use standard intent to capture an image
+//                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
+//                            == PackageManager.PERMISSION_GRANTED) {
+//                        // Permission is already available, start camera preview
+//                        Snackbar.make(view_nhap_hang,
+//                                "Camera permission is available. Starting preview.",
+//                                Snackbar.LENGTH_SHORT).show();
+//
+//                        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+//                            startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+//                        }
+//                    } else {
+//                        // Permission is missing and must be requested.
+//                        requestCameraPermission();
+//                    }
 
+
+                    // use standard intent to capture an image
                 } catch (ActivityNotFoundException ex) {
                     ex.printStackTrace();
                 }
@@ -265,6 +287,8 @@ public class NhapHang extends Fragment {
             public void onResponse(String response) {
 
                 Toast.makeText(getContext(), "Data_User_" + txt_user + "|" + response.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Nhập Hàng Thành Công", Toast.LENGTH_SHORT).show();
+
                 initUpdateUI();
             }
         }, new Response.ErrorListener() {
@@ -305,8 +329,8 @@ public class NhapHang extends Fragment {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_CALL_API_UPDATE_DATA, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 Toast.makeText(getContext(), "Data_User_" + txt_user + "|" + response.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Cập Nhật Thành Công", Toast.LENGTH_SHORT).show();
                 initUpdateUI();
             }
         }, new Response.ErrorListener() {
@@ -364,7 +388,12 @@ public class NhapHang extends Fragment {
                 // get the Uri for the captured image
                 picUri = data.getData();
                 performCrop();
+            } else if (requestCode == CAMERA_REQUEST_MAX) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                img_view_photo_nhaphang.setImageBitmap(imageBitmap);
             }
+
             // user is returning from cropping the image
             else if (requestCode == PIC_CROP) {
                 // get the returned data
@@ -373,8 +402,6 @@ public class NhapHang extends Fragment {
                 Bitmap thePic = extras.getParcelable("data");
                 img_view_photo_nhaphang.setImageBitmap(thePic);
             }
-
-
 
 
         }
