@@ -202,6 +202,7 @@ public class Tai_Khoan extends Fragment {
                     Intent intent = new Intent(getActivity(), TablayoutActivity_manage.class);
                     startActivity(intent);
                     getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+
                 }
 
 
@@ -213,6 +214,7 @@ public class Tai_Khoan extends Fragment {
                 Intent intent = new Intent(getActivity(), TabLayOutActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+                getActivity().finish();
             }
         });
     }

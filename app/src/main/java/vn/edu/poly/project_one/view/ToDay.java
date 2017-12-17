@@ -168,7 +168,8 @@ public class ToDay extends Fragment {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                getActivity().finish();
+
+                System.exit(0);
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
