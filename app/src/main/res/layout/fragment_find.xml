@@ -9,7 +9,7 @@
         android:orientation="vertical"
         >
         <TextView
-            android:layout_marginTop="@dimen/dimens_textview_margintop_find_tablayoutactivity"
+            android:layout_marginTop="30dp"
             android:textColor="@color/color_text_tablayoutactivity"
             android:textStyle="bold"
             android:layout_width="match_parent"
@@ -64,11 +64,12 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_xuhuong_tablayoutactivity"
             />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/lst_xuhuong_tablayotactivity"
-                android:layout_marginTop="@dimen/dimens_listview_find_margintop_tablayoutactivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="vertical" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lst_xuhuong_tablayotactivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_listview_find_margintop_tablayoutactivity"
+            android:scrollbars="vertical" />
     </LinearLayout>
 </FrameLayout>

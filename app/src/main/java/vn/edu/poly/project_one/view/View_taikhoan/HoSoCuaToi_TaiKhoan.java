@@ -3,9 +3,11 @@ package vn.edu.poly.project_one.view.View_taikhoan;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import vn.edu.poly.project_one.R;
+import vn.edu.poly.project_one.view.Tai_Khoan;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -34,6 +37,7 @@ public class HoSoCuaToi_TaiKhoan extends Fragment {
     private String url;
     private String email_text;
     RelativeLayout relativeLayout;
+    RelativeLayout relativeLayout2;
     private TextView txt_change_pass;
 
     @Override
@@ -91,6 +95,18 @@ public class HoSoCuaToi_TaiKhoan extends Fragment {
 
 
         }
+        relativeLayout2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Tai_Khoan DonHangcuaToi_TaiKhoan = new Tai_Khoan();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_hosocuatoi_taikhoan, DonHangcuaToi_TaiKhoan, "sometag");
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+                return false;
+            }
+        });
 
     }
 
@@ -100,6 +116,7 @@ public class HoSoCuaToi_TaiKhoan extends Fragment {
         img = (ImageView) view_taikhoan_hosocuatoi.findViewById(R.id.img_user_hosocuatui);
         name_img = (TextView) view_taikhoan_hosocuatoi.findViewById(R.id.txt_name_img_hosocuatui);
         relativeLayout = (RelativeLayout) view_taikhoan_hosocuatoi.findViewById(R.id.layout_change_pass);
+        relativeLayout2 = (RelativeLayout) view_taikhoan_hosocuatoi.findViewById(R.id.toolbar_hosocuatoi_taikhoantoolbar_hosocuatoi_taikhoan);
         txt_change_pass = (TextView) view_taikhoan_hosocuatoi.findViewById(R.id.txt_change_pass);
 
 

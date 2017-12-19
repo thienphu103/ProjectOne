@@ -100,7 +100,12 @@ public class Find extends Fragment implements View.OnClickListener, TextWatcher 
                 return false;
             }
         });
-        btn_cancel_tablayoutactivity.setOnClickListener(this);
+        btn_cancel_tablayoutactivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                edt_find_tablayoutactivity.setText("");
+            }
+        });
         edt_find_tablayoutactivity.addTextChangedListener(this);
         click = new View.OnClickListener() {
             @Override

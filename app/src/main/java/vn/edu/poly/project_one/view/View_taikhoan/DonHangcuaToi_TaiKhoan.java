@@ -2,10 +2,13 @@ package vn.edu.poly.project_one.view.View_taikhoan;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import vn.edu.poly.project_one.Adapter.Adapter_donhangcuatoi_taikhoan;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.donhangcuatui_taikhoan_getter_setter;
+import vn.edu.poly.project_one.view.Tai_Khoan;
 
 /**
  * Created by ASUS on 11/26/2017.
@@ -35,6 +39,7 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
     ArrayList<donhangcuatui_taikhoan_getter_setter> arrayList;
     Adapter_donhangcuatoi_taikhoan adapter;
     private String URL_CALL_API_GET_DATA = "http://namtnps06077.hol.es/get_data_donhang.php";
+    RelativeLayout relativeLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,7 +53,18 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
 
     private void initEvent() {
         getData();
-
+        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                Tai_Khoan DonHangcuaToi_TaiKhoan = new Tai_Khoan();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_donhangcuatoi_taikhoan, DonHangcuaToi_TaiKhoan, "sometag");
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+                return false;
+            }
+        });
 //        for (int i = 0; i < 10; i++) {
 //            arrayList.add(new donhangcuatui_taikhoan_getter_setter("a","1","c"));
 //        }
@@ -98,6 +114,7 @@ public class DonHangcuaToi_TaiKhoan extends Fragment {
 
     private void initControl() {
         gridView = (GridView) view_taikhoan_donhangcuatoi.findViewById(R.id.gridview_donhangcuatoi_taikhoan_tablayoutactivity);
+        relativeLayout = (RelativeLayout) view_taikhoan_donhangcuatoi.findViewById(R.id.toolbar_donhangcuatoi_taikhoan);
     }
 
 }

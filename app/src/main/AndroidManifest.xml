@@ -21,11 +21,21 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="Test Firebase Notification"
+            android:resource="@color/colorAccent" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_tab_lay_out"
             android:theme="@style/AppTheme" />
+        <service android:name=".FirebaseNotification.FirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity android:name=".splash_srceen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

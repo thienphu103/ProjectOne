@@ -9,6 +9,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
+        android:id="@+id/toolbar_hosocuatoi_taikhoantoolbar_hosocuatoi_taikhoan"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView

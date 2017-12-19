@@ -28,8 +28,6 @@ import vn.edu.poly.project_one.LoginActivity;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.TabLayOutActivity;
 import vn.edu.poly.project_one.TablayoutActivity_manage;
-import vn.edu.poly.project_one.view.View_taikhoan.DanhSachMongMuon_TaiKhoan;
-import vn.edu.poly.project_one.view.View_taikhoan.DanhSachYeuThich_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.DonHangcuaToi_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.HoSoCuaToi_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.ThongBao_TaiKhoan;
@@ -114,6 +112,8 @@ public class Tai_Khoan extends Fragment {
             txt_logout.setEnabled(true);
             txt_ban_hang_cung_chung_tui.setAlpha(1);
             txt_ban_hang_cung_chung_tui.setEnabled(true);
+            rtl_hosocuatoi.setAlpha(1);
+            rtl_hosocuatoi.setEnabled(true);
 
 
         } else {
@@ -121,6 +121,8 @@ public class Tai_Khoan extends Fragment {
             txt_logout.setEnabled(false);
             txt_ban_hang_cung_chung_tui.setAlpha((float) 0.3);
             txt_ban_hang_cung_chung_tui.setEnabled(false);
+            rtl_hosocuatoi.setAlpha((float) 0.3);
+            rtl_hosocuatoi.setEnabled(false);
         }
 
     }
@@ -154,23 +156,23 @@ public class Tai_Khoan extends Fragment {
         rtl_danhsachyeuthich.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DanhSachYeuThich_TaiKhoan DanhSachYeuThich_TaiKhoan = new DanhSachYeuThich_TaiKhoan();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_taikhoan, DanhSachYeuThich_TaiKhoan);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.addToBackStack(null);
-                ft.commit();
+//                DanhSachYeuThich_TaiKhoan DanhSachYeuThich_TaiKhoan = new DanhSachYeuThich_TaiKhoan();
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.replace(R.id.fragment_taikhoan, DanhSachYeuThich_TaiKhoan);
+//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                ft.addToBackStack(null);
+//                ft.commit();
             }
         });
         rtl_danhsachmongmuon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DanhSachMongMuon_TaiKhoan DanhSachMongMuon_TaiKhoan = new DanhSachMongMuon_TaiKhoan();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_taikhoan, DanhSachMongMuon_TaiKhoan);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.addToBackStack(null);
-                ft.commit();
+//                DanhSachMongMuon_TaiKhoan DanhSachMongMuon_TaiKhoan = new DanhSachMongMuon_TaiKhoan();
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.replace(R.id.fragment_taikhoan, DanhSachMongMuon_TaiKhoan);
+//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                ft.addToBackStack(null);
+//                ft.commit();
 
             }
         });
@@ -282,6 +284,8 @@ public class Tai_Khoan extends Fragment {
                 txt_logout.setEnabled(false);
                 txt_ban_hang_cung_chung_tui.setAlpha((float) 0.3);
                 txt_ban_hang_cung_chung_tui.setEnabled(false);
+                rtl_hosocuatoi.setAlpha((float) 0.3);
+                rtl_hosocuatoi.setEnabled(false);
                 sharedPreferences = getActivity().getSharedPreferences("name_login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.clear();
