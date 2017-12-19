@@ -1,8 +1,7 @@
 package vn.edu.poly.project_one.View_manage;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +31,9 @@ public class DonHang extends Fragment {
 
     private void initEvent() {
         arrayList = new ArrayList<>();
-        arrayList.add(new visit_1_getter_setter(R.color.colorPrimaryDark,"1","1","1",R.color.color_background_loginactivity_signupactivity));
-        arrayList.add(new visit_1_getter_setter(R.color.color_text_textview_email_SignUpactivity,"1","1","1",R.color.color_text_textview_email_SignUpactivity));
-        arrayList.add(new visit_1_getter_setter(R.color.cardview_dark_background,"1","1","1",R.color.color_text_textview_email_SignUpactivity));
+        arrayList.add(new visit_1_getter_setter(R.color.colorPrimaryDark,"Đã Đóng Gói","Khách","thienphu103@gmail.com",R.color.color_background_loginactivity_signupactivity));
+        arrayList.add(new visit_1_getter_setter(R.color.color_text_textview_email_SignUpactivity,"Đang Chuyển","Khách","thienphu103@gmail.com",R.color.color_text_textview_email_SignUpactivity));
+        arrayList.add(new visit_1_getter_setter(R.color.cardview_dark_background,"Thành Công","Khách","thienphu103@gmail.com",R.color.color_text_textview_email_SignUpactivity));
 //        arrayList.add(new visit_1_getter_setter(R.color.cardview_dark_background));
 //        arrayList.add(new visit_1_getter_setter(R.color.cardview_light_background));
         adapter_listview_donhang_manage = new Adapter_listview_donhang_manage(getActivity(),arrayList);

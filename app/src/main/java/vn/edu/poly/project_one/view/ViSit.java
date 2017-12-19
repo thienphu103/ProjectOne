@@ -45,7 +45,6 @@ import vn.edu.poly.project_one.Details;
 import vn.edu.poly.project_one.R;
 import vn.edu.poly.project_one.View_getter_setter.visit_1_getter_setter;
 import vn.edu.poly.project_one.View_getter_setter.visit_2_getter_setter;
-import vn.edu.poly.project_one.view.view_visit.visit_danhsachcuahang;
 import vn.edu.poly.project_one.view.view_visit.visit_hangbanchay;
 import vn.edu.poly.project_one.view.view_visit.visit_hangmoi_kieudanhsach;
 
@@ -118,12 +117,7 @@ public class ViSit extends Fragment {
         txt_danhsachcuahang_tablayoutactivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                visit_danhsachcuahang visit_view = new visit_danhsachcuahang();
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragmelayout_visit, visit_view);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.addToBackStack(null);
-                ft.commit();
+
             }
         });
         txt_hangmoi_tablayoutactivty.setOnClickListener(new View.OnClickListener() {
@@ -380,10 +374,11 @@ public class ViSit extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-                    mAdapter_visit_2 = new MyAdapter_visit_2(getContext(), strings2, click);
-                    mAdapter_visit_2.notifyDataSetChanged();
-                    mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
+                    if (getActivity() != null) {
+                        mAdapter_visit_2 = new MyAdapter_visit_2(getContext(), strings2, click);
+                        mAdapter_visit_2.notifyDataSetChanged();
+                        mRecyclerView_visit_2.setAdapter(mAdapter_visit_2);
+                    }
                     Log.d("a", "aa");
                 }
             }

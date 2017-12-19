@@ -190,8 +190,12 @@ public class visit_hangbanchay_kieulietke extends Fragment {
                         id=object.getString("id_sp");
                         Log.d("URl_IMAGE", image);
                         arrayList.add(new visit_hangbanchay_getter_setter_kieulietke(image, name, price, price,id));
-                        adapter = new Adapter_visit_hangbanchay_kieulietke(getActivity(), arrayList);
-                        adapter.notifyDataSetChanged();
+
+                        if(getContext()!=null){
+                            adapter = new Adapter_visit_hangbanchay_kieulietke(getActivity(), arrayList);
+                            adapter.notifyDataSetChanged();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

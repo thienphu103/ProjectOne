@@ -190,8 +190,11 @@ public class visit_hangmoi_kieulietke extends Fragment {
                         Log.d("URl_IMAGE", image);
                         arrayList.add(new visit_hangmoi_getter_setter_kieulietke(image, name, price, price,id
                         ));
-                        adapter = new Adapter_visit_hangmoi_kieulietke(getActivity(), arrayList);
-                        adapter.notifyDataSetChanged();
+                        if(getContext()!=null){
+                            adapter = new Adapter_visit_hangmoi_kieulietke(getActivity(), arrayList);
+                            adapter.notifyDataSetChanged();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

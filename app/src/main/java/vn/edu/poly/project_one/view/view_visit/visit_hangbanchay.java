@@ -185,8 +185,11 @@ public class visit_hangbanchay extends Fragment {
                         Log.d("URl_IMAGE", image);
                         arrayList.add(new visit_hangbanchay_getter_setter(
                                 image, name, price, id));
-                        adapter = new MyAdapter_visit_hangbanchay(getContext(), arrayList);
-                        adapter.notifyDataSetChanged();
+                        if(getContext()!=null){
+                            adapter = new MyAdapter_visit_hangbanchay(getContext(), arrayList);
+                            adapter.notifyDataSetChanged();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

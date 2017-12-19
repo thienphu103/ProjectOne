@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 import vn.edu.poly.project_one.R;
@@ -54,9 +53,9 @@ public class ImageAdapter_visit extends BaseAdapter {
         return imageView;
     }
     private Integer[] mThumbIds = {
-            R.drawable.anh_2, R.drawable.anh_1,
-            R.drawable.anh_2, R.drawable.anh_1,
-            R.drawable.anh_2, R.drawable.anh_1
+            R.drawable.anh_2, R.drawable.anh_5,
+            R.drawable.anh_3, R.drawable.anh_6,
+            R.drawable.anh_4, R.drawable.anh_1
     };
 
     @Nullable

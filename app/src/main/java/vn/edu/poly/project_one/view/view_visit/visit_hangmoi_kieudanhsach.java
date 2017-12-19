@@ -178,8 +178,11 @@ public class visit_hangmoi_kieudanhsach extends Fragment  {
                         arrayList.add(new
                                 visit_hangmoi_getter_setter_kieudanhsach(image,
                                 name, price,id));
-                        adapter = new Adapter_visit_hangmoi_kieudanhsach(getActivity(),arrayList);
-                        adapter.notifyDataSetChanged();
+                        if(getContext()!=null){
+                            adapter = new Adapter_visit_hangmoi_kieudanhsach(getActivity(),arrayList);
+                            adapter.notifyDataSetChanged();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
