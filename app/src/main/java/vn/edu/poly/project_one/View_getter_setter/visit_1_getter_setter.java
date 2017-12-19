@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 
 public class visit_1_getter_setter implements Serializable {
+    private int background;
     private int id_sp;
     private String ten_sp;
     private String gia_sp;
@@ -23,8 +24,83 @@ public class visit_1_getter_setter implements Serializable {
     private String soluong;
     private String name_cuahang;
     private String logo_cuahang;
+    private String text_donhang;
+    private String khach;
+    private String sdt;
+    private int background_2;
+    private String date_thongbao;
+    private String text_thongbao;
 
-    public visit_1_getter_setter(int id_sp,String ten_sp, String gia_sp, String hinhanh_sp,String soluongconlai_sp) {
+    public visit_1_getter_setter(String date_thongbao, String text_thongbao) {
+        this.date_thongbao = date_thongbao;
+        this.text_thongbao = text_thongbao;
+    }
+
+    public String getDate_thongbao() {
+        return date_thongbao;
+    }
+
+    public void setDate_thongbao(String date_thongbao) {
+        this.date_thongbao = date_thongbao;
+    }
+
+    public String getText_thongbao() {
+        return text_thongbao;
+    }
+
+    public void setText_thongbao(String text_thongbao) {
+        this.text_thongbao = text_thongbao;
+    }
+
+    public visit_1_getter_setter(int background, String text_donhang, String khach, String sdt, int background_2) {
+        this.background = background;
+        this.text_donhang = text_donhang;
+        this.khach = khach;
+        this.sdt = sdt;
+        this.background_2 = background_2;
+    }
+
+    public int getBackground_2() {
+        return background_2;
+    }
+
+    public void setBackground_2(int background_2) {
+        this.background_2 = background_2;
+    }
+
+    public String getText_donhang() {
+        return text_donhang;
+    }
+
+    public void setText_donhang(String text_donhang) {
+        this.text_donhang = text_donhang;
+    }
+
+    public String getKhach() {
+        return khach;
+    }
+
+    public void setKhach(String khach) {
+        this.khach = khach;
+    }
+
+    public String getSdt() {
+        return sdt;
+    }
+
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    public int getBackground() {
+        return background;
+    }
+
+    public void setBackground(int background) {
+        this.background = background;
+    }
+
+    public visit_1_getter_setter(int id_sp, String ten_sp, String gia_sp, String hinhanh_sp, String soluongconlai_sp) {
         this.id_sp=id_sp;
         this.ten_sp = ten_sp;
         this.gia_sp = gia_sp;

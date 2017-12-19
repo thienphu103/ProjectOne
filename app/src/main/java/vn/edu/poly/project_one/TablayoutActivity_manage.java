@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import vn.edu.poly.project_one.Adapter.AdapterTabLayoutFrangment_Manage;
 import vn.edu.poly.project_one.View_manage.CuaHang;
+import vn.edu.poly.project_one.View_manage.DonHang;
 import vn.edu.poly.project_one.View_manage.KhoHang;
 import vn.edu.poly.project_one.View_manage.ThongKe;
 import vn.edu.poly.project_one.view.Tai_Khoan;
@@ -232,7 +233,7 @@ public class TablayoutActivity_manage extends AppCompatActivity {
         listFragment = new ArrayList();
         listFragment.add(new CuaHang());
         listFragment.add(new KhoHang());
-        listFragment.add(new DonHangcuaToi_TaiKhoan());
+        listFragment.add(new DonHang());
         listFragment.add(new ThongKe());
         listFragment.add(new Tai_Khoan());
 

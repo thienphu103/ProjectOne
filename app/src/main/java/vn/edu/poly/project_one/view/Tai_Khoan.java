@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ import vn.edu.poly.project_one.view.View_taikhoan.DanhSachMongMuon_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.DanhSachYeuThich_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.DonHangcuaToi_TaiKhoan;
 import vn.edu.poly.project_one.view.View_taikhoan.HoSoCuaToi_TaiKhoan;
+import vn.edu.poly.project_one.view.View_taikhoan.ThongBao_TaiKhoan;
 
 
 /**
@@ -40,6 +42,7 @@ import vn.edu.poly.project_one.view.View_taikhoan.HoSoCuaToi_TaiKhoan;
 public class Tai_Khoan extends Fragment {
     View view_taikhoan;
     RelativeLayout rtl_donhangcuatoi, rtl_danhsachyeuthich, rtl_danhsachmongmuon, rtl_hosocuatoi;
+    LinearLayout linearLayout_thongbao;
     Button btn_login, btn_signup;
     TextView txt_login_name, txt_logout;
     ImageView img_login;
@@ -82,6 +85,7 @@ public class Tai_Khoan extends Fragment {
         txt_logout = (TextView) view_taikhoan.findViewById(R.id.txt_logout);
         txt_ban_hang_cung_chung_tui = (TextView) view_taikhoan.findViewById(R.id.txt_ban_hang_cung_chung_tui);
         txt_ve_trang_chu = (TextView) view_taikhoan.findViewById(R.id.txt_ve_trang_chu);
+        linearLayout_thongbao = (LinearLayout) view_taikhoan.findViewById(R.id.linearlayout_thongbao);
 
 
     }
@@ -122,6 +126,18 @@ public class Tai_Khoan extends Fragment {
     }
 
     private void initOnClick() {
+        linearLayout_thongbao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ThongBao_TaiKhoan ThongBao_TaiKhoan = new  ThongBao_TaiKhoan();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_taikhoan, ThongBao_TaiKhoan, "sometag");
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.addToBackStack(null);
+                ft.commit();
+                init_check_fragment();
+            }
+        });
         rtl_donhangcuatoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

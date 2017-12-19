@@ -236,6 +236,7 @@
                 android:background="#95989A"></View>
 
             <LinearLayout
+                android:id="@+id/linearlayout_thongbao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

@@ -152,4 +152,9 @@
     <string name="txt_khohang_manage">Kho hàng</string>
     <string name="txt_donhang_manage">Đơn hàng</string>
     <string name="txt_thongke_manage">Thống kê</string>
+    <string name="txt_tatca_manage">Tất cả</string>
+    <string name="txt_dadonggoi_manage">Đã đóng gói</string>
+    <string name="txt_dangvanchuyen_manage">Đang vận chuyển</string>
+    <string name="txt_giaohangthanhcong_manage">Giao hàng thành công</string>
+    <string name="txt_gapsuco_manage">Gặp sự cố</string>
 </resources>
